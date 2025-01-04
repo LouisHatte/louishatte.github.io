@@ -26,12 +26,25 @@
 
     const loader = new GLTFLoader();
     loader.load("/piece_txt_spec_disp.glb", (gltf) => {
-      gltf.scene.traverse((node) => {
+      gltf.scene.traverse(async (node) => {
         if ((node as THREE.Mesh).isMesh) {
           const mesh = node as THREE.Mesh;
           const material = mesh.material as THREE.MeshStandardMaterial;
 
           material.metalness = 0.5; // black without this line
+
+          const displacementTexture = await gltf.parser.getDependency(
+            "texture",
+            0
+          );
+          console.log(displacementTexture);
+
+          if (displacementTexture) {
+            material.displacementMap = displacementTexture;
+            material.displacementScale = 1;
+            material.displacementBias = 0;
+            material.needsUpdate = true;
+          }
         }
       });
 

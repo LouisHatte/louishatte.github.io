@@ -1,6 +1,7 @@
 <script lang="ts">
   import Bitcoin from "@/lib/canvas/Bitcoin.svelte";
   import Coins from "@/lib/canvas/Coins.svelte";
+  import Displacement from "@/lib/canvas/Displacement.svelte";
   import Marble from "@/lib/canvas/Marble.svelte";
   import Stars from "@/lib/canvas/Stars.svelte";
   import Wall from "@/lib/canvas/Wall.svelte";
@@ -13,8 +14,9 @@
 </script>
 
 <main>
-  <!-- <Bitcoin /> -->
+  <Bitcoin />
   <!-- <Coins /> -->
+  <!-- <Displacement /> -->
   <!-- <Marble /> -->
   <Stars />
   <!-- <Wall /> -->
@@ -22,8 +24,8 @@
   <!-- <Button>A</Button> -->
   <!-- <ButtonBar /> -->
   <!-- <Crosshair /> -->
-  <LanguageButton />
-  <Presentation />
+  <!-- <LanguageButton /> -->
+  <!-- <Presentation /> -->
 </main>
 
 <style>
