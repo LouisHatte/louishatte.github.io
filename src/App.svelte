@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { get } from "svelte/store";
+  import { _ } from "svelte-i18n";
+
   import Bitcoin from "@/lib/canvas/Bitcoin.svelte";
   import Coins from "@/lib/canvas/Coins.svelte";
   import Displacement from "@/lib/canvas/Displacement.svelte";
@@ -11,24 +14,45 @@
   import Crosshair from "@/lib/Crosshair.svelte";
   import LanguageButton from "@/lib/LanguageButton.svelte";
   import Presentation from "@/lib/Presentation.svelte";
+  import Test from "@/lib/Test.svelte";
+
+  import { isMobile } from "@/stores/screenSize";
+  import Modal from "./lib/Modal.svelte";
+  import Form from "./lib/Form.svelte";
 </script>
 
 <main>
-  <Bitcoin />
+  <!-- <Bitcoin /> -->
   <!-- <Coins /> -->
   <!-- <Displacement /> -->
   <!-- <Marble /> -->
   <Stars />
   <!-- <Wall /> -->
 
+  <!-- <Test /> -->
+  <Modal show title={$_("contact")}>
+    <Form />
+  </Modal>
   <!-- <Button>A</Button> -->
   <!-- <ButtonBar /> -->
   <!-- <Crosshair /> -->
   <!-- <LanguageButton /> -->
-  <!-- <Presentation /> -->
+  <Presentation />
 </main>
 
 <style>
+  :global {
+    html,
+    body,
+    #app {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: "Space Grotesk";
+    }
+  }
   main {
     width: 100%;
     height: 100%;

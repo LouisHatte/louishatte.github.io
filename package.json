@@ -21,6 +21,7 @@
     "vite": "^6.0.3"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "maath": "^0.10.8",
     "svelte-i18n": "^4.0.1",
     "svelte-icons": "^2.1.0",

@@ -33,9 +33,9 @@
     );
 
     try {
-      const greenModel = await loadModel("/piece_txt_spec_disp.glb");
-      const blueModel = await loadModel("/piece_txt_spec_disp.glb");
-      const redModel = await loadModel("/piece_txt_spec_disp.glb");
+      const greenModel = await loadModel("/blue.glb");
+      const blueModel = await loadModel("/red.glb");
+      const redModel = await loadModel("/green.glb");
 
       models.push(greenModel, blueModel, redModel);
       models.forEach((model) => {

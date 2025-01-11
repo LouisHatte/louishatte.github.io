@@ -30,6 +30,7 @@
         if ((node as THREE.Mesh).isMesh) {
           const mesh = node as THREE.Mesh;
           const material = mesh.material as THREE.MeshStandardMaterial;
+          console.log(material);
 
           material.metalness = 0.5; // black without this line
 
@@ -37,7 +38,6 @@
             "texture",
             0
           );
-          console.log(displacementTexture);
 
           if (displacementTexture) {
             material.displacementMap = displacementTexture;
