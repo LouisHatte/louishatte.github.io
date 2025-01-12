@@ -4,34 +4,31 @@
   type ButtonProps = {
     href?: string;
     type?: "button" | "submit" | "reset" | null;
-    cb?: (e: MouseEvent) => void;
+    onClick?: (e: MouseEvent) => void;
     children: Snippet;
   };
 
-  let { children, href, cb, type = "button" }: ButtonProps = $props();
+  let { children, href, onClick, type = "button" }: ButtonProps = $props();
 </script>
 
 {#if href}
   <a {href} target="_blank">
-    <button class="glow-on-hover" {type} onclick={cb}>
+    <button class="glow-on-hover" {type} onclick={onClick}>
       {@render children()}
     </button>
   </a>
 {:else}
-  <button class="glow-on-hover" {type} onclick={cb}>{@render children()}</button
-  >
+  <button class="glow-on-hover" {type} onclick={onClick}>
+    {@render children()}
+  </button>
 {/if}
 
 <style>
   .glow-on-hover {
-    width: 60px;
-    height: 60px;
+    padding: 10px 10px;
     border-radius: 6px;
-    border: none;
-    outline: none;
-    color: #fff;
-    background: #111;
-    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
     position: relative;
     z-index: 0;
   }

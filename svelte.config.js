@@ -6,5 +6,9 @@ export default {
   compilerOptions: {
     runes: true,
   },
-  preprocess: vitePreprocess(),
+  preprocess: vitePreprocess({
+    scss: {
+      includePaths: ['src'],
+    },
+  }),
 }

@@ -1,18 +1,16 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
+  import closeSVG from "@/assets/icons/close.svg";
+
   type Props = {
-    show?: boolean;
+    show: boolean;
     title: String;
-    onClose?: () => void;
+    onClose: () => void;
     children: Snippet;
   };
 
-  let { show = false, onClose = hide, title, children }: Props = $props();
-
-  function hide() {
-    show = false;
-  }
+  let { show, onClose, title, children }: Props = $props();
 </script>
 
 {#if show}
@@ -24,25 +22,26 @@
     tabindex="0"
   >
     <div
-      class="modal-content"
+      class="modal"
       onclick={(e) => e.stopPropagation()}
-      onkeyup={onClose}
+      onkeyup={(e) => e.stopPropagation()}
       role="button"
       tabindex="0"
     >
-      <button
-        class="close-btn"
-        onclick={onClose}
-        aria-label="Close modal"
-        type="button">X</button
-      >
-      <h2 id="modal-title">{title}</h2>
-      {@render children()}
+      <div class="modal-header">
+        <h1>{title}</h1>
+        <button onclick={onClose}>
+          <img src={closeSVG} width={25} height={25} alt="C" />
+        </button>
+      </div>
+      <div class="modal-body">
+        {@render children()}
+      </div>
     </div>
   </div>
 {/if}
 
-<style>
+<style lang="scss">
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -53,26 +52,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    cursor: pointer; /* Ensures pointer cursor for the overlay */
-  }
+    z-index: 1;
 
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 300px;
-    position: relative;
-  }
+    .modal {
+      width: 30%;
+      min-width: 450px;
+      background-color: rgba(0, 0, 0, 0.01);
+      backdrop-filter: blur(10px);
+      padding: var(--s16);
+      border: solid 1px var(--border-color);
+      border-radius: var(--border-radius);
 
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .modal-body {
+        padding-top: var(--s24);
+      }
+    }
   }
 </style>

@@ -1,8 +1,8 @@
 <script lang="ts">
-  import chatBotSVG from "@/assets/images/chat-bot.svg";
-  import githubSVG from "@/assets/images/github.svg";
-  import linkedinSVG from "@/assets/images/linkedin.svg";
-  import sendSVG from "@/assets/images/send.svg";
+  import chatBotSVG from "@/assets/icons/chat-bot.svg";
+  import githubSVG from "@/assets/icons/github.svg";
+  import linkedinSVG from "@/assets/icons/linkedin.svg";
+  import sendSVG from "@/assets/icons/send.svg";
 
   import Button from "@/lib/Button.svelte";
 </script>
