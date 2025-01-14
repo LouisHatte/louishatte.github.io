@@ -4,7 +4,7 @@
   import linkedinSVG from "@/assets/icons/linkedin.svg";
   import sendSVG from "@/assets/icons/send.svg";
 
-  import Button from "@/lib/Button.svelte";
+  import Button from "@/lib/buttons/Button.svelte";
 </script>
 
 <div>

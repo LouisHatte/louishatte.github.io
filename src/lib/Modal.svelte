@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
+  import { fade } from "svelte/transition";
+  import { cubicInOut } from "svelte/easing";
 
   import closeSVG from "@/assets/icons/close.svg";
 
@@ -14,20 +16,8 @@
 </script>
 
 {#if show}
-  <div
-    class="modal-overlay"
-    onclick={onClose}
-    onkeyup={onClose}
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="modal"
-      onclick={(e) => e.stopPropagation()}
-      onkeyup={(e) => e.stopPropagation()}
-      role="button"
-      tabindex="0"
-    >
+  <div class="modal-overlay">
+    <div class="modal" in:fade={{ duration: 1000, easing: cubicInOut }}>
       <div class="modal-header">
         <h1>{title}</h1>
         <button onclick={onClose}>
@@ -58,7 +48,7 @@
       width: 30%;
       min-width: 450px;
       background-color: rgba(0, 0, 0, 0.01);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(1px);
       padding: var(--s16);
       border: solid 1px var(--border-color);
       border-radius: var(--border-radius);
@@ -66,6 +56,10 @@
       .modal-header {
         display: flex;
         justify-content: space-between;
+
+        h1 {
+          font-size: 30px;
+        }
       }
 
       .modal-body {

@@ -1,5 +1,7 @@
 <script lang="ts">
   import { get } from "svelte/store";
+  import { fade } from "svelte/transition";
+  import { cubicInOut } from "svelte/easing";
   import { _ } from "svelte-i18n";
 
   import Bitcoin from "@/lib/canvas/Bitcoin.svelte";
@@ -9,45 +11,49 @@
   import Stars from "@/lib/canvas/Stars.svelte";
   import Wall from "@/lib/canvas/Wall.svelte";
 
-  import Button from "@/lib/Button.svelte";
-  import ButtonBar from "@/lib/ButtonBar.svelte";
-  import Crosshair from "@/lib/Crosshair.svelte";
-  import LanguageButton from "@/lib/LanguageButton.svelte";
+  import Button from "@/lib/buttons/Button.svelte";
+  import ButtonBar from "@/lib/buttons/ButtonBar.svelte";
+  import Crosshair from "@/lib/misc/Crosshair.svelte";
+  import LanguageButton from "@/lib/buttons/LanguageButton.svelte";
   import Presentation from "@/lib/Presentation.svelte";
   import Test from "@/lib/Test.svelte";
 
   import { isMobile } from "@/stores/screenSize";
-  import Modal from "./lib/Modal.svelte";
-  import Form from "./lib/Form.svelte";
+  import Modal from "@/lib/Modal.svelte";
+  import ContactForm from "@/lib/forms/ContactForm.svelte";
   import SendSVG from "@/assets/icons/send.svg";
 
-  let show = $state(false);
+  let showModal = $state(false);
 
-  function closeModale() {
-    show = false;
+  function toggleModale() {
+    showModal = !showModal;
   }
 </script>
 
 <main>
-  <!-- <Bitcoin /> -->
-  <!-- <Coins /> -->
-  <!-- <Displacement /> -->
-  <!-- <Marble /> -->
   <Stars />
-  <!-- <Wall /> -->
+  {#if !showModal}
+    <div out:fade={{ duration: 500, easing: cubicInOut }}>
+      <!-- <Bitcoin /> -->
+      <!-- <Coins /> -->
+      <!-- <Displacement /> -->
+      <!-- <Marble /> -->
+      <!-- <Wall /> -->
 
-  <!-- <Test /> -->
-  <LanguageButton />
-  <Button onClick={() => (show = true)}>
-    <img src={SendSVG} width="40" height="40" alt="S" />
-  </Button>
-  <!-- <ButtonBar /> -->
-  <!-- <Crosshair /> -->
-  <!-- <LanguageButton /> -->
-  <!-- <Presentation /> -->
+      <!-- <Test /> -->
+      <LanguageButton />
+      <Button onClick={toggleModale}>
+        <img src={SendSVG} width="40" height="40" alt="S" />
+      </Button>
+      <!-- <ButtonBar /> -->
+      <!-- <Crosshair /> -->
+      <!-- <LanguageButton /> -->
+      <!-- <Presentation /> -->
+    </div>
+  {/if}
 
-  <Modal {show} onClose={closeModale} title={$_("contact")}>
-    <Form />
+  <Modal show={showModal} onClose={toggleModale} title={$_("contact")}>
+    <ContactForm />
   </Modal>
 </main>
 
@@ -63,9 +69,17 @@
     --s48: 48px;
     --s64: 64px;
     --s96: 96px;
-    /* border */
-    --border-color: #1f1e1e;
+    /* borders */
     --border-radius: 6px;
+    --border-color: #7b8794;
+    /* texts */
+    --sub-text-color: #cbd2d9;
+    --xl-font-size: 30px;
+    --xs-font-size: 13px;
+    /* colors */
+    --black: #000;
+    --white: #fff;
+    --error-color: #e66a6a;
   }
 
   :global {
@@ -85,12 +99,29 @@
       padding: 0;
       outline: none;
       color: #fff;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button,
+    textarea {
+      background: transparent;
+      border: none;
     }
 
     button {
-      background: transparent;
-      border: none;
       cursor: pointer;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus {
+      box-shadow: 0 0 0px 1000px transparent inset; /* Transparent background */
+      -webkit-text-fill-color: #fff; /* Keep the text color consistent */
+      transition: background-color 5000s ease-in-out 0s; /* Prevent color from flashing */
     }
   }
   main {

@@ -2,39 +2,56 @@
   import type { Snippet } from "svelte";
 
   type ButtonProps = {
+    classes?: string;
+    style?: string;
     href?: string;
     type?: "button" | "submit" | "reset" | null;
     onClick?: (e: MouseEvent) => void;
     children: Snippet;
   };
 
-  let { children, href, onClick, type = "button" }: ButtonProps = $props();
+  let {
+    classes,
+    style,
+    children,
+    href,
+    onClick,
+    type = "button",
+  }: ButtonProps = $props();
 </script>
 
 {#if href}
   <a {href} target="_blank">
-    <button class="glow-on-hover" {type} onclick={onClick}>
+    <button class={`glow ${classes}`} {style} {type} onclick={onClick}>
       {@render children()}
     </button>
   </a>
 {:else}
-  <button class="glow-on-hover" {type} onclick={onClick}>
+  <button class={`glow ${classes}`} {style} {type} onclick={onClick}>
     {@render children()}
   </button>
 {/if}
 
 <style>
-  .glow-on-hover {
-    padding: 10px 10px;
-    border-radius: 6px;
+  button {
+    padding: var(--s8) var(--s8);
     background-color: transparent;
     border: 1px solid var(--border-color);
-    position: relative;
-    z-index: 0;
+    border-radius: var(--border-radius);
   }
 
-  .glow-on-hover:before {
+  .glow {
+    position: relative;
+  }
+
+  .glow:before {
     content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
     background: linear-gradient(
       45deg,
       #4c4c4c,
@@ -47,42 +64,36 @@
       #636363,
       #4c4c4c
     );
-    position: absolute;
-    top: -2px;
-    left: -2px;
     background-size: 400%;
-    z-index: -1;
+    border-radius: var(--border-radius);
     filter: blur(5px);
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    animation: glowing 20s linear infinite;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    border-radius: 6px;
+    animation: glowing 20s linear infinite;
+    transition: opacity 0.2s ease-in-out;
   }
 
-  .glow-on-hover:active {
+  .glow:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: transparent;
+    border-radius: var(--border-radius);
+  }
+
+  .glow:active {
     color: #000;
   }
 
-  .glow-on-hover:active:after {
+  .glow:active:after {
     background: transparent;
   }
 
-  .glow-on-hover:hover:before {
+  .glow:hover:before {
     opacity: 1;
-  }
-
-  .glow-on-hover:after {
-    z-index: -1;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #111;
-    left: 0;
-    top: 0;
-    border-radius: 6px;
   }
 
   @keyframes glowing {

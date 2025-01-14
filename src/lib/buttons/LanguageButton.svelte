@@ -2,7 +2,7 @@
   import { _, locale } from "svelte-i18n";
   import { get } from "svelte/store";
 
-  import Button from "@/lib/Button.svelte";
+  import Button from "@/lib/buttons/Button.svelte";
 
   function switchLanguage() {
     const currentLocale = get(locale);
@@ -12,4 +12,4 @@
   }
 </script>
 
-<Button cb={switchLanguage}>{$_("lang")}</Button>
+<Button onClick={switchLanguage}>{$_("lang")}</Button>
