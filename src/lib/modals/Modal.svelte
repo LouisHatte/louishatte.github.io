@@ -6,21 +6,22 @@
   import closeSVG from "@/assets/icons/close.svg";
 
   type Props = {
+    children: Snippet;
+    closeModal: () => void;
     show: boolean;
     title: String;
-    onClose: () => void;
-    children: Snippet;
   };
 
-  let { show, onClose, title, children }: Props = $props();
+  let { children, closeModal, show, title }: Props = $props();
 </script>
 
 {#if show}
+  {console.log("B!")}
   <div class="modal-overlay">
     <div class="modal" in:fade={{ duration: 1000, easing: cubicInOut }}>
       <div class="modal-header">
         <h1>{title}</h1>
-        <button onclick={onClose}>
+        <button onclick={closeModal}>
           <img src={closeSVG} width={25} height={25} alt="C" />
         </button>
       </div>
@@ -42,7 +43,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    z-index: var(--z-third);
 
     .modal {
       width: 30%;
@@ -63,7 +64,7 @@
       }
 
       .modal-body {
-        padding-top: var(--s24);
+        margin-top: var(--s32);
       }
     }
   }

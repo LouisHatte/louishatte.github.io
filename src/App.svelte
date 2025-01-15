@@ -3,6 +3,7 @@
   import { fade } from "svelte/transition";
   import { cubicInOut } from "svelte/easing";
   import { _ } from "svelte-i18n";
+  import { setContext } from "svelte";
 
   import Bitcoin from "@/lib/canvas/Bitcoin.svelte";
   import Coins from "@/lib/canvas/Coins.svelte";
@@ -18,21 +19,38 @@
   import Presentation from "@/lib/Presentation.svelte";
   import Test from "@/lib/Test.svelte";
 
-  import { isMobile } from "@/stores/screenSize";
-  import Modal from "@/lib/Modal.svelte";
+  import Modal from "@/lib/modals/Modal.svelte";
   import ContactForm from "@/lib/forms/ContactForm.svelte";
   import SendSVG from "@/assets/icons/send.svg";
+  import ModalMobile from "./lib/modals/ModalMobile.svelte";
+  import ToastBox from "./lib/toasts/ToastBox.svelte";
 
-  let showModal = $state(false);
+  import { addToast } from "@/stores/toasts";
+  import ModalBox from "./lib/modals/ModalBox.svelte";
+  import { modalState, openModal } from "./stores/modal";
 
-  function toggleModale() {
-    showModal = !showModal;
+  function showSuccessToast() {
+    addToast("This is a success message!", "success", 6000);
+  }
+
+  function showErrorToast() {
+    addToast("This is an error message!", "error", 6000);
+  }
+
+  function showInfoToast() {
+    addToast("This is an info message!", "info", 6000);
+  }
+
+  function openContactModal() {
+    console.log("OPEN_MODAL: ", openModal);
+    // @ts-expect-error
+    openModal(ContactForm, $_("contact"));
   }
 </script>
 
 <main>
   <Stars />
-  {#if !showModal}
+  {#if !$modalState.show}
     <div out:fade={{ duration: 500, easing: cubicInOut }}>
       <!-- <Bitcoin /> -->
       <!-- <Coins /> -->
@@ -42,7 +60,7 @@
 
       <!-- <Test /> -->
       <LanguageButton />
-      <Button onClick={toggleModale}>
+      <Button onClick={openContactModal}>
         <img src={SendSVG} width="40" height="40" alt="S" />
       </Button>
       <!-- <ButtonBar /> -->
@@ -52,9 +70,12 @@
     </div>
   {/if}
 
-  <Modal show={showModal} onClose={toggleModale} title={$_("contact")}>
-    <ContactForm />
-  </Modal>
+  <button onclick={showSuccessToast}>Show Success Toast</button>
+  <button onclick={showErrorToast}>Show Error Toast</button>
+  <button onclick={showInfoToast}>Show Info Toast</button>
+
+  <ModalBox />
+  <ToastBox />
 </main>
 
 <style>
@@ -69,17 +90,27 @@
     --s48: 48px;
     --s64: 64px;
     --s96: 96px;
+
     /* borders */
     --border-radius: 6px;
+    --border-radius-mobile: 20px;
     --border-color: #7b8794;
+
     /* texts */
     --sub-text-color: #cbd2d9;
     --xl-font-size: 30px;
     --xs-font-size: 13px;
+
     /* colors */
     --black: #000;
     --white: #fff;
     --error-color: #e66a6a;
+
+    /* z-indexes */
+    --z-first: 9999;
+    --z-second: 1000;
+    --z-third: 500;
+    --z-fourth: 250;
   }
 
   :global {
@@ -103,27 +134,25 @@
       box-sizing: border-box;
     }
 
-    button,
-    textarea {
+    button {
       background: transparent;
       border: none;
-    }
-
-    button {
       cursor: pointer;
     }
 
+    /* Remove autofill browser style */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,
     textarea:-webkit-autofill,
     textarea:-webkit-autofill:hover,
     textarea:-webkit-autofill:focus {
-      box-shadow: 0 0 0px 1000px transparent inset; /* Transparent background */
-      -webkit-text-fill-color: #fff; /* Keep the text color consistent */
-      transition: background-color 5000s ease-in-out 0s; /* Prevent color from flashing */
+      box-shadow: 0 0 0px 1000px transparent inset;
+      -webkit-text-fill-color: #fff;
+      transition: background-color 5000s ease-in-out 0s;
     }
   }
+
   main {
     width: 100%;
     height: 100%;

@@ -2,13 +2,13 @@
   import type { Snippet } from "svelte";
 
   type Props = {
+    children: Snippet;
     errors: string[] | null;
     key: string;
     label: string;
-    children: Snippet;
   };
 
-  let { errors, key, label, children }: Props = $props();
+  let { children, errors, key, label }: Props = $props();
 </script>
 
 <div class="form-field">
@@ -25,7 +25,7 @@
   .form-field {
     display: flex;
     flex-direction: column;
-    margin-bottom: var(--s16);
+    margin-bottom: var(--s24);
 
     .label-field {
       display: flex;

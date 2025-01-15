@@ -6,6 +6,8 @@
   "contactName": "Nom",
   "contactEmail": "Email",
   "contactMessage": "Message",
+  "contactSuccess": "Email envoyé!",
+  "contactError": "Une erreur est survenue.",
   "send": "Envoyer",
   "required": "requis",
   "invalidEmail": "email invalide"

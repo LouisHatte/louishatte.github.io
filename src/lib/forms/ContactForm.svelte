@@ -4,12 +4,13 @@
   import { createForm } from "felte";
   import { validator } from "@felte/validator-zod";
   import { z } from "zod";
+  import { getContext } from "svelte";
 
   import Button from "@/lib/buttons/Button.svelte";
   import FormField from "@/lib/forms/FormField.svelte";
   import Input from "@/lib/inputs/Input.svelte";
   import TextArea from "@/lib/inputs/TextArea.svelte";
-  import { onMount } from "svelte";
+  import { addToast } from "@/stores/toasts";
 
   const key: string = import.meta.env.VITE_EMAIL_JS_KEY;
   const serviceId: string = import.meta.env.VITE_EMAIL_JS_SERVICE_ID;
@@ -21,8 +22,6 @@
   let email = $state("");
   let message = $state("");
 
-  let usernameInput: HTMLInputElement | null = null;
-
   const schema = z.object({
     username: z.string().nonempty($_("required")),
     email: z.string().nonempty($_("required")).email($_("invalidEmail")),
@@ -30,18 +29,27 @@
   });
   type Form = z.infer<typeof schema>;
 
+  const closeModal = getContext("closeModal");
+
   const { form, errors } = createForm<Form>({
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const templateParams = {
         from: values.username,
         email: values.email,
         message: values.message,
       };
 
+      console.log(templateParams);
+
       try {
-        // emailjs.send(serviceId, templateId, templateParams);
+        // throw new Error("A!");
+        await emailjs.send(serviceId, templateId, templateParams);
+        addToast($_("contactSuccess"), "success");
+        // @ts-expect-error
+        closeModal();
       } catch (error) {
-        console.error("Error sending email", error);
+        addToast($_("contactError"), "error");
+        console.error("Error while sending email", error);
       }
     },
     extend: validator({ schema }),

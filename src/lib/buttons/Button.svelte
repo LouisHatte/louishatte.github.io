@@ -1,21 +1,19 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  type ButtonProps = {
-    classes?: string;
-    style?: string;
-    href?: string;
-    type?: "button" | "submit" | "reset" | null;
-    onClick?: (e: MouseEvent) => void;
+  type ButtonProps = StyleProps & {
     children: Snippet;
+    href?: string;
+    onClick?: (e: MouseEvent) => void;
+    type?: "button" | "submit" | "reset" | null;
   };
 
   let {
-    classes,
-    style,
     children,
+    classes,
     href,
     onClick,
+    style,
     type = "button",
   }: ButtonProps = $props();
 </script>
@@ -32,7 +30,7 @@
   </button>
 {/if}
 
-<style>
+<style lang="scss">
   button {
     padding: var(--s8) var(--s8);
     background-color: transparent;
@@ -42,58 +40,43 @@
 
   .glow {
     position: relative;
-  }
 
-  .glow:before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    z-index: -1;
-    background: linear-gradient(
-      45deg,
-      #4c4c4c,
-      #909090,
-      #e0e0e0,
-      #ababab,
-      #aeaeae,
-      #363636,
-      #424242,
-      #636363,
-      #4c4c4c
-    );
-    background-size: 400%;
-    border-radius: var(--border-radius);
-    filter: blur(5px);
-    opacity: 0;
-    animation: glowing 20s linear infinite;
-    transition: opacity 0.2s ease-in-out;
-  }
+    &:before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      z-index: -1;
+      background: linear-gradient(
+        45deg,
+        #4c4c4c,
+        #909090,
+        #e0e0e0,
+        #ababab,
+        #aeaeae,
+        #363636,
+        #424242,
+        #636363,
+        #4c4c4c
+      );
+      background-size: 400%;
+      border-radius: var(--border-radius);
+      filter: blur(5px);
+      opacity: 0;
+      animation: glowing 20s linear infinite;
+      transition: opacity 0.2s ease-in-out;
+    }
 
-  .glow:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: transparent;
-    border-radius: var(--border-radius);
-  }
+    &:active {
+      color: #000;
+    }
 
-  .glow:active {
-    color: #000;
-  }
-
-  .glow:active:after {
-    background: transparent;
-  }
-
-  .glow:hover:before {
-    opacity: 1;
+    &:hover:before,
+    &:focus:before {
+      opacity: 1;
+    }
   }
 
   @keyframes glowing {

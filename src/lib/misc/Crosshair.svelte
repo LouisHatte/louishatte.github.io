@@ -51,7 +51,7 @@
     border-radius: 50%;
     border: solid 1px white;
     transition: transform 0.1s ease-out;
-    z-index: 1;
+    z-index: var(--z-first);
   }
 
   .circle {
