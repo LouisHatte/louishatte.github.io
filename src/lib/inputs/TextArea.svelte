@@ -1,7 +1,7 @@
 <script lang="ts">
   type Props = StyleProps & {
-    rows?: number;
     id: string;
+    rows?: number;
     value: string;
   };
   let { classes, id, rows = 3, style, value = $bindable() }: Props = $props();

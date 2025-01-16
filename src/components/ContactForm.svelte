@@ -10,7 +10,7 @@
   import FormField from "@/lib/forms/FormField.svelte";
   import Input from "@/lib/inputs/Input.svelte";
   import TextArea from "@/lib/inputs/TextArea.svelte";
-  import { addToast } from "@/stores/toasts";
+  import { addToast } from "@/lib/toasts/toasts";
 
   const key: string = import.meta.env.VITE_EMAIL_JS_KEY;
   const serviceId: string = import.meta.env.VITE_EMAIL_JS_SERVICE_ID;
@@ -42,11 +42,10 @@
       console.log(templateParams);
 
       try {
-        // throw new Error("A!");
-        await emailjs.send(serviceId, templateId, templateParams);
+        throw new Error("A");
+        // await emailjs.send(serviceId, templateId, templateParams);
         addToast($_("contactSuccess"), "success");
-        // @ts-expect-error
-        closeModal();
+        // closeModal();
       } catch (error) {
         addToast($_("contactError"), "error");
         console.error("Error while sending email", error);
@@ -57,19 +56,15 @@
 </script>
 
 <form use:form>
-  <FormField key="name" label={$_("contactName")} errors={$errors.username}>
+  <FormField id="name" label={$_("contactName")} errors={$errors.username}>
     <Input autoFocus type="text" id="username" bind:value={username} />
   </FormField>
 
-  <FormField key="email" label={$_("contactEmail")} errors={$errors.email}>
+  <FormField id="email" label={$_("contactEmail")} errors={$errors.email}>
     <Input type="text" id="email" bind:value={email} />
   </FormField>
 
-  <FormField
-    key="message"
-    label={$_("contactMessage")}
-    errors={$errors.message}
-  >
+  <FormField id="message" label={$_("contactMessage")} errors={$errors.message}>
     <TextArea rows={5} id="message" bind:value={message} />
   </FormField>
 

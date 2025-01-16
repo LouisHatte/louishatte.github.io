@@ -3,19 +3,20 @@
   import { fly } from "svelte/transition";
   import { onDestroy, onMount } from "svelte";
 
-  import { removeToast, type ToastType } from "@/stores/toasts";
+  import { removeToast, type ToastType } from "@/lib/toasts/toasts";
+
   import infoSVG from "@/assets/icons/info.svg";
   import successSVG from "@/assets/icons/success.svg";
   import errorSVG from "@/assets/icons/error.svg";
 
   type Props = {
     duration?: number;
-    key: string;
+    id: string;
     message: String;
     type: ToastType;
   };
 
-  let { duration = 3000, key, message, type }: Props = $props();
+  let { duration = 3000, id, message, type }: Props = $props();
   let show = $state(false);
 
   const svgs: Record<ToastType, string> = {
@@ -39,14 +40,14 @@
   <div
     class="toast"
     transition:fly={{ y: -50, duration: 500, easing: cubicOut }}
-    onoutroend={() => removeToast(key)}
+    onoutroend={() => removeToast(id)}
   >
     <img width="30" height="30" src={svgs[type]} alt="I" />
     {message}
   </div>
 {/if}
 
-<style>
+<style lang="scss">
   .toast {
     padding: var(--s12);
     border: 1px solid var(--border-color);

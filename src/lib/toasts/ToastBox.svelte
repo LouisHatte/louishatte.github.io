@@ -1,15 +1,15 @@
 <script lang="ts">
   import Toast from "@/lib/toasts/Toast.svelte";
-  import { toasts } from "@/stores/toasts";
+  import { toasts } from "@/lib/toasts/toasts";
 </script>
 
 <div class="toast-box">
-  {#each $toasts as { id, message, type, duration } (id)}
-    <Toast key={id} {message} {type} {duration} />
+  {#each $toasts as toast (toast.id)}
+    <Toast {...toast} />
   {/each}
 </div>
 
-<style>
+<style lang="scss">
   .toast-box {
     position: fixed;
     top: var(--s16);

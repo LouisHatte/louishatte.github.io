@@ -7,7 +7,7 @@
   "contactEmail": "Email",
   "contactMessage": "Message",
   "contactSuccess": "Email sent!",
-  "contactError": "Something went wrong",
+  "contactError": "Something went wrong.",
   "send": "Send",
   "required": "required",
   "invalidEmail": "invalid email"

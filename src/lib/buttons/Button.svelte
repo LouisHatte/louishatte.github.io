@@ -1,34 +1,26 @@
-<script lang="ts">
-  import type { Snippet } from "svelte";
-
-  type ButtonProps = StyleProps & {
+<script lang="ts" module>
+  export type ButtonProps = StyleProps & {
     children: Snippet;
-    href?: string;
     onClick?: (e: MouseEvent) => void;
     type?: "button" | "submit" | "reset" | null;
   };
+</script>
+
+<script lang="ts">
+  import type { Snippet } from "svelte";
 
   let {
     children,
     classes,
-    href,
     onClick,
     style,
     type = "button",
   }: ButtonProps = $props();
 </script>
 
-{#if href}
-  <a {href} target="_blank">
-    <button class={`glow ${classes}`} {style} {type} onclick={onClick}>
-      {@render children()}
-    </button>
-  </a>
-{:else}
-  <button class={`glow ${classes}`} {style} {type} onclick={onClick}>
-    {@render children()}
-  </button>
-{/if}
+<button class={`glow ${classes}`} {style} {type} onclick={onClick}>
+  {@render children()}
+</button>
 
 <style lang="scss">
   button {
@@ -48,7 +40,7 @@
       left: -2px;
       width: calc(100% + 4px);
       height: calc(100% + 4px);
-      z-index: -1;
+      z-index: var(--z-last);
       background: linear-gradient(
         45deg,
         #4c4c4c,
@@ -70,7 +62,7 @@
     }
 
     &:active {
-      color: #000;
+      color: var(--black);
     }
 
     &:hover:before,

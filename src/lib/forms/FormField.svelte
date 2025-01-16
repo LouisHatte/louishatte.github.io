@@ -4,16 +4,16 @@
   type Props = {
     children: Snippet;
     errors: string[] | null;
-    key: string;
+    id: string;
     label: string;
   };
 
-  let { children, errors, key, label }: Props = $props();
+  let { children, errors, id, label }: Props = $props();
 </script>
 
 <div class="form-field">
   <div class="label-field">
-    <label for={key}>{label}</label>
+    <label for={id}>{label}</label>
     {#if errors}
       <div class="error">{errors[0]}</div>
     {/if}
