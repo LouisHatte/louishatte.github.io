@@ -1,14 +1,23 @@
 <script lang="ts">
   type Props = StyleProps & {
-    id: string;
+    id?: string;
+    placeholder?: string;
     rows?: number;
     value: string;
   };
-  let { classes, id, rows = 3, style, value = $bindable() }: Props = $props();
+  let {
+    _class,
+    id,
+    placeholder,
+    rows = 3,
+    style,
+    value = $bindable(),
+  }: Props = $props();
 </script>
 
 <div class="border-glow">
-  <textarea class={classes} {style} {rows} name={id} bind:value></textarea>
+  <textarea class={_class} {style} {rows} name={id} {placeholder} bind:value>
+  </textarea>
 </div>
 
 <style lang="scss">

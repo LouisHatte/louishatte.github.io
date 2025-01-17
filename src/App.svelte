@@ -13,6 +13,11 @@
 
   import SendSVG from "@/assets/icons/send.svg";
   import Crosshair from "./lib/misc/Crosshair.svelte";
+  import ButtonLink from "./lib/buttons/ButtonLink.svelte";
+  import GlobalStyle from "./lib/GlobalStyle.svelte";
+  import ButtonBar from "./components/ButtonBar.svelte";
+  import Spinner from "./lib/spinners/Spinner.svelte";
+  import Cv from "./components/CV.svelte";
 
   let showContactModal = $state(false);
 
@@ -26,10 +31,8 @@
   <Crosshair />
   {#if !showContactModal}
     <div out:fade={{ duration: 500, easing: cubicInOut }}>
-      <ButtonLanguage />
-      <Button onClick={openContactModal}>
-        <img src={SendSVG} width="40" height="40" alt="S" />
-      </Button>
+      <ButtonBar {openContactModal} />
+      <Cv />
     </div>
   {/if}
 
@@ -37,6 +40,7 @@
   <Modal bind:show={showContactModal} title={$_("contact")}>
     <ContactForm />
   </Modal>
+  <GlobalStyle />
 </main>
 
 <style>
@@ -54,7 +58,8 @@
 
     /* borders */
     --border-radius: 6px;
-    --border-radius-mobile: 20px;
+    --border-radius_M: 12px;
+    --xl-border-radius_M: 20px;
     --border-color: #7b8794;
 
     /* texts */

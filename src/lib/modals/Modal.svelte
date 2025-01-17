@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
+  import { setContext, type Snippet } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { cubicInOut, cubicOut } from "svelte/easing";
 
@@ -15,16 +15,29 @@
 
   let { children, show = $bindable(), title }: Props = $props();
 
+  function closeModal() {
+    show = false;
+  }
+  setContext("closeModal", closeModal);
+
   const fadeOptions = { duration: 1000, easing: cubicInOut };
   const flyOptions = { y: 500, duration: 500, easing: cubicOut };
 </script>
 
 {#if show && !$isMobile}
   <div class="modal-overlay" style="--align-items: center;">
-    <div class="modal" in:fade={fadeOptions}>
+    <div
+      class="modal"
+      in:fade={fadeOptions}
+      tabindex="0"
+      role="button"
+      onkeydown={(event) => {
+        if (event.key === "Escape") closeModal();
+      }}
+    >
       <div class="modal-header">
         <h1>{title}</h1>
-        <button onclick={() => (show = false)}>
+        <button onclick={closeModal}>
           <img src={closeSVG} width={25} height={25} alt="C" />
         </button>
       </div>
@@ -35,7 +48,15 @@
   </div>
 {:else if show && $isMobile}
   <div class="modal-overlay" style="--align-items: flex-end;">
-    <div class="modal_M" transition:fly={flyOptions}>
+    <div
+      class="modal_M"
+      transition:fly={flyOptions}
+      tabindex="0"
+      role="button"
+      onkeydown={(event) => {
+        if (event.key === "Escape") closeModal();
+      }}
+    >
       <div class="modal-header">
         <h1>{title}</h1>
         <button onclick={() => (show = false)}>
@@ -99,8 +120,8 @@
       padding: var(--s12);
       border: solid 1px var(--border-color);
       border-bottom: none;
-      border-top-left-radius: var(--border-radius-mobile);
-      border-top-right-radius: var(--border-radius-mobile);
+      border-top-left-radius: var(--xl-border-radius_M);
+      border-top-right-radius: var(--xl-border-radius_M);
       overflow: scroll;
       display: flex;
       flex-direction: column;

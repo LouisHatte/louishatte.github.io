@@ -1,21 +1,35 @@
 <script lang="ts">
-  import chatBotSVG from "@/assets/icons/chat-bot.svg";
+  import { _ } from "svelte-i18n";
+
+  import Button from "@/lib/buttons/Button.svelte";
+  import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
+  import ButtonLanguage from "@/components/ButtonLanguage.svelte";
+  import Spinner from "@/lib/spinners/Spinner.svelte";
+
   import githubSVG from "@/assets/icons/github.svg";
   import linkedinSVG from "@/assets/icons/linkedin.svg";
   import sendSVG from "@/assets/icons/send.svg";
 
-  import Button from "@/lib/buttons/Button.svelte";
+  type Props = {
+    openContactModal: () => void;
+  };
+
+  let { openContactModal }: Props = $props();
 </script>
 
 <div>
-  <Button><img src={chatBotSVG} width={40} height={40} alt="C" /></Button>
-  <Button href="https://www.linkedin.com/in/louis-hatte-94160111b/">
-    <img src={linkedinSVG} width={40} height={40} alt="L" />
+  <ButtonLanguage />
+  <ButtonLink href="https://www.linkedin.com/in/louis-hatte-94160111b/">
+    <img src={linkedinSVG} width={30} height={30} alt="L" />
+  </ButtonLink>
+  <ButtonLink href="https://github.com/LouisHatte">
+    <img src={githubSVG} width={30} height={30} alt="G" />
+  </ButtonLink>
+  <Button onclick={openContactModal}>
+    <img src={sendSVG} width={30} height={30} alt="S" />
+    {$_("contact")}
   </Button>
-  <Button href="https://github.com/LouisHatte">
-    <img src={githubSVG} width={40} height={40} alt="G" />
-  </Button>
-  <Button><img src={sendSVG} width={40} height={40} alt="S" /></Button>
+  <Spinner />
 </div>
 
 <style>

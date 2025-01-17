@@ -12,4 +12,4 @@
   }
 </script>
 
-<Button onClick={switchLanguage}>{$_("lang")}</Button>
+<Button onclick={switchLanguage}>{$_("lang")}</Button>

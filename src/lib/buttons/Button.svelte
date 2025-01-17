@@ -1,7 +1,8 @@
 <script lang="ts" module>
   export type ButtonProps = StyleProps & {
     children: Snippet;
-    onClick?: (e: MouseEvent) => void;
+    disabled?: boolean;
+    onclick?: (e: MouseEvent) => void;
     type?: "button" | "submit" | "reset" | null;
   };
 </script>
@@ -10,24 +11,31 @@
   import type { Snippet } from "svelte";
 
   let {
+    _class,
     children,
-    classes,
-    onClick,
+    disabled,
+    onclick,
     style,
     type = "button",
   }: ButtonProps = $props();
 </script>
 
-<button class={`glow ${classes}`} {style} {type} onclick={onClick}>
+<button class={`glow ${_class}`} {style} {type} {disabled} {onclick}>
   {@render children()}
 </button>
 
 <style lang="scss">
   button {
-    padding: var(--s8) var(--s8);
+    min-width: 48px;
+    min-height: 48px;
+    padding: var(--s8);
     background-color: transparent;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--s8);
   }
 
   .glow {
