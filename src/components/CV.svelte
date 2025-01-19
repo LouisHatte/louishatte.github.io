@@ -1,16 +1,20 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { HfInference } from "@huggingface/inference";
+  import axios from "axios";
 
   import Button from "@/lib/buttons/Button.svelte";
   import TextArea from "@/lib/inputs/TextArea.svelte";
 
-  const key: string = import.meta.env.VITE_HUGGING_FACE_API_KEY;
-  const hf = new HfInference(key);
+  const groqUrl = "https://api.groq.com/openai/v1/chat/completions";
+  const groqKey: string = import.meta.env.VITE_GROQ_API_KEY;
+  // const hf = new HfInference(key);
+
+  let isFirstQuestion = true;
 
   let context = $state("");
   let question = $state("");
-  let input = $derived(`${context}${question}\n\n`);
+  let input = $derived(`${context}${isFirstQuestion}${question}\n\n`);
 
   let answer = $state("");
 
@@ -21,25 +25,41 @@
 
   async function askQuestion() {
     if (!context || !question) return;
-
-    console.log(input);
-    const result = await hf.textGeneration({
-      model: "distilgpt2",
-      inputs: input,
-      parameters: {
-        max_new_tokens: 20, // Limit the response length
-        repetition_penalty: 1.2, // Penalize repeated tokens
-        temperature: 0.7, // Control randomness
-        top_k: 50, // Limit token sampling to the top 50
-        top_p: 0.9,
-      },
-    });
-    console.log("RESULT", result.generated_text);
+    try {
+      const response = await axios.post(
+        groqUrl,
+        {
+          model: "llama-3.3-70b-versatile",
+          messages: [
+            {
+              role: "user",
+              content: input,
+            },
+          ],
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${groqKey}`,
+          },
+        }
+      );
+      console.log("Response:", response.data);
+    } catch (error) {
+      console.error("Error fetching completion:", error);
+    }
   }
+
+  // const result = await hf.textGeneration({
+  //   model: "gpt2",
+  //   inputs: input,
+  // });
+  // console.log("RESULT", result.generated_text);
+  // }
 </script>
 
 <div>
-  <TextArea rows={4} placeholder="How old is Louis?..." bind:value={question}
+  <TextArea rows={4} placeholder="How old are you?..." bind:value={question}
   ></TextArea>
   <Button onclick={askQuestion}>Ask</Button>
 </div>
