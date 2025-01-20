@@ -26,8 +26,6 @@
 
 <style lang="scss">
   button {
-    min-width: 48px;
-    min-height: 48px;
     padding: var(--s8);
     background-color: transparent;
     border: 1px solid var(--border-color);

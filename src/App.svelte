@@ -32,6 +32,7 @@
   {#if !showContactModal}
     <div out:fade={{ duration: 500, easing: cubicInOut }}>
       <ButtonBar {openContactModal} />
+      <div style="margin-bottom: 24px;"></div>
       <Cv />
     </div>
   {/if}

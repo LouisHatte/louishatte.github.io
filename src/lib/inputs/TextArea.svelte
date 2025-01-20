@@ -25,7 +25,6 @@
     width: 100%;
     padding: var(--s8);
     background: transparent;
-    border: none;
     resize: none;
   }
 </style>

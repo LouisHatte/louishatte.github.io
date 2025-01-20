@@ -1,83 +1,122 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { HfInference } from "@huggingface/inference";
-  import axios from "axios";
 
   import Button from "@/lib/buttons/Button.svelte";
   import TextArea from "@/lib/inputs/TextArea.svelte";
 
-  const groqUrl = "https://api.groq.com/openai/v1/chat/completions";
-  const groqKey: string = import.meta.env.VITE_GROQ_API_KEY;
-  // const hf = new HfInference(key);
+  import { getAnswer } from "@/apis/groq";
+  import Input from "@/lib/inputs/Input.svelte";
 
-  let isFirstQuestion = true;
+  type Message = {
+    role: "user" | "AI";
+    content: string;
+  };
 
   let context = $state("");
   let question = $state("");
-  let input = $derived(`${context}${isFirstQuestion}${question}\n\n`);
+  let input = $derived(`${context}\n${question}`);
 
+  let isAsking = $state(false);
   let answer = $state("");
 
+  let messages: Message[] = $state([]);
+
   onMount(async () => {
-    const response = await fetch("/gpt2-context.txt");
+    const response = await fetch("/CV-context.txt");
     context = await response.text();
   });
 
-  async function askQuestion() {
-    if (!context || !question) return;
-    try {
-      const response = await axios.post(
-        groqUrl,
-        {
-          model: "llama-3.3-70b-versatile",
-          messages: [
-            {
-              role: "user",
-              content: input,
-            },
-          ],
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${groqKey}`,
-          },
-        }
-      );
-      console.log("Response:", response.data);
-    } catch (error) {
-      console.error("Error fetching completion:", error);
-    }
+  async function sendMessage() {
+    if (!context || !question || isAsking) return;
+    messages.push({ role: "user", content: question });
+    answer = "Hi!"; // await getAnswer(input);
+    messages.push({ role: "AI", content: answer });
   }
-
-  // const result = await hf.textGeneration({
-  //   model: "gpt2",
-  //   inputs: input,
-  // });
-  // console.log("RESULT", result.generated_text);
-  // }
 </script>
 
-<div>
-  <TextArea rows={4} placeholder="How old are you?..." bind:value={question}
-  ></TextArea>
-  <Button onclick={askQuestion}>Ask</Button>
-</div>
-
-<div class="answer-box">
+<!-- <div class="answer-box">
   <p>{answer}</p>
 </div>
 
-<style>
-  .answer-box {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: #f9f9f9;
+<div class="question-box">
+  <TextArea
+    rows={1}
+    placeholder="Are you experienced in Solidity?"
+    bind:value={question}
+  ></TextArea>
+  <Button onclick={askQuestion} disabled={isAsking}>Ask</Button>
+</div> -->
+
+<div class="main-box">
+  <div class="chat-box">
+    {#each messages as message, i}
+      <div class="chat-message {message.role === 'user' ? 'user' : 'AI'}">
+        <div class="message-bubble">{message.content}</div>
+      </div>
+    {/each}
+  </div>
+  <div class="input-box">
+    <Input
+      id="question"
+      type="text"
+      placeholder="How old are you?"
+      bind:value={question}
+    />
+    <Button onclick={sendMessage}>Send</Button>
+  </div>
+</div>
+
+<!-- onkeydown={(e) => e.key === "Enter" && sendMessage()} -->
+
+<style lang="scss">
+  .main-box {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    border: solid 1px var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
   }
 
-  .answer-box p {
-    margin: 0;
+  .chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-message {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-width: 70%;
+  }
+
+  .chat-message.user {
+    justify-content: flex-end;
+  }
+
+  .message-bubble {
+    padding: 10px 15px;
+    background: #e6e6e6;
+    border-radius: 10px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    max-width: 100%;
+  }
+
+  .chat-message.user .message-bubble {
+    background: #007bff;
+    color: #fff;
+  }
+
+  .input-box {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s8);
+    padding: var(--s16);
+    border-top: 1px solid var(--border-color);
   }
 </style>

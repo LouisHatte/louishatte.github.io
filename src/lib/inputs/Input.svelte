@@ -5,14 +5,16 @@
   type Props = StyleProps & {
     autoFocus?: boolean;
     id: string;
+    placeholder?: string;
     type: HTMLInputTypeAttribute;
     value: string;
   };
 
   let {
     autoFocus = false,
-    classes,
+    _class,
     id,
+    placeholder,
     style,
     type = "text",
     value = $bindable(),
@@ -28,18 +30,28 @@
 </script>
 
 <div class="border-glow">
-  <input class={classes} {style} {type} name={id} bind:this={ref} bind:value />
+  <input
+    class={_class}
+    {style}
+    {type}
+    name={id}
+    {placeholder}
+    bind:this={ref}
+    bind:value
+  />
 </div>
 
 <style lang="scss">
   input {
-    width: 100%;
     padding: var(--s8);
     background: transparent;
     border: none;
   }
 
   :global(.border-glow) {
+    width: 100%;
+    display: flex;
+    align-items: center;
     position: relative;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
