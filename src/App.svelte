@@ -18,6 +18,8 @@
   import ButtonBar from "./components/ButtonBar.svelte";
   import Spinner from "./lib/spinners/Spinner.svelte";
   import Cv from "./components/CV.svelte";
+  import Displacement from "./components/canvas/Displacement.svelte";
+  import Bitcoin from "./components/canvas/Bitcoin.svelte";
 
   let showContactModal = $state(false);
 
@@ -29,13 +31,14 @@
 <main>
   <Stars />
   <Crosshair />
-  {#if !showContactModal}
+  <Bitcoin />
+  <!-- {#if !showContactModal}
     <div out:fade={{ duration: 500, easing: cubicInOut }}>
       <ButtonBar {openContactModal} />
       <div style="margin-bottom: 24px;"></div>
       <Cv />
     </div>
-  {/if}
+  {/if} -->
 
   <ToastBox />
   <Modal bind:show={showContactModal} title={$_("contact")}>
