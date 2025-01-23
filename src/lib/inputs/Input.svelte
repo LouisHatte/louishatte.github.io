@@ -5,6 +5,7 @@
   type Props = StyleProps & {
     autoFocus?: boolean;
     id: string;
+    onkeydown?: (event: KeyboardEvent) => void;
     placeholder?: string;
     type: HTMLInputTypeAttribute;
     value: string;
@@ -14,6 +15,7 @@
     autoFocus = false,
     _class,
     id,
+    onkeydown,
     placeholder,
     style,
     type = "text",
@@ -36,6 +38,7 @@
     {type}
     name={id}
     {placeholder}
+    {onkeydown}
     bind:this={ref}
     bind:value
   />
@@ -43,6 +46,7 @@
 
 <style lang="scss">
   input {
+    width: 100%;
     padding: var(--s8);
     background: transparent;
     border: none;

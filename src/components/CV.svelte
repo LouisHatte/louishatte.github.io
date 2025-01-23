@@ -1,116 +1,130 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { _ } from "svelte-i18n";
 
   import Button from "@/lib/buttons/Button.svelte";
-  import TextArea from "@/lib/inputs/TextArea.svelte";
-
-  import { getAnswer } from "@/apis/groq";
   import Input from "@/lib/inputs/Input.svelte";
 
+  import { getAnswer } from "@/apis/groq";
+
   type Message = {
-    role: "user" | "AI";
+    role: "user" | "bot";
     content: string;
   };
+
+  const firstMessage = $_("chatFirstMessage");
 
   let context = $state("");
   let question = $state("");
   let input = $derived(`${context}\n${question}`);
 
   let isAsking = $state(false);
-  let answer = $state("");
+  let displayAnswer = $state("");
 
-  let messages: Message[] = $state([]);
+  let messages: Message[] = $state([
+    {
+      role: "bot",
+      content: firstMessage,
+    },
+  ]);
 
   onMount(async () => {
     const response = await fetch("/CV-context.txt");
     context = await response.text();
   });
 
+  $effect(() => {
+    let i = 0;
+    const lastAnswer = messages[messages.length - 1];
+    const { role, content } = lastAnswer;
+    if (role === "user") return;
+
+    console.log("HEY!");
+    const intervalId = setInterval(() => {
+      displayAnswer = content.slice(0, i);
+      i++;
+
+      if (i > content.length) {
+        clearInterval(intervalId);
+      }
+    }, 25);
+  });
+
+  $inspect(messages);
+
   async function sendMessage() {
     if (!context || !question || isAsking) return;
-    messages.push({ role: "user", content: question });
-    answer = "Hi!"; // await getAnswer(input);
-    messages.push({ role: "AI", content: answer });
+    isAsking = true;
+
+    messages = [...messages, { role: "user", content: question }];
+    const answer = await getAnswer(input);
+    messages.push({ role: "bot", content: answer });
+
+    isAsking = false;
   }
 </script>
 
-<!-- <div class="answer-box">
-  <p>{answer}</p>
-</div>
-
-<div class="question-box">
-  <TextArea
-    rows={1}
-    placeholder="Are you experienced in Solidity?"
-    bind:value={question}
-  ></TextArea>
-  <Button onclick={askQuestion} disabled={isAsking}>Ask</Button>
-</div> -->
-<!-- Comment -->
-
-<div class="main-box">
-  <div class="chat-box">
+<div class="chat-box">
+  <div class="messages-box">
     {#each messages as message, i}
-      <div class="chat-message {message.role === 'user' ? 'user' : 'AI'}">
-        <div class="message-bubble">{message.content}</div>
+      <div class="message-box {message.role === 'user' ? 'user' : ''}">
+        <div class="message-bubble">
+          {#if i != messages.length - 1}
+            {message.content}
+          {:else}
+            {displayAnswer}
+          {/if}
+        </div>
       </div>
     {/each}
   </div>
-  <div class="input-box">
-    <Input
-      id="question"
-      type="text"
-      placeholder="How old are you?"
-      bind:value={question}
-    />
-    <Button onclick={sendMessage}>Send</Button>
-  </div>
+</div>
+<div class="input-box">
+  <Input
+    id="question"
+    type="text"
+    placeholder={$_("chatPlaceholder")}
+    onkeydown={(e) => e.key === "Enter" && sendMessage()}
+    bind:value={question}
+  />
+  <Button onclick={sendMessage} disabled={isAsking}>{$_("send")}</Button>
 </div>
 
-<!-- onkeydown={(e) => e.key === "Enter" && sendMessage()} -->
-
 <style lang="scss">
-  .main-box {
+  .chat-box {
     display: flex;
     flex-direction: column;
     height: 500px;
+    padding: var(--s16);
     border: solid 1px var(--border-color);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-  }
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    overflow: scroll;
 
-  .chat-box {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
+    .messages-box {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s16);
 
-  .chat-message {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    max-width: 70%;
-  }
+      .message-box {
+        display: flex;
 
-  .chat-message.user {
-    justify-content: flex-end;
-  }
+        &.user {
+          justify-content: flex-end;
+        }
 
-  .message-bubble {
-    padding: 10px 15px;
-    background: #e6e6e6;
-    border-radius: 10px;
-    line-height: 1.5;
-    word-wrap: break-word;
-    max-width: 100%;
-  }
-
-  .chat-message.user .message-bubble {
-    background: #007bff;
-    color: #fff;
+        .message-bubble {
+          max-width: 250px;
+          padding: var(--s8);
+          background: var(--white);
+          border-radius: var(--border-radius);
+          background: var(--white);
+          color: var(--black);
+          line-height: 1.5;
+          word-wrap: break-word;
+        }
+      }
+    }
   }
 
   .input-box {
@@ -118,6 +132,8 @@
     justify-content: space-between;
     gap: var(--s8);
     padding: var(--s16);
-    border-top: 1px solid var(--border-color);
+    border: 1px solid var(--border-color);
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
   }
 </style>

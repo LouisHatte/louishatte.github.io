@@ -2,13 +2,17 @@
   "lang": "FR",
   "name": "Louis Hatté",
   "desc": "Je suis un développeur avec un parcours diversifié couvrant le web et l'IA. Je me concentre désormais sur l'approfondissement de mon expertise en Blockchain, un domaine qui me passionne particulièrement.",
+
+  "chatFirstMessage": "Bonjour! Avez vous des questions à propos de mon CV?",
+  "chatPlaceholder": "Compétences pro ?",
+  "send": "Envoyer",
+
   "contact": "Me contacter",
   "contactName": "Nom",
   "contactEmail": "Email",
   "contactMessage": "Message",
-  "contactSuccess": "Email envoyé!",
+  "contactSuccess": "Email envoyé !",
   "contactError": "Une erreur est survenue.",
-  "send": "Envoyer",
   "required": "requis",
   "invalidEmail": "email invalide"
 }

@@ -34,7 +34,7 @@
     scene.add(directionalLight);
 
     const loader = new GLTFLoader();
-    loader.load("/piece_txt.glb", (gltf) => {
+    loader.load("/piece04.glb", (gltf) => {
       gltf.scene.traverse((node) => {
         // @ts-expect-error
         if (node.isMesh) {
@@ -55,7 +55,7 @@
           material.metalness = 0.5;
           material.roughness = 0.5;
           material.displacementMap = heightmap;
-          material.displacementScale = 2; // Small scale for subtle displacement
+          material.displacementScale = 0.6; // Small scale for subtle displacement
           material.needsUpdate = true;
         }
       });

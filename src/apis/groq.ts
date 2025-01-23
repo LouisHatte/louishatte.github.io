@@ -2,15 +2,19 @@ import axios from "axios";
 
 const URL = "https://api.groq.com/openai/v1/chat/completions";
 const KEY: string = import.meta.env.VITE_GROQ_API_KEY;
-const MODEL = "llama-3.3-70b-versatile";
+const LLAMA_MODEL = "llama-3.3-70b-versatile";
 
-export async function getAnswer(input: string) {
+export async function getAnswer(
+  content: string,
+  role = "user",
+  model = LLAMA_MODEL
+) {
   try {
     const response = await axios.post(
       URL,
       {
-        model: MODEL,
-        messages: [{ role: "user", content: input }],
+        model,
+        messages: [{ role, content }],
       },
       {
         headers: {
