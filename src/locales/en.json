@@ -6,6 +6,9 @@
   "chatFirstMessage": "Hey there! Do you have any questions about my CV?",
   "chatPlaceholder": "What are your main skills?",
   "send": "Send",
+  "chatNoMoreCredits": "No more credits for today.",
+
+  "cvFileName": "CV-english",
 
   "contact": "Contact",
   "contactName": "Name",

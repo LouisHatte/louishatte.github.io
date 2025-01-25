@@ -6,6 +6,9 @@
   "chatFirstMessage": "Bonjour! Avez vous des questions à propos de mon CV?",
   "chatPlaceholder": "Compétences pro ?",
   "send": "Envoyer",
+  "chatNoMoreCredits": "Crédits épuisés pour aujourd'hui.",
+
+  "cvFileName": "CV-français",
 
   "contact": "Me contacter",
   "contactName": "Nom",

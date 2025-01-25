@@ -7,7 +7,6 @@
   import Modal from "@/lib/modals/Modal.svelte";
   import ToastBox from "@/lib/toasts/ToastBox.svelte";
 
-  import ButtonLanguage from "@/components/ButtonLanguage.svelte";
   import ContactForm from "@/components/ContactForm.svelte";
   import Stars from "@/components/canvas/Stars.svelte";
 
@@ -17,28 +16,39 @@
   import GlobalStyle from "./lib/GlobalStyle.svelte";
   import ButtonBar from "./components/ButtonBar.svelte";
   import Spinner from "./lib/spinners/Spinner.svelte";
-  import Cv from "./components/CV.svelte";
+  import ChatBot from "./components/ChatBot.svelte";
   import Displacement from "./components/canvas/Displacement.svelte";
   import Bitcoin from "./components/canvas/Bitcoin.svelte";
+  import Carousel from "./components/Carousel.svelte";
 
   let showContactModal = $state(false);
 
   function openContactModal() {
     showContactModal = true;
   }
+
+  const items = [
+    { title: "1" },
+    { title: "2" },
+    { title: "3" },
+    { title: "4" },
+    { title: "5" },
+    { title: "6" },
+  ];
 </script>
 
 <main>
-  <Stars />
-  <Crosshair />
-  <Bitcoin />
-  <!-- {#if !showContactModal}
+  <!-- <Stars /> -->
+  <!-- <Crosshair /> -->
+  <!-- <Bitcoin /> -->
+  {#if !showContactModal}
     <div out:fade={{ duration: 500, easing: cubicInOut }}>
-      <ButtonBar {openContactModal} />
+      <!-- <ChatBot /> -->
+      <Carousel {items} />
       <div style="margin-bottom: 24px;"></div>
-      <Cv />
+      <ButtonBar {openContactModal} />
     </div>
-  {/if} -->
+  {/if}
 
   <ToastBox />
   <Modal bind:show={showContactModal} title={$_("contact")}>
@@ -102,12 +112,17 @@
       font-size: 16px;
       box-sizing: border-box;
       font-family: "Space Grotesk";
+      scrollbar-width: none;
     }
 
     button {
       background: transparent;
       border: none;
       cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
     }
 
     /* Remove input autofill browser style */
