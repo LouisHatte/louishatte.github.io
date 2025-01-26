@@ -7,33 +7,89 @@
     items: Item[];
   };
 
-  let { items } = $props();
+  let { items }: Props = $props();
 
-  const length = items.length;
+  const n = 5;
+  const len = items.length;
+  const itemIndexes = Array.from({ length: len }, (_, index) => index);
 
-  function handleClick(index: number) {
-    console.log("A!");
+  let visibleIndexes = $state([0, 1, 2, 3, 4]);
+  let index = $state(2);
+  let previousIndex = $state(2);
+  let indexItem = 2;
+
+  $effect(() => {
+    if (index === previousIndex) return;
+
+    const diff = index - previousIndex;
+    const cyclicDiff = diff > 0 ? (diff + n) % n : (diff - n) % n;
+
+    const shift =
+      cyclicDiff > 2 || cyclicDiff < -2
+        ? cyclicDiff + Math.sign(cyclicDiff) * n * -1
+        : cyclicDiff;
+
+    if (shift === 1) {
+      indexItem = (indexItem + 1) % len;
+      const i = (index + 2) % n;
+      const v = (indexItem + 2) % len;
+      visibleIndexes[i] = v;
+    }
+
+    if (shift === -1) {
+      indexItem = (indexItem + len - 1) % len;
+      const i = (index + 3) % n;
+      const v = (indexItem + len - 2) % len;
+      visibleIndexes[i] = v;
+    }
+
+    if (shift === 2) {
+      indexItem = (indexItem + 2) % len;
+      const i1 = (index + 2) % n;
+      const v1 = (indexItem + 2) % len;
+      visibleIndexes[i1] = v1;
+
+      const i2 = (index + 1) % n;
+      const v2 = (indexItem + 1) % len;
+      visibleIndexes[i2] = v2;
+    }
+
+    if (shift === -2) {
+      indexItem = (indexItem + len - 2) % len;
+      const i1 = (index + 3) % n;
+      const v1 = (indexItem + len - 2) % len;
+      visibleIndexes[i1] = v1;
+
+      const i2 = (index + 4) % n;
+      const v2 = (indexItem + len - 1) % len;
+      visibleIndexes[i2] = v2;
+    }
+
+    previousIndex = index;
+  });
+
+  function updateContent(_x: number, shift: number) {
+    const i = (index + _x) % n;
+    const v = (indexItem + _x + shift) % len;
+    visibleIndexes[i] = v;
+
+    // console.log("i: ", i);
+    // console.log("v: ", v);
   }
 </script>
 
 <section id="slider">
-  <input type="radio" name="slider" id="s1" />
-  <input type="radio" name="slider" id="s2" />
-  <input type="radio" name="slider" id="s3" checked />
-  <input type="radio" name="slider" id="s4" />
-  <input type="radio" name="slider" id="s5" />
+  <input type="radio" name="slider" id="s0" value={0} bind:group={index} />
+  <input type="radio" name="slider" id="s1" value={1} bind:group={index} />
+  <input type="radio" name="slider" id="s2" value={2} bind:group={index} />
+  <input type="radio" name="slider" id="s3" value={3} bind:group={index} />
+  <input type="radio" name="slider" id="s4" value={4} bind:group={index} />
 
-  <label
-    for="s1"
-    id="slide1"
-    onclick={() => handleClick(0)}
-    role=""
-    tabindex="0">{items[0].title}</label
-  >
-  <label for="s2" id="slide2">{items[1].title}</label>
-  <label for="s3" id="slide3">{items[2].title}</label>
-  <label for="s4" id="slide4">{items[3].title}</label>
-  <label for="s5" id="slide5">{items[4].title}</label>
+  {#each visibleIndexes as visibleItemIndex, index}
+    <label for={`s${index}`} id={`slide${index}`}>
+      {items[visibleItemIndex].title}
+    </label>
+  {/each}
 </section>
 
 <style lang="scss">
@@ -60,70 +116,70 @@
     transition: transform 0.4s ease;
   }
 
+  #s0:checked ~ #slide3,
   #s1:checked ~ #slide4,
-  #s2:checked ~ #slide5,
+  #s2:checked ~ #slide0,
   #s3:checked ~ #slide1,
-  #s4:checked ~ #slide2,
-  #s5:checked ~ #slide3 {
+  #s4:checked ~ #slide2 {
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
     transform: translate3d(-30%, 0, -200px);
   }
 
-  #s1:checked ~ #slide5,
+  #s0:checked ~ #slide4,
+  #s1:checked ~ #slide0,
   #s2:checked ~ #slide1,
   #s3:checked ~ #slide2,
-  #s4:checked ~ #slide3,
-  #s5:checked ~ #slide4 {
+  #s4:checked ~ #slide3 {
     box-shadow:
       0 6px 10px 0 rgba(0, 0, 0, 0.3),
       0 2px 2px 0 rgba(0, 0, 0, 0.2);
     transform: translate3d(-15%, 0, -100px);
   }
 
+  #s0:checked ~ #slide0,
   #s1:checked ~ #slide1,
   #s2:checked ~ #slide2,
   #s3:checked ~ #slide3,
-  #s4:checked ~ #slide4,
-  #s5:checked ~ #slide5 {
+  #s4:checked ~ #slide4 {
     box-shadow:
       0 13px 25px 0 rgba(0, 0, 0, 0.3),
       0 11px 7px 0 rgba(0, 0, 0, 0.19);
     transform: translate3d(0, 0, 0);
   }
 
+  #s0:checked ~ #slide1,
   #s1:checked ~ #slide2,
   #s2:checked ~ #slide3,
   #s3:checked ~ #slide4,
-  #s4:checked ~ #slide5,
-  #s5:checked ~ #slide1 {
+  #s4:checked ~ #slide0 {
     box-shadow:
       0 6px 10px 0 rgba(0, 0, 0, 0.3),
       0 2px 2px 0 rgba(0, 0, 0, 0.2);
     transform: translate3d(15%, 0, -100px);
   }
 
+  #s0:checked ~ #slide2,
   #s1:checked ~ #slide3,
   #s2:checked ~ #slide4,
-  #s3:checked ~ #slide5,
-  #s4:checked ~ #slide1,
-  #s5:checked ~ #slide2 {
+  #s3:checked ~ #slide0,
+  #s4:checked ~ #slide1 {
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
     transform: translate3d(30%, 0, -200px);
   }
 
-  #slide1 {
+  #slide0 {
     background: #00bcd4;
   }
-  #slide2 {
+  #slide1 {
     background: #4caf50;
   }
-  #slide3 {
+  #slide2 {
     background: #cddc39;
   }
-  #slide4 {
+  #slide3 {
     background: #ffc107;
   }
-  #slide5 {
+  #slide4 {
     background: #ff5722;
   }
 </style>
