@@ -9,19 +9,20 @@
 
   let { items }: Props = $props();
 
-  const n = 5;
-  const len = items.length;
-  const itemIndexes = Array.from({ length: len }, (_, index) => index);
+  const cardIndexes = [0, 1, 2, 3, 4];
+  const n = cardIndexes.length;
+  const m = items.length;
 
-  let visibleIndexes = $state([0, 1, 2, 3, 4]);
-  let index = $state(2);
-  let previousIndex = $state(2);
+  let visibleItemsIndexes = $state([0, 1, 2, 3, 4]);
+  let cardIndex = $state(2);
+
+  let previousCardIndex = 2;
   let indexItem = 2;
 
   $effect(() => {
-    if (index === previousIndex) return;
+    if (cardIndex === previousCardIndex) return;
 
-    const diff = index - previousIndex;
+    const diff = cardIndex - previousCardIndex;
     const cyclicDiff = diff > 0 ? (diff + n) % n : (diff - n) % n;
 
     const shift =
@@ -29,63 +30,35 @@
         ? cyclicDiff + Math.sign(cyclicDiff) * n * -1
         : cyclicDiff;
 
-    if (shift === 1) {
-      indexItem = (indexItem + 1) % len;
-      const i = (index + 2) % n;
-      const v = (indexItem + 2) % len;
-      visibleIndexes[i] = v;
-    }
+    indexItem = (indexItem + m + shift) % m;
 
-    if (shift === -1) {
-      indexItem = (indexItem + len - 1) % len;
-      const i = (index + 3) % n;
-      const v = (indexItem + len - 2) % len;
-      visibleIndexes[i] = v;
-    }
+    if (shift === 1 || shift === 2) updateCard(2, 2);
+    if (shift === -1 || shift === -2) updateCard(3, -2);
+    if (shift === 2) updateCard(1, 1);
+    if (shift === -2) updateCard(4, -1);
 
-    if (shift === 2) {
-      indexItem = (indexItem + 2) % len;
-      const i1 = (index + 2) % n;
-      const v1 = (indexItem + 2) % len;
-      visibleIndexes[i1] = v1;
-
-      const i2 = (index + 1) % n;
-      const v2 = (indexItem + 1) % len;
-      visibleIndexes[i2] = v2;
-    }
-
-    if (shift === -2) {
-      indexItem = (indexItem + len - 2) % len;
-      const i1 = (index + 3) % n;
-      const v1 = (indexItem + len - 2) % len;
-      visibleIndexes[i1] = v1;
-
-      const i2 = (index + 4) % n;
-      const v2 = (indexItem + len - 1) % len;
-      visibleIndexes[i2] = v2;
-    }
-
-    previousIndex = index;
+    previousCardIndex = cardIndex;
   });
 
-  function updateContent(_x: number, shift: number) {
-    const i = (index + _x) % n;
-    const v = (indexItem + _x + shift) % len;
-    visibleIndexes[i] = v;
-
-    // console.log("i: ", i);
-    // console.log("v: ", v);
+  function updateCard(x: number, y: number) {
+    const i = (cardIndex + n + x) % n;
+    const v = (indexItem + m + y) % m;
+    visibleItemsIndexes[i] = v;
   }
 </script>
 
 <section id="slider">
-  <input type="radio" name="slider" id="s0" value={0} bind:group={index} />
-  <input type="radio" name="slider" id="s1" value={1} bind:group={index} />
-  <input type="radio" name="slider" id="s2" value={2} bind:group={index} />
-  <input type="radio" name="slider" id="s3" value={3} bind:group={index} />
-  <input type="radio" name="slider" id="s4" value={4} bind:group={index} />
+  {#each cardIndexes as index}
+    <input
+      type="radio"
+      name="slider"
+      id={`s${index}`}
+      value={index}
+      bind:group={cardIndex}
+    />
+  {/each}
 
-  {#each visibleIndexes as visibleItemIndex, index}
+  {#each visibleItemsIndexes as visibleItemIndex, index}
     <label for={`s${index}`} id={`slide${index}`}>
       {items[visibleItemIndex].title}
     </label>
