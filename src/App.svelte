@@ -28,26 +28,23 @@
   }
 
   const items = [
-    { title: "00000000000000000000000000000" },
-    { title: "11111111111111111111111111111111111111111111" },
-    { title: "2222222222222222222222222222222" },
-    { title: "3333333333333333333333333333333" },
-    { title: "444444444444444444444444444444" },
-    // { title: "5555555555555555555555555555555" },
-    // { title: "666666666666666666666666666666" },
-    // { title: "777777777777777777777777777777777" },
-    // { title: "88888888888888888888888888888" },
+    { title: "0" },
+    { title: "1" },
+    { title: "2" },
+    { title: "3" },
+    { title: "4" },
+    { title: "5" },
   ];
 </script>
 
 <main>
-  <!-- <Stars /> -->
+  <Stars />
   <!-- <Crosshair /> -->
   <!-- <Bitcoin /> -->
   {#if !showContactModal}
-    <div out:fade={{ duration: 500, easing: cubicInOut }}>
-      <!-- <ChatBot /> -->
-      <Carousel {items} />
+    <div class="tmp" out:fade={{ duration: 500, easing: cubicInOut }}>
+      <ChatBot />
+      <!-- <Carousel {items} /> -->
       <div style="margin-bottom: 24px;"></div>
       <ButtonBar {openContactModal} />
     </div>
@@ -88,6 +85,9 @@
     --black: #000;
     --white: #fff;
     --error-color: #e66a6a;
+
+    /* box shadows */
+    --white-box-shadow: inset 0px 0px 24px -10px rgba(255, 255, 255, 1);
 
     /* z-indexes */
     --z-first: 9999;
@@ -143,6 +143,13 @@
 
   main {
     display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tmp {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }

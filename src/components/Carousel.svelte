@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Modal from "@/lib/modals/Modal.svelte";
+
   type Item = {
     title: string;
   };
@@ -9,20 +11,21 @@
 
   let { items }: Props = $props();
 
-  const cardIndexes = [0, 1, 2, 3, 4];
-  const n = cardIndexes.length;
+  const slideIndexes = [0, 1, 2, 3, 4];
+  const n = slideIndexes.length;
   const m = items.length;
 
-  let visibleItemsIndexes = $state([0, 1, 2, 3, 4]);
-  let cardIndex = $state(2);
+  let visibleItemIndexes = $state(slideIndexes);
+  let visibleItemModals = $state([false, false, false, false, false]);
+  let slideIndex = $state(2);
 
-  let previousCardIndex = 2;
-  let indexItem = 2;
+  let previousSlideIndex = 2;
+  let itemIndex = 2;
 
   $effect(() => {
-    if (cardIndex === previousCardIndex) return;
+    if (slideIndex === previousSlideIndex) return;
 
-    const diff = cardIndex - previousCardIndex;
+    const diff = slideIndex - previousSlideIndex;
     const cyclicDiff = diff > 0 ? (diff + n) % n : (diff - n) % n;
 
     const shift =
@@ -30,129 +33,139 @@
         ? cyclicDiff + Math.sign(cyclicDiff) * n * -1
         : cyclicDiff;
 
-    indexItem = (indexItem + m + shift) % m;
+    itemIndex = (itemIndex + m + shift) % m;
 
-    if (shift === 1 || shift === 2) updateCard(2, 2);
-    if (shift === -1 || shift === -2) updateCard(3, -2);
-    if (shift === 2) updateCard(1, 1);
-    if (shift === -2) updateCard(4, -1);
+    if (shift === 1 || shift === 2) updateSlide(2, 2);
+    if (shift === -1 || shift === -2) updateSlide(3, -2);
+    if (shift === 2) updateSlide(1, 1);
+    if (shift === -2) updateSlide(4, -1);
 
-    previousCardIndex = cardIndex;
+    previousSlideIndex = slideIndex;
   });
 
-  function updateCard(x: number, y: number) {
-    const i = (cardIndex + n + x) % n;
-    const v = (indexItem + m + y) % m;
-    visibleItemsIndexes[i] = v;
+  function updateSlide(x: number, y: number) {
+    const i = (slideIndex + n + x) % n;
+    const v = (itemIndex + m + y) % m;
+    visibleItemIndexes[i] = v;
+  }
+
+  function openModal(index: number) {
+    if (slideIndex !== index) return;
+    visibleItemModals[index] = true;
   }
 </script>
 
-<section id="slider">
-  {#each cardIndexes as index}
+<div class="slider">
+  {#each slideIndexes as index}
     <input
       type="radio"
       name="slider"
       id={`s${index}`}
       value={index}
-      bind:group={cardIndex}
+      bind:group={slideIndex}
     />
   {/each}
 
-  {#each visibleItemsIndexes as visibleItemIndex, index}
-    <label for={`s${index}`} id={`slide${index}`}>
-      {items[visibleItemIndex].title}
+  {#each visibleItemIndexes as visibleItemIndex, index}
+    <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+    <label
+      for={`s${index}`}
+      id={`slide${index}`}
+      onclick={() => openModal(index)}
+      onkeydown={() => {}}
+    >
     </label>
+    <Modal
+      bind:show={visibleItemModals[visibleItemIndex]}
+      title={items[visibleItemIndex].title}
+    >
+      hello
+    </Modal>
   {/each}
-</section>
+</div>
 
 <style lang="scss">
   [type="radio"] {
     display: none;
   }
 
-  #slider {
-    height: 35vw;
+  .slider {
+    width: 70vw;
+    height: 300px;
     position: relative;
     perspective: 1000px;
     transform-style: preserve-3d;
-  }
 
-  #slider label {
-    margin: auto;
-    width: 60%;
-    height: 100%;
-    border-radius: 4px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    cursor: pointer;
-    transition: transform 0.4s ease;
-  }
+    label {
+      margin: auto;
+      width: 60%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      cursor: pointer;
+      background: black;
+      border: solid 1px #1d1d1d;
+      border-radius: var(--border-radius);
+      transition: transform 0.4s ease;
+    }
 
-  #s0:checked ~ #slide3,
-  #s1:checked ~ #slide4,
-  #s2:checked ~ #slide0,
-  #s3:checked ~ #slide1,
-  #s4:checked ~ #slide2 {
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
-    transform: translate3d(-30%, 0, -200px);
-  }
+    #s0:checked ~ #slide3,
+    #s1:checked ~ #slide4,
+    #s2:checked ~ #slide0,
+    #s3:checked ~ #slide1,
+    #s4:checked ~ #slide2 {
+      box-shadow:
+        0 1px 4px 0 rgba(0, 0, 0, 0.37),
+        var(--white-box-shadow);
+      transform: translate3d(-50%, 0, -200px);
+    }
 
-  #s0:checked ~ #slide4,
-  #s1:checked ~ #slide0,
-  #s2:checked ~ #slide1,
-  #s3:checked ~ #slide2,
-  #s4:checked ~ #slide3 {
-    box-shadow:
-      0 6px 10px 0 rgba(0, 0, 0, 0.3),
-      0 2px 2px 0 rgba(0, 0, 0, 0.2);
-    transform: translate3d(-15%, 0, -100px);
-  }
+    #s0:checked ~ #slide4,
+    #s1:checked ~ #slide0,
+    #s2:checked ~ #slide1,
+    #s3:checked ~ #slide2,
+    #s4:checked ~ #slide3 {
+      box-shadow:
+        0 6px 10px 0 rgba(0, 0, 0, 0.3),
+        0 2px 2px 0 rgba(0, 0, 0, 0.2),
+        var(--white-box-shadow);
+      transform: translate3d(-25%, 0, -100px);
+    }
 
-  #s0:checked ~ #slide0,
-  #s1:checked ~ #slide1,
-  #s2:checked ~ #slide2,
-  #s3:checked ~ #slide3,
-  #s4:checked ~ #slide4 {
-    box-shadow:
-      0 13px 25px 0 rgba(0, 0, 0, 0.3),
-      0 11px 7px 0 rgba(0, 0, 0, 0.19);
-    transform: translate3d(0, 0, 0);
-  }
+    #s0:checked ~ #slide0,
+    #s1:checked ~ #slide1,
+    #s2:checked ~ #slide2,
+    #s3:checked ~ #slide3,
+    #s4:checked ~ #slide4 {
+      box-shadow:
+        0 13px 25px 0 rgba(0, 0, 0, 0.3),
+        0 11px 7px 0 rgba(0, 0, 0, 0.19),
+        var(--white-box-shadow);
+      transform: translate3d(0, 0, 0);
+    }
 
-  #s0:checked ~ #slide1,
-  #s1:checked ~ #slide2,
-  #s2:checked ~ #slide3,
-  #s3:checked ~ #slide4,
-  #s4:checked ~ #slide0 {
-    box-shadow:
-      0 6px 10px 0 rgba(0, 0, 0, 0.3),
-      0 2px 2px 0 rgba(0, 0, 0, 0.2);
-    transform: translate3d(15%, 0, -100px);
-  }
+    #s0:checked ~ #slide1,
+    #s1:checked ~ #slide2,
+    #s2:checked ~ #slide3,
+    #s3:checked ~ #slide4,
+    #s4:checked ~ #slide0 {
+      box-shadow:
+        0 6px 10px 0 rgba(0, 0, 0, 0.3),
+        0 2px 2px 0 rgba(0, 0, 0, 0.2),
+        var(--white-box-shadow);
+      transform: translate3d(25%, 0, -100px);
+    }
 
-  #s0:checked ~ #slide2,
-  #s1:checked ~ #slide3,
-  #s2:checked ~ #slide4,
-  #s3:checked ~ #slide0,
-  #s4:checked ~ #slide1 {
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
-    transform: translate3d(30%, 0, -200px);
-  }
-
-  #slide0 {
-    background: #00bcd4;
-  }
-  #slide1 {
-    background: #4caf50;
-  }
-  #slide2 {
-    background: #cddc39;
-  }
-  #slide3 {
-    background: #ffc107;
-  }
-  #slide4 {
-    background: #ff5722;
+    #s0:checked ~ #slide2,
+    #s1:checked ~ #slide3,
+    #s2:checked ~ #slide4,
+    #s3:checked ~ #slide0,
+    #s4:checked ~ #slide1 {
+      box-shadow:
+        0 1px 4px 0 rgba(0, 0, 0, 0.37),
+        var(--white-box-shadow);
+      transform: translate3d(50%, 0, -200px);
+    }
   }
 </style>
