@@ -5,7 +5,6 @@
   import { onMount } from "svelte";
 
   onMount(() => {
-    // Scene, camera, renderer setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -24,35 +23,34 @@
     //   renderer.render(scene, camera);
     //   document.getElementById("bitcoin")?.appendChild(renderer.domElement);
 
-    // Add lighting
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(5, 10, 7.5);
-    scene.add(light);
+    // const light = new THREE.DirectionalLight(0xffffff, 1);
+    // light.position.set(5, 10, 7.5);
+    // scene.add(light);
 
-    // Load GLB model
+    const light2 = new THREE.AmbientLight(0xffffff, 1);
+    scene.add(light2);
+
     const gltfLoader = new GLTFLoader();
-    gltfLoader.load("/cube2.glb", (gltf) => {
+    const textureLoader = new THREE.TextureLoader();
+
+    gltfLoader.load("/reb4.glb", (gltf) => {
       const model = gltf.scene;
 
-      // Load texture
-      const textureLoader = new THREE.TextureLoader();
-      const heightmap = textureLoader.load("/dice.png");
+      const heightmap = textureLoader.load("/height.png", (texture) => {
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+      });
 
-      // Apply the heightmap as a displacement map
       model.traverse((child) => {
         // @ts-expect-error
         if (child.isMesh) {
+          // Clone the existing material to retain original properties
           // @ts-expect-error
-          child.geometry.scale(-1, 1, 1);
-          // @ts-expect-error
-          child.geometry.computeVertexNormals();
-          const material = new THREE.MeshStandardMaterial({
-            // @ts-expect-error
-            map: child.material.map, // Keep existing texture if any
-            displacementMap: heightmap,
-            displacementScale: 1, // Adjust for the intensity of the height effect
-            side: THREE.DoubleSide,
-          });
+          const material = child.material.clone();
+          material.map = heightmap; // Apply texture color
+          material.displacementMap = heightmap; // Apply height map (optional)
+          material.displacementScale = 1; // Adjust as needed
+
           // @ts-expect-error
           child.material = material;
         }

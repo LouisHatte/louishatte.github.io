@@ -12,6 +12,7 @@
   import sendSVG from "@/assets/icons/send.svg";
   import downloadSVG from "@/assets/icons/download.svg";
   import ButtonDownload from "@/lib/buttons/ButtonDownload.svelte";
+  import ButtonLike from "./ButtonLike.svelte";
 
   let CVFilePath = $derived($locale === "en" ? "/wall.jpg" : "/wall-bump.jpg");
   let CVFileName = $derived($locale === "en" ? "wall.jpg" : "wall-bump.jpg");
@@ -39,12 +40,13 @@
     <img src={downloadSVG} width={30} height={30} alt="D" />
     {$_("cvFileName")}
   </ButtonDownload>
+  <ButtonLike />
   <Spinner />
 </div>
 
 <style>
   div {
-    width: 500px;
+    width: 600px;
     display: flex;
     justify-content: space-around;
   }

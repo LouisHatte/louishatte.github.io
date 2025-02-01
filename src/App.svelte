@@ -40,11 +40,11 @@
 <main>
   <Stars />
   <!-- <Crosshair /> -->
-  <!-- <Bitcoin /> -->
   {#if !showContactModal}
     <div class="tmp" out:fade={{ duration: 500, easing: cubicInOut }}>
-      <ChatBot />
-      <!-- <Carousel {items} /> -->
+      <!-- <Bitcoin /> -->
+      <!-- <ChatBot /> -->
+      <Carousel {items} />
       <div style="margin-bottom: 24px;"></div>
       <ButtonBar {openContactModal} />
     </div>

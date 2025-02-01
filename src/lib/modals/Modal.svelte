@@ -91,12 +91,14 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
     align-items: var(--align-items);
     z-index: var(--z-third);
 
     .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 30%;
       min-width: 450px;
       background-color: rgba(0, 0, 0, 0.01);
