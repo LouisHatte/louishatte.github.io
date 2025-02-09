@@ -1,5 +1,4 @@
 {
-  "lang": "FR",
   "name": "Louis Hatté",
   "desc": "Je suis un développeur avec un parcours diversifié couvrant le web et l'IA. Je me concentre désormais sur l'approfondissement de mon expertise en Blockchain, un domaine qui me passionne particulièrement.",
 
@@ -17,5 +16,7 @@
   "contactSuccess": "Email envoyé !",
   "contactError": "Une erreur est survenue.",
   "required": "requis",
-  "invalidEmail": "email invalide"
+  "invalidEmail": "email invalide",
+
+  "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 }

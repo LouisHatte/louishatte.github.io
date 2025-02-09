@@ -1,12 +1,20 @@
+<script lang="ts" module>
+  export type SlideItem = {
+    category: string;
+    title: string;
+    image: string;
+    description: string;
+    year: string;
+    githubLink?: string;
+  };
+</script>
+
 <script lang="ts">
   import Modal from "@/lib/modals/Modal.svelte";
-
-  type Item = {
-    title: string;
-  };
+  import Slide from "./Slide.svelte";
 
   type Props = {
-    items: Item[];
+    items: SlideItem[];
   };
 
   let { items }: Props = $props();
@@ -73,11 +81,13 @@
       id={`slide${index}`}
       onclick={() => openModal(index)}
       onkeydown={() => {}}
+      style={`background-image: url(${items[visibleItemIndex].image});`}
     >
+      <div class="title">{items[visibleItemIndex].year}</div>
     </label>
     <Modal
       bind:show={visibleItemModals[visibleItemIndex]}
-      title={items[visibleItemIndex].title}
+      title={`${items[visibleItemIndex].category} - ${items[visibleItemIndex].title}`}
     >
       hello
     </Modal>
@@ -105,9 +115,22 @@
       right: 0;
       cursor: pointer;
       background: black;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       border: solid 1px #1d1d1d;
       border-radius: var(--border-radius);
       transition: transform 0.4s ease;
+      display: flex;
+      justify-content: end;
+      align-items: end;
+
+      .title {
+        color: var(--black);
+        font-size: var(--xl-font-size);
+        font-weight: 900;
+        margin-right: var(--s12);
+      }
     }
 
     #s0:checked ~ #slide3,

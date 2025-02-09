@@ -1,9 +1,11 @@
 <script lang="ts">
-  import Button from "@/lib/buttons/Button.svelte";
+  import { analytics, logEvent } from "@/apis/firebase";
   import { Liker, likes, liked } from "@/classes/Liker";
   import HeartIcon from "@/components/HeartIcon.svelte";
-  import { analytics, logEvent } from "@/apis/firebase";
+  import Button from "@/lib/buttons/Button.svelte";
   import { addToast } from "@/lib/toasts/toasts";
+
+  let displayedLikes = $derived.by(getDisplayedLikes);
 
   async function onclick() {
     if (!$liked) {
@@ -16,7 +18,7 @@
     }
   }
 
-  function displayLikes() {
+  function getDisplayedLikes() {
     if ($likes >= 1_000_000) {
       return (
         ($likes / 1_000_000).toFixed($likes % 1_000_000 === 0 ? 0 : 1) + "M"
@@ -31,5 +33,5 @@
 
 <Button {onclick}>
   <HeartIcon liked={$liked} />
-  {displayLikes()}
+  {displayedLikes}
 </Button>

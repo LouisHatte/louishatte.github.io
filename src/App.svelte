@@ -19,7 +19,19 @@
   import ChatBot from "./components/ChatBot.svelte";
   import Displacement from "./components/canvas/Displacement.svelte";
   import Bitcoin from "./components/canvas/Bitcoin.svelte";
-  import Carousel from "./components/Carousel.svelte";
+  import Carousel, { type SlideItem } from "./components/Carousel.svelte";
+
+  import "@/global.scss";
+
+  import ethereumImage from "@/assets/images/ethereum.png";
+  import flappyBirdImage from "@/assets/images/flappy-bird.jpg";
+  import leetCodeImage from "@/assets/images/leet-code.jpg";
+  import neuralNetworkImage from "@/assets/images/neural-network.jpg";
+  import spaceImage from "@/assets/images/space.jpg";
+  import stockMarketImage from "@/assets/images/stock-market.jpg";
+  import TopBar from "./components/TopBar.svelte";
+  import Card from "./lib/cards/Card.svelte";
+  import Test from "./components/Test.svelte";
 
   let showContactModal = $state(false);
 
@@ -27,13 +39,55 @@
     showContactModal = true;
   }
 
-  const items = [
-    { title: "0" },
-    { title: "1" },
-    { title: "2" },
-    { title: "3" },
-    { title: "4" },
-    { title: "5" },
+  const items: SlideItem[] = [
+    {
+      category: "Project",
+      title: "AI",
+      image: neuralNetworkImage,
+      description: "...",
+      year: "2022",
+      githubLink: "",
+    },
+    {
+      category: "Challenge",
+      title: "Ethernaut",
+      image: ethereumImage,
+      description: "...",
+      year: "2023",
+      githubLink: "",
+    },
+    {
+      category: "Project",
+      title: "Portfolio",
+      image: spaceImage,
+      description: "...",
+      year: "2025",
+      githubLink: "",
+    },
+    {
+      category: "Project",
+      title: "Stock market AI",
+      image: stockMarketImage,
+      description: "...",
+      year: "2025",
+      githubLink: "",
+    },
+    {
+      category: "Challenge",
+      title: "Leetcode",
+      image: leetCodeImage,
+      description: "...",
+      year: "2025",
+      githubLink: "",
+    },
+    {
+      category: "Project",
+      title: "Flappy Bird",
+      image: flappyBirdImage,
+      description: "...",
+      year: "2020",
+      githubLink: "https://github.com/LouisHatte/Game-flappyBird",
+    },
   ];
 </script>
 
@@ -41,12 +95,18 @@
   <Stars />
   <!-- <Crosshair /> -->
   {#if !showContactModal}
-    <div class="tmp" out:fade={{ duration: 500, easing: cubicInOut }}>
+    <div class="content" out:fade={{ duration: 500, easing: cubicInOut }}>
+      <TopBar />
+      <Test />
+      <!-- <Card
+        >Louis Hatté
+        <div>Hello world</div></Card
+      > -->
       <!-- <Bitcoin /> -->
       <!-- <ChatBot /> -->
-      <Carousel {items} />
-      <div style="margin-bottom: 24px;"></div>
-      <ButtonBar {openContactModal} />
+      <!-- <Carousel {items} /> -->
+      <!-- <div style="margin-bottom: 24px;"></div>
+      <ButtonBar {openContactModal} /> -->
     </div>
   {/if}
 
@@ -58,99 +118,20 @@
 </main>
 
 <style>
-  :root {
-    /* spacing */
-    --s4: 4px;
-    --s8: 8px;
-    --s12: 12px;
-    --s16: 16px;
-    --s24: 24px;
-    --s32: 32px;
-    --s48: 48px;
-    --s64: 64px;
-    --s96: 96px;
-
-    /* borders */
-    --border-radius: 6px;
-    --border-radius_M: 12px;
-    --xl-border-radius_M: 20px;
-    --border-color: #7b8794;
-
-    /* texts */
-    --sub-text-color: #cbd2d9;
-    --xl-font-size: 30px;
-    --xs-font-size: 13px;
-
-    /* colors */
-    --black: #000;
-    --white: #fff;
-    --error-color: #e66a6a;
-
-    /* box shadows */
-    --white-box-shadow: inset 0px 0px 24px -10px rgba(255, 255, 255, 1);
-
-    /* z-indexes */
-    --z-first: 9999;
-    --z-second: 1000;
-    --z-third: 500;
-    --z-fourth: 250;
-    --z-last: -1;
-  }
-
-  :global {
-    html,
-    body,
-    #app,
-    main {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      outline: none;
-      color: #fff;
-      font-size: 16px;
-      box-sizing: border-box;
-      font-family: "Space Grotesk";
-      scrollbar-width: none;
-    }
-
-    button {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    /* Remove input autofill browser style */
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    textarea:-webkit-autofill,
-    textarea:-webkit-autofill:hover,
-    textarea:-webkit-autofill:focus {
-      box-shadow: 0 0 0 1000px transparent inset;
-      -webkit-text-fill-color: var(--white);
-      transition: background-color 5000s ease-in-out 0s;
-    }
-  }
-
   main {
+    width: 100%;
+    max-width: 1434px;
+    height: 100%;
+    /* max-height: 606; */
+    /* overflow: hidden; */
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: purple 3px solid; */
   }
 
-  .tmp {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .content {
+    width: 100%;
+    height: 100%;
   }
 </style>
