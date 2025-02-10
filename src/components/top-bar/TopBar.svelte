@@ -1,16 +1,16 @@
 <script lang="ts">
   import ethSVG from "@/assets/icons/eth.svg";
-  import ButtonLike from "@/components/ButtonLike.svelte";
-  import LanguageSwitch from "@/components/LanguageSwitch.svelte";
-  import Spinner from "@/lib/spinners/Spinner.svelte";
+  import LikeButton from "@/components/top-bar/LikeButton.svelte";
+  import LocaleSwitch from "@/components/top-bar/LocaleSwitch.svelte";
+  import MysteryButton from "@/components/top-bar/MysteryButton.svelte";
 </script>
 
 <div class="main">
   <img src={ethSVG} alt="E" width={32} height={32} />
   <div class="buttons">
-    <LanguageSwitch />
-    <ButtonLike />
-    <Spinner />
+    <LocaleSwitch />
+    <LikeButton />
+    <MysteryButton />
   </div>
 </div>
 
@@ -19,7 +19,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: solid 1px red;
 
     .buttons {
       display: flex;

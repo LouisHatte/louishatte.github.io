@@ -1,17 +1,24 @@
 ## TODO 8/25, 32%
 
-- Tab logo
+------ MAIN ------
+
+- Stars [OK]
+- Cursor [OK]
+
+------ TOP BAR ------
+
+- Logo [OK]
 - Tab title [OK]
+- FR/EN button [OK]
+- Like button [OK]
+- Mystery button: make it look more clickable and also make it works by the way
 
-- Cursor follow thing: the style could interact with clickable components
+------ OTHER ------
 
-- FR/EN button: could make a switch for more clarity
 - LinkedIn button [OK]
 - Github button [OK]
 - Contact button [OK]
 - CV download button [OK]
-- Like button [OK]
-- Mystery button: make it look more clickable and also make it works by the way
 
 - Short description of myself
 
@@ -28,7 +35,6 @@
 - Google analytics [OK]
 - Add tracking everywhere
 
-- Copyright
 - Solve last bugs
 - Clean the code
 - Dockerise

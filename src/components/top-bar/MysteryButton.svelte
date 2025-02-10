@@ -17,15 +17,16 @@
       height: 48px;
       border-radius: 50%;
       background: var(--white);
-      animation: animloader 2s linear infinite;
+      animation: loading 2s linear infinite;
     }
 
     &:after {
       animation-delay: 1s;
+      opacity: 0;
     }
   }
 
-  @keyframes animloader {
+  @keyframes loading {
     0% {
       transform: scale(0);
       opacity: 1;

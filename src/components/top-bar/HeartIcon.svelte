@@ -24,16 +24,10 @@
 </svg>
 
 <style lang="scss">
-  svg.liked {
+  .liked {
     fill: white;
     stroke: none;
     animation: like 0.5s 1;
-  }
-
-  svg {
-    // fill: transparent;
-    // stroke: black;
-    // stroke-width: 30;
     transition: all 0.5s;
   }
 

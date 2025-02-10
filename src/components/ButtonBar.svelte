@@ -3,7 +3,7 @@
 
   import Button from "@/lib/buttons/Button.svelte";
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
-  import Spinner from "@/lib/spinners/Spinner.svelte";
+  import Spinner from "@/components/top-bar/MysteryButton.svelte";
 
   import { Locale } from "@/classes/Locale";
 
@@ -12,7 +12,7 @@
   import sendSVG from "@/assets/icons/send.svg";
   import downloadSVG from "@/assets/icons/download.svg";
   import ButtonDownload from "@/lib/buttons/ButtonDownload.svelte";
-  import ButtonLike from "./ButtonLike.svelte";
+  import ButtonLike from "./top-bar/LikeButton.svelte";
 
   let CVFilePath = $derived($locale === "en" ? "/wall.jpg" : "/wall-bump.jpg");
   let CVFileName = $derived($locale === "en" ? "wall.jpg" : "wall-bump.jpg");

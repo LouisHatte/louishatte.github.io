@@ -6,17 +6,17 @@
 </script>
 
 <div class="switch" data-lang={$locale}>
-  <Button onclick={Locale.switch}>English</Button>
-  <Button onclick={Locale.switch}>Français</Button>
+  <Button onclick={() => Locale.switch("en")}>English</Button>
+  <Button onclick={() => Locale.switch("fr")}>Français</Button>
   <div class="underline"></div>
 </div>
 
 <style lang="scss">
   .switch {
+    position: relative;
     display: flex;
     gap: var(--s24);
     cursor: pointer;
-    position: relative;
 
     .underline {
       width: 50%;
@@ -24,7 +24,7 @@
       left: 0;
       bottom: 0;
       height: 2px;
-      background: white;
+      background: var(--white);
       border-radius: var(--border-radius);
       transition: transform 0.3s ease-in-out;
     }

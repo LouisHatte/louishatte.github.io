@@ -51,12 +51,16 @@
 
 html {
   background-color: var(--black);
+  // overflow: hidden;
+  // border: red solid 3px;
+}
+
+body {
+  // border: orange solid 3px;
 }
 
 #app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // border: yellow solid 3px;
 }
 
 a {

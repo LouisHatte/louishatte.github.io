@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { analytics, logEvent } from "@/apis/firebase";
   import { Liker, likes, liked } from "@/classes/Liker";
-  import HeartIcon from "@/components/HeartIcon.svelte";
+  import HeartIcon from "@/components/top-bar/HeartIcon.svelte";
   import Button from "@/lib/buttons/Button.svelte";
   import { addToast } from "@/lib/toasts/toasts";
 
@@ -10,11 +9,9 @@
   async function onclick() {
     if (!$liked) {
       Liker.like();
-      logEvent(analytics, "like-button");
       addToast("Thank you for your support!");
     } else {
       Liker.dislike();
-      logEvent(analytics, "dislike-button");
     }
   }
 
@@ -31,7 +28,16 @@
   }
 </script>
 
-<Button {onclick}>
-  <HeartIcon liked={$liked} />
-  {displayedLikes}
-</Button>
+<div class="main">
+  <Button {onclick}>
+    <HeartIcon liked={$liked} />
+    {displayedLikes}
+  </Button>
+</div>
+
+<style lang="scss">
+  .main {
+    display: flex;
+    width: 69px;
+  }
+</style>

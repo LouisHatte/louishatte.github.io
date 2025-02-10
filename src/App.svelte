@@ -15,7 +15,7 @@
   import ButtonLink from "./lib/buttons/ButtonLink.svelte";
   import GlobalStyle from "./lib/GlobalStyle.svelte";
   import ButtonBar from "./components/ButtonBar.svelte";
-  import Spinner from "./lib/spinners/Spinner.svelte";
+  import Spinner from "./components/top-bar/MysteryButton.svelte";
   import ChatBot from "./components/ChatBot.svelte";
   import Displacement from "./components/canvas/Displacement.svelte";
   import Bitcoin from "./components/canvas/Bitcoin.svelte";
@@ -29,7 +29,7 @@
   import neuralNetworkImage from "@/assets/images/neural-network.jpg";
   import spaceImage from "@/assets/images/space.jpg";
   import stockMarketImage from "@/assets/images/stock-market.jpg";
-  import TopBar from "./components/TopBar.svelte";
+  import TopBar from "./components/top-bar/TopBar.svelte";
   import Card from "./lib/cards/Card.svelte";
   import Test from "./components/Test.svelte";
 
@@ -91,19 +91,20 @@
   ];
 </script>
 
+<Stars />
+<Crosshair />
 <main>
-  <Stars />
-  <!-- <Crosshair /> -->
   {#if !showContactModal}
     <div class="content" out:fade={{ duration: 500, easing: cubicInOut }}>
       <TopBar />
-      <Test />
+      <!-- <Test /> -->
       <!-- <Card
         >Louis Hatté
         <div>Hello world</div></Card
       > -->
       <!-- <Bitcoin /> -->
-      <!-- <ChatBot /> -->
+      <!-- <ChatBot />
+      <ChatBot /> -->
       <!-- <Carousel {items} /> -->
       <!-- <div style="margin-bottom: 24px;"></div>
       <ButtonBar {openContactModal} /> -->
@@ -119,15 +120,15 @@
 
 <style>
   main {
-    width: 100%;
+    position: relative;
     max-width: 1434px;
-    height: 100%;
     /* max-height: 606; */
     /* overflow: hidden; */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: purple 3px solid; */
+    margin: var(--s24);
+    border: green solid 3px;
   }
 
   .content {
