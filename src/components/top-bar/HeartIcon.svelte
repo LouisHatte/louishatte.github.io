@@ -12,7 +12,6 @@
   height="24"
   viewBox="0 0 24 24"
   fill="none"
-  stroke="white"
   stroke-width="2"
   stroke-linecap="round"
   stroke-linejoin="round"
@@ -24,8 +23,11 @@
 </svg>
 
 <style lang="scss">
+  svg {
+    stroke: var(--color1);
+  }
   .liked {
-    fill: white;
+    fill: var(--color1);
     stroke: none;
     animation: like 0.5s 1;
     transition: all 0.5s;
@@ -36,7 +38,7 @@
       transform: scale(1);
     }
     90% {
-      transform: scale(1.2);
+      transform: scale(1.4);
     }
     100% {
       transform: scale(1.1);

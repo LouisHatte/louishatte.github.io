@@ -1,4 +1,11 @@
-<div class="loader"></div>
+<script lang="ts">
+  import Button from "@/lib/buttons/Button.svelte";
+  import { updateTheme } from "@/lib/styles/colors";
+</script>
+
+<Button onclick={updateTheme}>
+  <div class="loader"></div>
+</Button>
 
 <style lang="scss">
   .loader {
@@ -16,7 +23,7 @@
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background: var(--white);
+      background: var(--color1);
       animation: loading 2s linear infinite;
     }
 

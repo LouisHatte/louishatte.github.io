@@ -1,0 +1,39 @@
+:root {
+  /* spacing */
+  --s4: 4px;
+  --s8: 8px;
+  --s12: 12px;
+  --s16: 16px;
+  --s24: 24px;
+  --s32: 32px;
+  --s48: 48px;
+  --s64: 64px;
+  --s96: 96px;
+
+  /* colors (check colors.ts) */
+  --error-color: #e66a6a;
+
+  /* borders */
+  --border-radius: 6px;
+  --border-radius_M: 12px;
+  --xl-border-radius_M: 20px;
+  --border-color: #7b8794;
+
+  /* texts */
+  --sub-text-color: #cbd2d9;
+  --xl-font-size: 30px;
+  --font-size: 16px;
+  --xs-font-size: 13px;
+
+  /* box shadows */
+  --white-box-shadow: inset 0px 0px 24px -10px rgba(255, 255, 255, 1);
+  --purple-box-shadow: inset 0px 0px 24px -10px rgba(255, 255, 255, 1);
+  --box-shadow: var(--white-box-shadow);
+
+  /* z-indexes */
+  --z-first: 9999;
+  --z-second: 1000;
+  --z-third: 500;
+  --z-fourth: 250;
+  --z-last: -1;
+}

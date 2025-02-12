@@ -42,7 +42,7 @@
     }
 
     &:active {
-      color: var(--black);
+      color: var(--color10);
     }
 
     &:hover:before {

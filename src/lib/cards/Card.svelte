@@ -17,7 +17,7 @@
     padding: var(--s24);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    box-shadow: var(--white-box-shadow);
-    background-color: var(--black);
+    box-shadow: var(--box-shadow);
+    background-color: var(--color10);
   }
 </style>

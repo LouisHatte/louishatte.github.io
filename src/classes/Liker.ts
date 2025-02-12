@@ -14,14 +14,14 @@ export class Liker {
   }
 
   static async like() {
-    await set(likesRef, get(likes) + 1);
     liked.set(true);
+    await set(likesRef, get(likes) + 1);
     localStorage.setItem(LIKER, "true");
   }
 
   static async dislike() {
-    await set(likesRef, get(likes) - 1);
     liked.set(false);
+    await set(likesRef, get(likes) - 1);
     localStorage.setItem(LIKER, "false");
   }
 

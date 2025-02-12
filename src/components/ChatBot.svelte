@@ -70,7 +70,7 @@
     isAsking = true;
 
     messages.push({ role: "user", content: question });
-    const answer = "A!"; // await getAnswer(input);
+    const answer = "A!"; // const answer = await getAnswer(input);
     messages.push({ role: "bot", content: answer });
 
     question = "";
@@ -132,10 +132,9 @@
         .message-bubble {
           max-width: 250px;
           padding: var(--s8);
-          background: var(--white);
+          background: var(--color1);
           border-radius: var(--border-radius);
-          background: var(--white);
-          color: var(--black);
+          color: var(--color10);
           line-height: 1.5;
           word-wrap: break-word;
         }

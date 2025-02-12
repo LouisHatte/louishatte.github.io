@@ -2,7 +2,14 @@
   import { onMount } from "svelte";
   import * as THREE from "three";
 
+  import { theme } from "@/lib/styles/colors";
+
   let container: HTMLDivElement;
+  const starMaterial = new THREE.MeshBasicMaterial({ color: $theme["color2"] });
+
+  $effect(() => {
+    starMaterial.color.set($theme["color2"]);
+  });
 
   onMount(() => {
     const scene = new THREE.Scene();
@@ -21,7 +28,6 @@
     container.appendChild(renderer.domElement);
 
     const starGeometry = new THREE.SphereGeometry(0.05, 8, 8);
-    const starMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
 
     for (let i = 0; i < 500; i++) {
       const star = new THREE.Mesh(starGeometry, starMaterial);
@@ -53,12 +59,11 @@
 
 <div bind:this={container} class="stars"></div>
 
-<style>
+<style lang="scss">
   .stars {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: var(--z-last);
-    border: solid 3px purple;
   }
 </style>

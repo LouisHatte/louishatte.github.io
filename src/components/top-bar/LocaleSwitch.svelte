@@ -24,7 +24,7 @@
       left: 0;
       bottom: 0;
       height: 2px;
-      background: var(--white);
+      background: var(--color1);
       border-radius: var(--border-radius);
       transition: transform 0.3s ease-in-out;
     }

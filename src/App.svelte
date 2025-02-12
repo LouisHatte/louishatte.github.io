@@ -13,7 +13,7 @@
   import SendSVG from "@/assets/icons/send.svg";
   import Crosshair from "./lib/misc/Crosshair.svelte";
   import ButtonLink from "./lib/buttons/ButtonLink.svelte";
-  import GlobalStyle from "./lib/GlobalStyle.svelte";
+  import GlobalStyle from "./GlobalStyle.svelte";
   import ButtonBar from "./components/ButtonBar.svelte";
   import Spinner from "./components/top-bar/MysteryButton.svelte";
   import ChatBot from "./components/ChatBot.svelte";
@@ -32,6 +32,7 @@
   import TopBar from "./components/top-bar/TopBar.svelte";
   import Card from "./lib/cards/Card.svelte";
   import Test from "./components/Test.svelte";
+  import Coins from "./components/canvas/Coins.svelte";
 
   let showContactModal = $state(false);
 
@@ -95,7 +96,7 @@
 <Crosshair />
 <main>
   {#if !showContactModal}
-    <div class="content" out:fade={{ duration: 500, easing: cubicInOut }}>
+    <div class="portfolio" out:fade={{ duration: 500, easing: cubicInOut }}>
       <TopBar />
       <!-- <Test /> -->
       <!-- <Card
@@ -103,11 +104,12 @@
         <div>Hello world</div></Card
       > -->
       <!-- <Bitcoin /> -->
-      <!-- <ChatBot />
-      <ChatBot /> -->
+      <!-- <ChatBot />s -->
       <!-- <Carousel {items} /> -->
       <!-- <div style="margin-bottom: 24px;"></div>
       <ButtonBar {openContactModal} /> -->
+      <!-- <ButtonBar {openContactModal} /> -->
+      <!-- <Coins /> -->
     </div>
   {/if}
 
@@ -120,19 +122,16 @@
 
 <style>
   main {
-    position: relative;
-    max-width: 1434px;
-    /* max-height: 606; */
-    /* overflow: hidden; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: var(--s24);
-    border: green solid 3px;
-  }
-
-  .content {
     width: 100%;
     height: 100%;
+    max-width: 1434px;
+    padding: var(--s24);
+  }
+
+  .portfolio {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 </style>

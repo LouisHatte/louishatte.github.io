@@ -97,7 +97,7 @@
     }
 
     &:focus-within {
-      border: 1px solid var(--black);
+      border: 1px solid var(--color10);
       transition: border 1s ease-in-out;
     }
 

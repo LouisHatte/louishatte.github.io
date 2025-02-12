@@ -71,7 +71,7 @@
     position: absolute;
     pointer-events: none;
     border-radius: 50%;
-    border: solid 1px var(--white);
+    border: solid 1px var(--color1);
     z-index: var(--z-first);
 
     left: calc(var(--x) - var(--size) / 2);
