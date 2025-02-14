@@ -8,16 +8,16 @@
   let { children }: Props = $props();
 </script>
 
-<div class="card">
+<div class="section">
   {@render children()}
 </div>
 
 <style lang="scss">
-  .card {
+  .section {
     padding: var(--s24);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    background-color: var(--color10);
+    background-color: var(--color9);
   }
 </style>

@@ -3,9 +3,8 @@
   import { fade, fly } from "svelte/transition";
   import { cubicInOut, cubicOut } from "svelte/easing";
 
+  import CloseIcon from "@/lib/icons/CloseIcon.svelte";
   import { isMobile } from "@/stores/screenSize";
-
-  import closeSVG from "@/assets/icons/close.svg";
 
   type Props = {
     children: Snippet;
@@ -38,7 +37,7 @@
       <div class="modal-header">
         <h1>{title}</h1>
         <button onclick={closeModal}>
-          <img src={closeSVG} width={25} height={25} alt="C" />
+          <CloseIcon />
         </button>
       </div>
       <div class="modal-body">
@@ -60,7 +59,7 @@
       <div class="modal-header">
         <h1>{title}</h1>
         <button onclick={() => (show = false)}>
-          <img src={closeSVG} width={25} height={25} alt="C" />
+          <CloseIcon />
         </button>
       </div>
       <div class="modal-body">

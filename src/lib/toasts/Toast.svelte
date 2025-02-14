@@ -5,9 +5,9 @@
 
   import { removeToast, type ToastType } from "@/lib/toasts/toasts";
 
-  import infoSVG from "@/assets/icons/info.svg";
-  import successSVG from "@/assets/icons/success.svg";
-  import errorSVG from "@/assets/icons/error.svg";
+  import InfoIcon from "@/lib/icons/InfoIcon.svelte";
+  import SuccessIcon from "@/lib/icons/SuccessIcon.svelte";
+  import ErrorIcon from "@/lib/icons/ErrorIcon.svelte";
 
   type Props = {
     duration?: number;
@@ -19,10 +19,10 @@
   let { duration = 3000, id, message, type }: Props = $props();
   let show = $state(false);
 
-  const svgs: Record<ToastType, string> = {
-    info: infoSVG,
-    success: successSVG,
-    error: errorSVG,
+  const svgs = {
+    info: InfoIcon,
+    success: SuccessIcon,
+    error: ErrorIcon,
   };
 
   const timeout = setTimeout(() => (show = false), duration);
@@ -42,7 +42,7 @@
     transition:fly={{ y: -50, duration: 500, easing: cubicOut }}
     onoutroend={() => removeToast(id)}
   >
-    <img width="30" height="30" src={svgs[type]} alt="I" />
+    {svgs[type]}
     {message}
   </div>
 {/if}

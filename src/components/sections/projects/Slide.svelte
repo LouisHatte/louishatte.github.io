@@ -53,23 +53,23 @@
       overflow: hidden;
       // border: solid 1px green;
 
-      .left {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        // border: solid 2px purple;
+      // .left {
+      //   width: 50%;
+      //   height: 100%;
+      //   display: flex;
+      //   justify-content: center;
+      //   align-items: center;
+      //   // border: solid 2px purple;
 
-        img {
-          width: 100%;
-          height: 100%;
-          max-width: 100%;
-          max-height: 100%;
-          object-fit: fill;
-          // border: solid 2px cyan;
-        }
-      }
+      //   img {
+      //     width: 100%;
+      //     height: 100%;
+      //     max-width: 100%;
+      //     max-height: 100%;
+      //     object-fit: fill;
+      //     // border: solid 2px cyan;
+      //   }
+      // }
 
       .right {
         width: 50%;

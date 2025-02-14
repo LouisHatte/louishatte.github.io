@@ -93,16 +93,16 @@
       </div>
     {/each}
   </div>
-</div>
-<div class="input-box">
-  <Input
-    id="question"
-    type="text"
-    placeholder={$_("chatPlaceholder")}
-    onkeydown={(e) => e.key === "Enter" && sendMessage()}
-    bind:value={question}
-  />
-  <Button onclick={sendMessage} disabled={isAsking}>{$_("send")}</Button>
+  <div class="input-box">
+    <Input
+      id="question"
+      type="text"
+      placeholder={$_("chatPlaceholder")}
+      onkeydown={(e) => e.key === "Enter" && sendMessage()}
+      bind:value={question}
+    />
+    <Button onclick={sendMessage} disabled={isAsking}>{$_("send")}</Button>
+  </div>
 </div>
 
 <style lang="scss">
@@ -140,15 +140,15 @@
         }
       }
     }
-  }
 
-  .input-box {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--s8);
-    padding: var(--s16);
-    border: 1px solid var(--border-color);
-    border-bottom-left-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
+    .input-box {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--s8);
+      padding: var(--s16);
+      border: 1px solid var(--border-color);
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
   }
 </style>

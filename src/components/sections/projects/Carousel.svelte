@@ -11,7 +11,6 @@
 
 <script lang="ts">
   import Modal from "@/lib/modals/Modal.svelte";
-  import Slide from "./Slide.svelte";
 
   type Props = {
     items: SlideItem[];

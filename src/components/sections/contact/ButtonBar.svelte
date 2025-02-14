@@ -3,16 +3,11 @@
 
   import Button from "@/lib/buttons/Button.svelte";
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
-  import Spinner from "@/components/top-bar/MysteryButton.svelte";
-
-  import { Locale } from "@/classes/Locale";
-
-  import githubSVG from "@/assets/icons/github.svg";
-  import linkedinSVG from "@/assets/icons/linkedin.svg";
-  import sendSVG from "@/assets/icons/send.svg";
-  import downloadSVG from "@/assets/icons/download.svg";
   import ButtonDownload from "@/lib/buttons/ButtonDownload.svelte";
-  import ButtonLike from "./top-bar/LikeButton.svelte";
+  import GithubIcon from "@/lib/icons/GithubIcon.svelte";
+  import LinkedinIcon from "@/lib/icons/LinkedinIcon.svelte";
+  import MailIcon from "@/components/icons/MailIcon.svelte";
+  import DownloadIcon from "@/lib/icons/DownloadIcon.svelte";
 
   let CVFilePath = $derived($locale === "en" ? "/wall.jpg" : "/wall-bump.jpg");
   let CVFileName = $derived($locale === "en" ? "wall.jpg" : "wall-bump.jpg");
@@ -25,23 +20,20 @@
 </script>
 
 <div>
-  <Button onclick={Locale.switch}>{$_("lang")}</Button>
   <ButtonLink href="https://www.linkedin.com/in/louis-hatte-94160111b/">
-    <img src={linkedinSVG} width={30} height={30} alt="L" />
+    <LinkedinIcon />
   </ButtonLink>
   <ButtonLink href="https://github.com/LouisHatte">
-    <img src={githubSVG} width={30} height={30} alt="G" />
+    <GithubIcon />
   </ButtonLink>
   <Button onclick={openContactModal}>
-    <img src={sendSVG} width={30} height={30} alt="S" />
+    <MailIcon />
     {$_("contact")}
   </Button>
   <ButtonDownload href={CVFilePath} download={CVFileName}>
-    <img src={downloadSVG} width={30} height={30} alt="D" />
+    <DownloadIcon />
     {$_("cvFileName")}
   </ButtonDownload>
-  <ButtonLike />
-  <Spinner />
 </div>
 
 <style>

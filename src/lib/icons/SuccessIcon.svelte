@@ -1,14 +1,11 @@
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="white"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  width="24"
-  height="24"
-  stroke-width="2">
+<script lang="ts">
+  import type { IconProps } from "@/lib/icons/SVGIcon.svelte";
+  import SvgIcon from "@/lib/icons/SVGIcon.svelte";
 
+  let props: IconProps = $props();
+</script>
+
+<SvgIcon {...props}>
   <path d="M8.56 3.69a9 9 0 0 0 -2.92 1.95"></path>
   <path d="M3.69 8.56a9 9 0 0 0 -.69 3.44"></path>
   <path d="M3.69 15.44a9 9 0 0 0 1.95 2.92"></path>
@@ -18,4 +15,4 @@
   <path d="M20.31 8.56a9 9 0 0 0 -1.95 -2.92"></path>
   <path d="M15.44 3.69a9 9 0 0 0 -3.44 -.69"></path>
   <path d="M9 12l2 2l4 -4"></path>
-</svg>
+</SvgIcon>
