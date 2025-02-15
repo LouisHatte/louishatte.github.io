@@ -11,15 +11,24 @@
 
   import { theme } from "@/lib/styles/colors";
 
-  type Props = IconProps & {
-    children: Snippet;
-  };
+  type Props = StyleProps &
+    IconProps & {
+      children: Snippet;
+    };
 
-  let { children, fill = "none", height = 24, width = 24 }: Props = $props();
+  let {
+    _class,
+    children,
+    fill = "none",
+    height = 24,
+    style,
+    width = 24,
+  }: Props = $props();
 </script>
 
 <svg
-  class="icon"
+  class={"icon" + _class}
+  {style}
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24"
   {width}

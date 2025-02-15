@@ -1,11 +1,11 @@
 <script lang="ts">
-  import SvgIcon from "@/lib/icons/SVGIcon.svelte";
-  import type { IconProps } from "@/lib/icons/SVGIcon.svelte";
+  import SvgIcon from "@/lib/icons/SvgIcon.svelte";
+  import type { IconProps } from "@/lib/icons/SvgIcon.svelte";
 
   let props: IconProps = $props();
 </script>
 
-<SvgIcon fill="currentColor" {...props}>
+<SvgIcon {...props}>
   <path
     d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
   />

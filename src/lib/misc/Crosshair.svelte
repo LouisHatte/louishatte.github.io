@@ -4,7 +4,7 @@
 
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
-  const circleDiameter = 25;
+  const circleDiameter = 35;
 
   type SubCircleTween = Tween<{
     diameter: number;
@@ -18,6 +18,7 @@
   };
 
   let subCircles: SubCircle[] = $state([]);
+  let lastMouseEvent: MouseEvent | null = null;
 
   const coordinates = new Spring(
     { x: centerX, y: centerY },
@@ -26,6 +27,16 @@
       damping: 0.3,
     }
   );
+
+  function updateCoordinates(e: MouseEvent | null) {
+    if (!e) return;
+
+    coordinates.set({
+      x: e.clientX + window.scrollX,
+      y: e.clientY + window.scrollY,
+    });
+    lastMouseEvent = e;
+  }
 
   function createSubCircle(event: MouseEvent) {
     const tween: SubCircleTween = new Tween(
@@ -38,8 +49,8 @@
 
     subCircles.push({
       id: Date.now(),
-      x: event.clientX,
-      y: event.clientY,
+      x: event.clientX + window.scrollX,
+      y: event.clientY + window.scrollY,
       tween,
     });
     tween.set({ diameter: circleDiameter + 50, opacity: 0 });
@@ -51,7 +62,8 @@
 </script>
 
 <svelte:window
-  onmousemove={(e) => coordinates.set({ x: e.clientX, y: e.clientY })}
+  onmousemove={updateCoordinates}
+  onscroll={() => updateCoordinates(lastMouseEvent)}
   onmousedown={createSubCircle}
 />
 

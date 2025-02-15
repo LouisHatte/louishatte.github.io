@@ -24,6 +24,7 @@
     success: SuccessIcon,
     error: ErrorIcon,
   };
+  const Icon = svgs[type];
 
   const timeout = setTimeout(() => (show = false), duration);
 
@@ -42,7 +43,7 @@
     transition:fly={{ y: -50, duration: 500, easing: cubicOut }}
     onoutroend={() => removeToast(id)}
   >
-    {svgs[type]}
+    <Icon />
     {message}
   </div>
 {/if}

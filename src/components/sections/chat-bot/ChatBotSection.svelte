@@ -1,8 +1,13 @@
 <script>
-  import Section from "../Section.svelte";
   import ChatBot from "./ChatBot.svelte";
 </script>
 
-<Section>
+<div class="section">
   <ChatBot />
-</Section>
+</div>
+
+<style lang="scss">
+  .section {
+    border: solid 3px blue;
+  }
+</style>

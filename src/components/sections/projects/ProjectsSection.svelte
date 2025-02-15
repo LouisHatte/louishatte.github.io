@@ -9,7 +9,6 @@
   import Carousel, {
     type SlideItem,
   } from "@/components/sections/projects/Carousel.svelte";
-  import Section from "@/components/sections/Section.svelte";
 
   const items: SlideItem[] = [
     {
@@ -63,6 +62,12 @@
   ];
 </script>
 
-<Section>
+<div class="section">
   <Carousel {items} />
-</Section>
+</div>
+
+<style lang="scss">
+  .section {
+    border: solid 3px purple;
+  }
+</style>

@@ -19,12 +19,6 @@ export class Liker {
     localStorage.setItem(LIKER, "true");
   }
 
-  static async dislike() {
-    liked.set(false);
-    await set(likesRef, get(likes) - 1);
-    localStorage.setItem(LIKER, "false");
-  }
-
   static isLiked() {
     const liker = localStorage.getItem(LIKER);
     if (!liker) return false;

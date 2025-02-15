@@ -6,7 +6,7 @@
   import Modal from "@/lib/modals/Modal.svelte";
   import ToastBox from "@/lib/toasts/ToastBox.svelte";
 
-  import ContactForm from "@/components/sections/contact/ContactForm.svelte";
+  import ContactForm from "@/components/sections/introduction/ContactForm.svelte";
   import Stars from "@/components/canvas/Stars.svelte";
 
   import Crosshair from "./lib/misc/Crosshair.svelte";
@@ -18,19 +18,17 @@
   import TopBar from "./components/top-bar/TopBar.svelte";
   import Footer from "./components/footer/Footer.svelte";
   import Sections from "./components/sections/Sections.svelte";
-  import ButtonBar from "./components/sections/contact/ButtonBar.svelte";
-  import ContactSection from "./components/sections/contact/ContactSection.svelte";
+  import ButtonAnimated from "./lib/buttons/ButtonAnimated.svelte";
 </script>
 
 <Stars />
-<!-- <Crosshair /> -->
+<Crosshair />
 <main>
   {#if !$showModal}
     <div out:fade={{ duration: 500, easing: cubicInOut }}>
       <TopBar />
-      <!-- <Sections /> -->
-      <!-- <Footer /> -->
-      <ContactSection />
+      <Sections />
+      <Footer />
     </div>
   {/if}
 

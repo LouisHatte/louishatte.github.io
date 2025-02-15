@@ -22,7 +22,7 @@
       width: 50%;
       position: absolute;
       left: 0;
-      bottom: 0;
+      bottom: -10px;
       height: 2px;
       background: var(--color1);
       border-radius: var(--border-radius);

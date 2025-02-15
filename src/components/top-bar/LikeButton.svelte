@@ -10,8 +10,6 @@
     if (!$liked) {
       Liker.like();
       addToast("Thank you for your support!");
-    } else {
-      Liker.dislike();
     }
   }
 

@@ -1,8 +1,14 @@
 <script>
   import Coins from "@/components/canvas/Coins.svelte";
-  import Section from "../Section.svelte";
 </script>
 
-<Section>
+<div class="section">
   <Coins />
-</Section>
+</div>
+
+<style lang="scss">
+  .section {
+    border: solid 3px orange;
+    width: 50%;
+  }
+</style>
