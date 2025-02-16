@@ -55,9 +55,10 @@
       }
     });
     renderer.render(scene, camera);
+    renderer.domElement.style.zIndex = "-1";
     document.getElementById("cube-container")?.appendChild(renderer.domElement);
 
-    camera.position.z = 20;
+    camera.position.z = 25;
 
     const topLight = new THREE.DirectionalLight(0xffffff, 1);
     topLight.position.set(500, 500, 500);
@@ -87,9 +88,10 @@
     }
 
     window.addEventListener("resize", function () {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const container = document.getElementById("cube-container")!;
+      camera.aspect = container.clientWidth / container.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(container.clientWidth, container.clientHeight);
     });
 
     animate();
@@ -100,7 +102,10 @@
 
 <style>
   #cube-container {
-    /* width: 100%;
-    height: 100%; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    z-index: var(--z-last);
   }
 </style>

@@ -45,8 +45,6 @@
         message: values.message,
       };
 
-      console.log(templateParams);
-
       try {
         await emailjs.send(serviceId, templateId, templateParams);
         addToast($_("contactSuccess"), "success");

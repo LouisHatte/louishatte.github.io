@@ -57,7 +57,7 @@
     display: flex;
     align-items: center;
     position: relative;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--color1);
     border-radius: var(--border-radius);
 
     &:before {
@@ -97,7 +97,7 @@
     }
 
     &:focus-within {
-      border: 1px solid var(--color10);
+      border: 1px solid var(--color9);
       transition: border 1s ease-in-out;
     }
 

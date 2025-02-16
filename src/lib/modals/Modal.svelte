@@ -5,6 +5,7 @@
 
   import CloseIcon from "@/lib/icons/CloseIcon.svelte";
   import { isMobile } from "@/stores/screenSize";
+  import Button from "../buttons/Button.svelte";
 
   type Props = {
     children: Snippet;
@@ -36,9 +37,9 @@
     >
       <div class="modal-header">
         <h1>{title}</h1>
-        <button onclick={closeModal}>
+        <Button onclick={closeModal}>
           <CloseIcon />
-        </button>
+        </Button>
       </div>
       <div class="modal-body">
         {@render children()}
@@ -58,9 +59,9 @@
     >
       <div class="modal-header">
         <h1>{title}</h1>
-        <button onclick={() => (show = false)}>
+        <Button onclick={() => (show = false)}>
           <CloseIcon />
-        </button>
+        </Button>
       </div>
       <div class="modal-body">
         {@render children()}

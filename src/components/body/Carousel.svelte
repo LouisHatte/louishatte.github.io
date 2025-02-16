@@ -99,7 +99,6 @@
   }
 
   .slider {
-    width: 70vw;
     height: 300px;
     position: relative;
     perspective: 1000px;
@@ -125,7 +124,7 @@
       align-items: end;
 
       .title {
-        color: var(--color10);
+        color: var(--color9);
         font-size: var(--xl-font-size);
         font-weight: 900;
         margin-right: var(--s12);

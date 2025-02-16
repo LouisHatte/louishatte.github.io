@@ -10,18 +10,18 @@
 - Logo [OK]
 - Tab title [OK]
 - FR/EN button [OK]
+- LinkedIn button [OK]
+- Github button [OK]
 - Like button [OK]
 - Mystery button [OK]
 
------- PRESENTATION CARD ------
+------ PRESENTATION SECTION ------
 
 - Short description of myself
-- LinkedIn button
-- Github button
 - Contact button
 - CV download button
 
------- CHAT BOT CARD ------
+------ CHAT BOT SECTION ------
 
 - Chat bot: fix a small UI bug and add a new message if the user change the language
 - Chat bot context: improve the context

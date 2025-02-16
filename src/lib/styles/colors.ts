@@ -69,10 +69,6 @@ function getNextColor() {
   return COLORS[nextIndex];
 }
 
-theme.subscribe(() => {
-  console.log(get(theme));
-});
-
 export function updateTheme() {
   const nextColor = getNextColor();
   if (!nextColor) return;

@@ -8,6 +8,7 @@
 
   import { getAnswer } from "@/apis/groq";
   import { QuestionCounter } from "@/classes/QuestionCounter";
+  import SendIcon from "@/lib/icons/SendIcon.svelte";
 
   type Message = {
     role: "user" | "bot";
@@ -52,7 +53,6 @@
   });
 
   $effect(() => {
-    console.log("A!");
     messages;
     const messagesBox = document.getElementById("messages-box-id")!;
     messagesBox.scrollTop = messagesBox.scrollHeight;
@@ -101,19 +101,23 @@
       onkeydown={(e) => e.key === "Enter" && sendMessage()}
       bind:value={question}
     />
-    <Button onclick={sendMessage} disabled={isAsking}>{$_("send")}</Button>
+    <Button onclick={sendMessage} disabled={isAsking}>
+      {$_("send")}
+      <SendIcon />
+    </Button>
   </div>
 </div>
 
 <style lang="scss">
   .chat-box {
+    // width: 100%;
+    height: 400px;
     display: flex;
     flex-direction: column;
-    height: 500px;
+    justify-content: space-between;
     padding: var(--s16);
-    border: solid 1px var(--border-color);
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
+    border: solid 1px var(--color5);
+    border-radius: var(--border-radius);
     overflow: scroll;
 
     .messages-box {
@@ -134,7 +138,7 @@
           padding: var(--s8);
           background: var(--color1);
           border-radius: var(--border-radius);
-          color: var(--color10);
+          color: var(--color9);
           line-height: 1.5;
           word-wrap: break-word;
         }
@@ -146,9 +150,7 @@
       justify-content: space-between;
       gap: var(--s8);
       padding: var(--s16);
-      border: 1px solid var(--border-color);
-      border-bottom-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
+      border-top: solid 1px var(--color5);
     }
   }
 </style>

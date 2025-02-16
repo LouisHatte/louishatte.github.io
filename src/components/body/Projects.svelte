@@ -6,9 +6,7 @@
   import spaceImage from "@/assets/images/space.jpg";
   import stockMarketImage from "@/assets/images/stock-market.jpg";
 
-  import Carousel, {
-    type SlideItem,
-  } from "@/components/sections/projects/Carousel.svelte";
+  import Carousel, { type SlideItem } from "@/components/body/Carousel.svelte";
 
   const items: SlideItem[] = [
     {
@@ -68,6 +66,6 @@
 
 <style lang="scss">
   .section {
-    border: solid 3px purple;
+    // border: solid 3px purple;
   }
 </style>
