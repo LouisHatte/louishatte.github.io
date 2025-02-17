@@ -37,7 +37,7 @@
 
   <ToastBox />
   <GlobalStyle />
-  <Modal bind:show={$modal.show} title={$_($modal.content)}>
+  <Modal title={$_($modal.content)}>
     <Content />
   </Modal>
 </main>

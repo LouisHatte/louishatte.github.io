@@ -3,28 +3,12 @@
   import * as THREE from "three";
   import { GLTFLoader } from "three-stdlib";
 
+  let container: HTMLDivElement;
   let scene: THREE.Scene;
   let camera: THREE.PerspectiveCamera;
   let renderer: THREE.WebGLRenderer;
-  let prevYRotation: number;
-  let models: THREE.Group[] = [];
-  let modelIndex = 0;
-
-  function loadModel(url: string): Promise<THREE.Group> {
-    const loader = new GLTFLoader();
-    return new Promise((resolve, reject) => {
-      loader.load(
-        url,
-        (gltf) => resolve(gltf.scene),
-        undefined,
-        (error) => reject(error)
-      );
-    });
-  }
 
   onMount(async () => {
-    const container = document.getElementById("cube-container")!;
-
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(
@@ -33,33 +17,18 @@
       0.1,
       1000
     );
+    camera.position.z = 25;
 
-    try {
-      const greenModel = await loadModel("/coin-blue.glb");
-      const blueModel = await loadModel("/coin-red.glb");
-      const redModel = await loadModel("/coin-green.glb");
-
-      models.push(greenModel, blueModel, redModel);
-      models.forEach((model) => {
-        model.rotation.y = Math.PI / 2;
-        scene.add(model);
-      });
-    } catch (error) {
-      console.error("Error loading models:", error);
-    }
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.load("/coin-red.glb", (gltf) => {
+      const model = gltf.scene;
+      scene.add(model);
+    });
 
     renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.render(scene, camera);
-    models.forEach((model, index) => {
-      if (index !== 0) {
-        model.visible = false;
-      }
-    });
-    renderer.render(scene, camera);
     container.appendChild(renderer.domElement);
-
-    camera.position.z = 25;
 
     const topLight = new THREE.DirectionalLight(0xffffff, 1);
     topLight.position.set(500, 500, 500);
@@ -77,14 +46,6 @@
     function animate() {
       requestAnimationFrame(animate);
       scene.rotation.y += 0.01;
-      scene.rotation.x += 0.005;
-      const currentYRotation = Math.round(scene.rotation.y % Math.PI);
-      if (prevYRotation !== undefined && prevYRotation > currentYRotation) {
-        models[modelIndex].visible = false;
-        modelIndex = (modelIndex + 1) % models.length;
-        models[modelIndex].visible = true;
-      }
-      prevYRotation = currentYRotation;
       renderer.render(scene, camera);
     }
 
@@ -99,14 +60,13 @@
   });
 </script>
 
-<div id="cube-container"></div>
+<div bind:this={container}></div>
 
 <style>
-  #cube-container {
+  div {
     height: 100%;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     z-index: var(--z-last);
   }
 </style>

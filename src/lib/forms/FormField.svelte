@@ -34,11 +34,11 @@
       gap: var(--s16);
 
       label {
-        color: var(--sub-text-color);
+        color: var(--color5);
       }
 
       .error {
-        color: var(--error-color);
+        color: var(--color2);
         font-size: var(--xs-font-size);
       }
     }

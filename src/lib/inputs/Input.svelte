@@ -31,90 +31,46 @@
   });
 </script>
 
-<div class="border-glow">
-  <input
-    class={_class}
-    {style}
-    {type}
-    name={id}
-    {placeholder}
-    {onkeydown}
-    bind:this={ref}
-    bind:value
-  />
-</div>
+<input
+  class={_class}
+  {style}
+  {type}
+  name={id}
+  {placeholder}
+  {onkeydown}
+  bind:this={ref}
+  bind:value
+/>
 
 <style lang="scss">
   input {
     width: 100%;
     padding: var(--s8);
     background: transparent;
-    border: none;
-  }
-
-  :global(.border-glow) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    border: 1px solid var(--color1);
+    border: solid 1px var(--color5);
     border-radius: var(--border-radius);
 
-    &:before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: var(--z-last);
-      background: linear-gradient(
-        45deg,
-        #4c4c4c,
-        #909090,
-        #e0e0e0,
-        #ababab,
-        #aeaeae,
-        #363636,
-        #424242,
-        #636363,
-        #4c4c4c
-      );
-      background-size: 400%;
-      border: 1px solid transparent;
-      border-radius: var(--border-radius);
-      filter: blur(5px);
-      opacity: 0;
-      animation: glowing 20s linear infinite;
-      transition: opacity 0.2s ease-in-out;
-
-      mask:
-        linear-gradient(#000 0 0) padding-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask:
-        linear-gradient(#000 0 0) padding-box,
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: destination-out;
-      mask-composite: exclude;
+    &::placeholder {
+      color: var(--color5);
     }
 
-    &:focus-within {
-      border: 1px solid var(--color9);
-      transition: border 1s ease-in-out;
+    &:hover,
+    &:focus {
+      border: solid 1px var(--color1);
+      box-shadow: var(--box-shadow);
+      transition:
+        border 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
+      animation: shadowPulse 2s infinite alternate ease-in-out;
     }
 
-    &:focus-within:before {
-      opacity: 1;
-    }
-  }
-
-  @keyframes glowing {
-    0% {
-      background-position: 0 0;
-    }
-    50% {
-      background-position: 400% 0;
-    }
-    100% {
-      background-position: 0 0;
+    @keyframes shadowPulse {
+      0% {
+        box-shadow: 0px 0px 7px 2px var(--color0);
+      }
+      100% {
+        box-shadow: 0px 0px 7px 2px var(--color1);
+      }
     }
   }
 </style>

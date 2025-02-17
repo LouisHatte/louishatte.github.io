@@ -2,12 +2,11 @@
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
 
+  import { getAnswer } from "@/apis/groq";
+  import { QuestionCounter } from "@/classes/QuestionCounter";
   import Button from "@/lib/buttons/Button.svelte";
   import Input from "@/lib/inputs/Input.svelte";
   import { addToast } from "@/lib/toasts/toasts";
-
-  import { getAnswer } from "@/apis/groq";
-  import { QuestionCounter } from "@/classes/QuestionCounter";
   import SendIcon from "@/lib/icons/SendIcon.svelte";
 
   type Message = {
@@ -15,7 +14,7 @@
     content: string;
   };
 
-  const firstMessage = $_("chatFirstMessage");
+  const firstMessage = $_("chatbot-first-message");
 
   let context = $state("");
   let question = $state("");
@@ -62,7 +61,7 @@
     if (!context || !question || isAsking) return;
 
     if (!QuestionCounter.isIncrementable()) {
-      addToast($_("chatNoMoreCredits"), "info");
+      addToast($_("chatbot-no-more-credits"), "info");
       return;
     }
 
@@ -70,7 +69,7 @@
     isAsking = true;
 
     messages.push({ role: "user", content: question });
-    const answer = "A!"; // const answer = await getAnswer(input);
+    const answer = await getAnswer(input);
     messages.push({ role: "bot", content: answer });
 
     question = "";
@@ -97,12 +96,12 @@
     <Input
       id="question"
       type="text"
-      placeholder={$_("chatPlaceholder")}
+      placeholder={$_("chatbot-input-example")}
       onkeydown={(e) => e.key === "Enter" && sendMessage()}
       bind:value={question}
     />
     <Button onclick={sendMessage} disabled={isAsking}>
-      {$_("send")}
+      {$_("chatbot-send-button")}
       <SendIcon />
     </Button>
   </div>
@@ -110,7 +109,6 @@
 
 <style lang="scss">
   .chat-box {
-    // width: 100%;
     height: 400px;
     display: flex;
     flex-direction: column;
@@ -134,7 +132,7 @@
         }
 
         .message-bubble {
-          max-width: 250px;
+          max-width: 75%;
           padding: var(--s8);
           background: var(--color1);
           border-radius: var(--border-radius);
@@ -150,6 +148,7 @@
       justify-content: space-between;
       gap: var(--s8);
       padding: var(--s16);
+      margin-top: var(--s16);
       border-top: solid 1px var(--color5);
     }
   }

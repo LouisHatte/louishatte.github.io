@@ -1,13 +1,14 @@
 {
-  "name": "Louis Hatté",
-  "desc": "Je suis un développeur avec un parcours diversifié couvrant le web et l'IA. Je me concentre désormais sur l'approfondissement de mon expertise en Blockchain, un domaine qui me passionne particulièrement.",
+  "presentation-title": "Bonjour, je suis Louis.",
+  "presentation-job": "De Développeur Full Stack à Développeur de Smart Contracts",
+  "presentation-description": "Je suis un développeur full-stack en transition vers le développement de smart contracts, avec une passion pour la blockchain et l'intelligence artificielle. Actuellement, j'approfondis mon expertise en Solidity et en systèmes décentralisés afin de trouver un poste dans ce domaine.",
+  "presentation-cv-button": "Voir mon CV complet",
+  "presentation-contact-button": "Me contacter",
 
-  "chatFirstMessage": "Bonjour! Avez vous des questions à propos de mon CV?",
-  "chatPlaceholder": "Compétences pro ?",
-  "send": "Envoyer",
-  "chatNoMoreCredits": "Crédits épuisés pour aujourd'hui.",
-
-  "cvFileName": "CV-français",
+  "chatbot-first-message": "Bonjour ! Avez vous des questions spécifiques à mon sujet ? N'hésitez pas !",
+  "chatbot-input-example": "Quel est ton langage de programmation préféré ?",
+  "chatbot-send-button": "Envoyer",
+  "chatbot-no-more-credits": "Crédits épuisés pour aujourd'hui.",
 
   "contact": "Me contacter",
   "contactName": "Nom",

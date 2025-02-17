@@ -11,7 +11,7 @@
   import Input from "@/lib/inputs/Input.svelte";
   import TextArea from "@/lib/inputs/TextArea.svelte";
   import { addToast } from "@/lib/toasts/toasts";
-
+  import SendIcon from "@/lib/icons/SendIcon.svelte";
   import { isMobile } from "@/stores/screenSize";
 
   const key: string = import.meta.env.VITE_EMAIL_JS_API_KEY;
@@ -80,6 +80,7 @@
       disabled={isSubmitting}
     >
       {$_("send")}
+      <SendIcon />
     </Button>
   </div>
 </form>

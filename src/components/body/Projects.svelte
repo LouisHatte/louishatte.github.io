@@ -60,12 +60,4 @@
   ];
 </script>
 
-<div class="section">
-  <Carousel {items} />
-</div>
-
-<style lang="scss">
-  .section {
-    // border: solid 3px purple;
-  }
-</style>
+<Carousel {items} />

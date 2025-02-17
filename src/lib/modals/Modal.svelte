@@ -1,40 +1,27 @@
 <script lang="ts">
-  import { setContext, type Snippet } from "svelte";
+  import { type Snippet } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { cubicInOut, cubicOut } from "svelte/easing";
 
-  import CloseIcon from "@/lib/icons/CloseIcon.svelte";
   import { isMobile } from "@/stores/screenSize";
-  import Button from "../buttons/Button.svelte";
+  import Button from "@/lib/buttons/Button.svelte";
+  import CloseIcon from "@/lib/icons/CloseIcon.svelte";
+  import { closeModal, modal } from "@/stores/modals";
 
   type Props = {
     children: Snippet;
-    show: boolean;
-    title: String;
+    title: string;
   };
 
-  let { children, show = $bindable(), title }: Props = $props();
-
-  function closeModal() {
-    show = false;
-  }
-  setContext("closeModal", closeModal);
+  let { children, title }: Props = $props();
 
   const fadeOptions = { duration: 1000, easing: cubicInOut };
   const flyOptions = { y: 500, duration: 500, easing: cubicOut };
 </script>
 
-{#if show && !$isMobile}
+{#if $modal.show && !$isMobile}
   <div class="modal-overlay" style="--align-items: center;">
-    <div
-      class="modal"
-      in:fade={fadeOptions}
-      tabindex="0"
-      role="button"
-      onkeydown={(event) => {
-        if (event.key === "Escape") closeModal();
-      }}
-    >
+    <div class="modal" in:fade={fadeOptions} tabindex="0" role="button">
       <div class="modal-header">
         <h1>{title}</h1>
         <Button onclick={closeModal}>
@@ -46,7 +33,7 @@
       </div>
     </div>
   </div>
-{:else if show && $isMobile}
+{:else if $modal.show && isMobile}
   <div class="modal-overlay" style="--align-items: flex-end;">
     <div
       class="modal_M"
@@ -59,7 +46,7 @@
     >
       <div class="modal-header">
         <h1>{title}</h1>
-        <Button onclick={() => (show = false)}>
+        <Button onclick={close}>
           <CloseIcon />
         </Button>
       </div>
@@ -104,7 +91,7 @@
       background-color: rgba(0, 0, 0, 0.01);
       backdrop-filter: blur(1px);
       padding: var(--s16);
-      border: solid 1px var(--border-color);
+      border: solid 1px var(--color5);
       border-radius: var(--border-radius);
       display: flex;
       flex-direction: column;
@@ -120,7 +107,7 @@
       background-color: rgba(0, 0, 0, 0.01);
       backdrop-filter: blur(1px);
       padding: var(--s12);
-      border: solid 1px var(--border-color);
+      border: solid 1px var(--color5);
       border-bottom: none;
       border-top-left-radius: var(--xl-border-radius_M);
       border-top-right-radius: var(--xl-border-radius_M);

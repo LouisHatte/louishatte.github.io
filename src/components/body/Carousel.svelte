@@ -11,6 +11,7 @@
 
 <script lang="ts">
   import Modal from "@/lib/modals/Modal.svelte";
+  import { modal } from "@/stores/modals";
 
   type Props = {
     items: SlideItem[];
@@ -85,7 +86,6 @@
       <div class="title">{items[visibleItemIndex].year}</div>
     </label>
     <Modal
-      bind:show={visibleItemModals[visibleItemIndex]}
       title={`${items[visibleItemIndex].category} - ${items[visibleItemIndex].title}`}
     >
       hello
@@ -99,6 +99,7 @@
   }
 
   .slider {
+    width: 80%;
     height: 300px;
     position: relative;
     perspective: 1000px;

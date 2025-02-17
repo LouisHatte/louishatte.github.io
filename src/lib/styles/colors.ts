@@ -1,7 +1,7 @@
 import { get, writable, type Writable } from "svelte/store";
 
 type Color = "neutral" | "purple" | "indigo";
-type Id = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+type Id = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 
 type ColorId = `${Color}${Id}`;
 type ActiveColorId = `color${Id}`;
@@ -9,38 +9,42 @@ type ActiveColorId = `color${Id}`;
 const COLORS: Color[] = ["neutral", "purple", "indigo"];
 
 const COLOR_IDS: Record<ColorId, string> = {
-  neutral1: "#ffffff",
-  neutral2: "#f7f7f7",
-  neutral3: "#e1e1e1",
-  neutral4: "#b1b1b1",
-  neutral5: "#9E9E9E",
-  neutral6: "#515151",
-  neutral7: "#3b3b3b",
-  neutral8: "#222222",
-  neutral9: "#000000",
+  neutral0: "rgba(255, 255, 255, 0.3)",
+  neutral1: "rgba(255, 255, 255, 1)",
+  neutral2: "rgba(247, 247, 247, 1)",
+  neutral3: "rgba(225, 225, 225, 1)",
+  neutral4: "rgba(177, 177, 177, 1)",
+  neutral5: "rgba(158, 158, 158, 1)",
+  neutral6: "rgba(81, 81, 81, 1)",
+  neutral7: "rgba(59, 59, 59, 1)",
+  neutral8: "rgba(34, 34, 34, 1)",
+  neutral9: "rgba(0, 0, 0, 1)",
 
-  purple1: "#dac4ff",
-  purple2: "#b990ff",
-  purple3: "#a368fc",
-  purple4: "#9446ed",
-  purple5: "#8719e0",
-  purple6: "#7a0ecc",
-  purple7: "#690cb0",
-  purple8: "#580a94",
-  purple9: "#44056e",
+  purple0: "rgba(218, 196, 255, 0.3)",
+  purple1: "rgba(218, 196, 255, 1)",
+  purple2: "rgba(185, 144, 255, 1)",
+  purple3: "rgba(163, 104, 252, 1)",
+  purple4: "rgba(148, 70, 237, 1)",
+  purple5: "rgba(135, 25, 224, 1)",
+  purple6: "rgba(122, 14, 204, 1)",
+  purple7: "rgba(105, 12, 176, 1)",
+  purple8: "rgba(88, 10, 148, 1)",
+  purple9: "rgba(68, 5, 110, 1)",
 
-  indigo1: "#B0D0FF",
-  indigo2: "#88B1FC",
-  indigo3: "#5E8AEE",
-  indigo4: "#3A66DB",
-  indigo5: "#2251CC",
-  indigo6: "#1D3DBF",
-  indigo7: "#132DAD",
-  indigo8: "#0B1D96",
-  indigo9: "#061178",
+  indigo0: "rgba(176, 208, 255, 0.3)",
+  indigo1: "rgba(176, 208, 255, 1)",
+  indigo2: "rgba(136, 177, 252, 1)",
+  indigo3: "rgba(94, 138, 238, 1)",
+  indigo4: "rgba(58, 102, 219, 1)",
+  indigo5: "rgba(34, 81, 204, 1)",
+  indigo6: "rgba(29, 61, 191, 1)",
+  indigo7: "rgba(19, 45, 173, 1)",
+  indigo8: "rgba(11, 29, 150, 1)",
+  indigo9: "rgba(6, 17, 120, 1)",
 };
 
 export const theme: Writable<Record<ActiveColorId, string>> = writable({
+  color0: COLOR_IDS.neutral0,
   color1: COLOR_IDS.neutral1,
   color2: COLOR_IDS.neutral2,
   color3: COLOR_IDS.neutral3,
@@ -74,7 +78,7 @@ export function updateTheme() {
   if (!nextColor) return;
 
   Object.keys(get(theme)).forEach((_, i) => {
-    const index = `${i + 1}` as Id;
+    const index = `${i}` as Id;
     const key: ColorId = `${nextColor}${index}`;
     document.documentElement.style.setProperty(
       `--color${index}`,
@@ -85,7 +89,7 @@ export function updateTheme() {
   theme.update(() => {
     return Object.fromEntries(
       Object.keys(get(theme)).map((key, i) => {
-        const index = `${i + 1}` as Id;
+        const index = `${i}` as Id;
         const value: ColorId = `${nextColor}${index}`;
         return [key as ActiveColorId, COLOR_IDS[value]];
       })

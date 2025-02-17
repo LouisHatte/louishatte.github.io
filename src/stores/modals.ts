@@ -12,10 +12,16 @@ export const modal: Writable<Modal> = writable({
   content: "contact",
 });
 
+modal.subscribe(() => {
+  console.log(get(modal));
+});
+
 export function openModal(content: ModalContent) {
   modal.set({ show: true, content });
 }
 
 export function closeModal() {
-  modal.set({ ...get(modal), show: false });
+  console.log("B?");
+  const currentModal = get(modal);
+  modal.set({ show: false, content: currentModal.content });
 }

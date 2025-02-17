@@ -11,27 +11,22 @@
   --s96: 96px;
 
   /* colors (check colors.ts) */
-  --error-color: #e66a6a;
 
   /* borders */
   --border-radius: 6px;
   --border-radius_M: 12px;
   --xl-border-radius_M: 20px;
-  --border-color: #7b8794;
 
   /* texts */
   --xxl-font-size: 42px;
   --xl-font-size: 32px;
-  --l-font-size: 20px;
+  --l-font-size: 22px;
   --m-font-size: 16px;
   --s-font-size: 13px;
   --xs-font-size: 10px;
-  --sub-text-color: #cbd2d9;
 
   /* box shadows */
-  --white-box-shadow: inset 0px 0px 24px -10px rgba(255, 255, 255, 1);
-  --purple-box-shadow: inset 0px 0px 24px -10px rgba(255, 255, 255, 1);
-  --box-shadow: var(--white-box-shadow);
+  --box-shadow: 0px 0px 7px 2px var(--color1);
 
   /* z-indexes */
   --z-first: 9999;

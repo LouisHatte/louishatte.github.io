@@ -1,22 +1,23 @@
 {
-  "name": "Louis Hatté",
-  "desc": "I am an experienced developer with a diverse background spanning web and AI. I am now focused on deepening my expertise in Blockchain, a field I am particularly passionate about.",
+  "presentation-title": "Hey, I'm Louis.",
+  "presentation-job": "From Full Stack to Smart Contract developer",
+  "presentation-description": "I'm a full-stack developer transitioning into smart contract development, with a passion for blockchain technology and AI. I'm currently deepening my expertise in Solidity and decentralized systems in order to find a job in this domain.",
+  "presentation-cv-button": "View Full Resume",
+  "presentation-contact-button": "Contact me",
 
-  "chatFirstMessage": "Hey there! Do you have any questions about my CV?",
-  "chatPlaceholder": "What are your main skills?",
-  "send": "Send",
-  "chatNoMoreCredits": "No more credits for today.",
+  "contact-title": "Contact me",
+  "contact-name": "Name",
+  "contact-email": "Email",
+  "contact-message": "Message",
+  "contact-error-required": "required",
+  "contact-error-email": "invalid email",
+  "contact-on-success": "Email sent!",
+  "contact-on-error": "Something went wrong.",
 
-  "cvFileName": "CV-english",
-
-  "contact": "Contact me",
-  "contactName": "Name",
-  "contactEmail": "Email",
-  "contactMessage": "Message",
-  "contactSuccess": "Email sent!",
-  "contactError": "Something went wrong.",
-  "required": "required",
-  "invalidEmail": "invalid email",
+  "chatbot-first-message": "Hey there! Do you have any specific questions about me? Go ahead, I don't bite!",
+  "chatbot-input-example": "What's your favorite programming language?",
+  "chatbot-send-button": "Send",
+  "chatbot-no-more-credits": "No more credits for today.",
 
   "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 }
