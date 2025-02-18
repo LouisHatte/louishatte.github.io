@@ -5,19 +5,20 @@
   "presentation-cv-button": "Voir mon CV complet",
   "presentation-contact-button": "Me contacter",
 
+  "contact-title": "Me contacter",
+  "contact-name": "Nom",
+  "contact-email": "Email",
+  "contact-message": "Message",
+  "contact-send-button": "Envoyer",
+  "contact-error-required": "requis",
+  "contact-error-email": "email invalide",
+  "contact-on-success": "Email envoyé !",
+  "contact-on-error": "Une erreur est survenue.",
+
   "chatbot-first-message": "Bonjour ! Avez vous des questions spécifiques à mon sujet ? N'hésitez pas !",
   "chatbot-input-example": "Quel est ton langage de programmation préféré ?",
   "chatbot-send-button": "Envoyer",
   "chatbot-no-more-credits": "Crédits épuisés pour aujourd'hui.",
-
-  "contact": "Me contacter",
-  "contactName": "Nom",
-  "contactEmail": "Email",
-  "contactMessage": "Message",
-  "contactSuccess": "Email envoyé !",
-  "contactError": "Une erreur est survenue.",
-  "required": "requis",
-  "invalidEmail": "email invalide",
 
   "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 }

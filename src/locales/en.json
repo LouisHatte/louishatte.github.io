@@ -9,6 +9,7 @@
   "contact-name": "Name",
   "contact-email": "Email",
   "contact-message": "Message",
+  "contact-send-button": "Send",
   "contact-error-required": "required",
   "contact-error-email": "invalid email",
   "contact-on-success": "Email sent!",

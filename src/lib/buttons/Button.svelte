@@ -8,7 +8,9 @@
 </script>
 
 <script lang="ts">
-  import type { Snippet } from "svelte";
+  import { onMount, type Snippet } from "svelte";
+
+  import Spinner from "@/lib/spinners/Spinner.svelte";
 
   let {
     _class,
@@ -18,10 +20,28 @@
     style,
     type = "button",
   }: ButtonProps = $props();
+
+  let buttonRef: HTMLButtonElement;
+  let originalWidth = $state("auto");
+
+  onMount(() => {
+    originalWidth = `${buttonRef.offsetWidth}px`;
+  });
 </script>
 
-<button class={_class} {style} {type} {disabled} {onclick}>
-  {@render children()}
+<button
+  bind:this={buttonRef}
+  class={_class}
+  style={`min-width: ${originalWidth};` + style}
+  {type}
+  {disabled}
+  {onclick}
+>
+  {#if !disabled}
+    {@render children()}
+  {:else}
+    <Spinner />
+  {/if}
 </button>
 
 <style lang="scss">

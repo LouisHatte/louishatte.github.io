@@ -10,9 +10,6 @@
 </script>
 
 <script lang="ts">
-  import Modal from "@/lib/modals/Modal.svelte";
-  import { modal } from "@/stores/modals";
-
   type Props = {
     items: SlideItem[];
   };
@@ -85,11 +82,11 @@
     >
       <div class="title">{items[visibleItemIndex].year}</div>
     </label>
-    <Modal
+    <!-- <Dialog
       title={`${items[visibleItemIndex].category} - ${items[visibleItemIndex].title}`}
     >
       hello
-    </Modal>
+    </Dialog> -->
   {/each}
 </div>
 

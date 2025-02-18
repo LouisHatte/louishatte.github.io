@@ -4,6 +4,7 @@
 
   type Props = StyleProps & {
     autoFocus?: boolean;
+    disabled?: boolean;
     id: string;
     onkeydown?: (event: KeyboardEvent) => void;
     placeholder?: string;
@@ -13,6 +14,7 @@
 
   let {
     autoFocus = false,
+    disabled = false,
     _class,
     id,
     onkeydown,
@@ -37,6 +39,7 @@
   {type}
   name={id}
   {placeholder}
+  {disabled}
   {onkeydown}
   bind:this={ref}
   bind:value

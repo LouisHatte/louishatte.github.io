@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, tick } from "svelte";
   import { _ } from "svelte-i18n";
 
   import { getAnswer } from "@/apis/groq";
@@ -21,7 +21,8 @@
   let input = $derived(`${context}\n${question}`);
 
   let isAsking = $state(false);
-  let displayAnswer = $state("");
+  let typingMessage = $state("");
+  let isInputDisabled = $state(false);
 
   let messages: Message[] = $state([
     {
@@ -29,33 +30,45 @@
       content: firstMessage,
     },
   ]);
+  let messagesRef: HTMLDivElement;
 
+  // load the CV context
   onMount(async () => {
     const response = await fetch("/CV-context.txt");
     context = await response.text();
   });
 
+  // handle the writing animation
   $effect(() => {
     let i = 0;
-    const lastAnswer = messages[messages.length - 1];
-    const { role, content } = lastAnswer;
-    if (role === "user") return;
+    const lastMessage = messages[messages.length - 1];
+    const { role, content } = lastMessage;
+
+    if (role === "user") {
+      typingMessage = content;
+      isInputDisabled = false;
+      return;
+    }
 
     const intervalId = setInterval(() => {
-      displayAnswer = content.slice(0, i);
+      typingMessage = content.slice(0, i);
       i++;
 
       if (i > content.length) {
+        isInputDisabled = false;
         clearInterval(intervalId);
       }
-    }, 25);
+    }, 10);
   });
 
-  $effect(() => {
-    messages;
-    const messagesBox = document.getElementById("messages-box-id")!;
-    messagesBox.scrollTop = messagesBox.scrollHeight;
-  });
+  $inspect(messages);
+
+  // $effect(() => {
+  //   console.log("EFFECT!");
+  //   messages;
+  //   const messagesBox = document.getElementById("messages-box-id")!;
+  //   messagesBox.scrollTop = -messagesBox.scrollHeight;
+  // });
 
   async function sendMessage() {
     if (!context || !question || isAsking) return;
@@ -65,12 +78,18 @@
       return;
     }
 
-    displayAnswer = "";
+    typingMessage = "";
     isAsking = true;
+    isInputDisabled = true;
 
     messages.push({ role: "user", content: question });
+    await tick();
+    messagesRef.scrollTop = messagesRef.scrollHeight;
+
     const answer = await getAnswer(input);
     messages.push({ role: "bot", content: answer });
+    await tick();
+    messagesRef.scrollTop = messagesRef.scrollHeight;
 
     question = "";
     // QuestionCounter.increment();
@@ -78,25 +97,26 @@
   }
 </script>
 
-<div class="chat-box">
-  <div id="messages-box-id" class="messages-box">
-    {#each messages as message, i}
-      <div class="message-box {message.role === 'user' ? 'user' : ''}">
-        <div class="message-bubble">
-          {#if i != messages.length - 1}
+<div class="chatbot">
+  <div class="messages" bind:this={messagesRef}>
+    {#each messages as message, index}
+      <div class="message {message.role === 'user' ? 'user' : ''}">
+        <div class="bubble">
+          {#if index !== messages.length - 1}
             {message.content}
           {:else}
-            {displayAnswer}
+            {typingMessage}
           {/if}
         </div>
       </div>
     {/each}
   </div>
-  <div class="input-box">
+  <div class="input">
     <Input
       id="question"
       type="text"
       placeholder={$_("chatbot-input-example")}
+      disabled={isInputDisabled}
       onkeydown={(e) => e.key === "Enter" && sendMessage()}
       bind:value={question}
     />
@@ -108,30 +128,32 @@
 </div>
 
 <style lang="scss">
-  .chat-box {
+  .chatbot {
     height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: var(--s16);
+    padding: 0 var(--s16) var(--s16) var(--s16);
     border: solid 1px var(--color5);
     border-radius: var(--border-radius);
     overflow: scroll;
 
-    .messages-box {
+    .messages {
       display: flex;
       flex-direction: column;
       gap: var(--s16);
       overflow-y: auto;
+      margin-top: var(--s16);
+      padding-bottom: var(--s32);
 
-      .message-box {
+      .message {
         display: flex;
 
         &.user {
           justify-content: flex-end;
         }
 
-        .message-bubble {
+        .bubble {
           max-width: 75%;
           padding: var(--s8);
           background: var(--color1);
@@ -143,7 +165,7 @@
       }
     }
 
-    .input-box {
+    .input {
       display: flex;
       justify-content: space-between;
       gap: var(--s8);

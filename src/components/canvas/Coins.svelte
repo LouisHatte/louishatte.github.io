@@ -3,6 +3,9 @@
   import * as THREE from "three";
   import { GLTFLoader } from "three-stdlib";
 
+  const modelPaths = ["/coin-blue.glb", "/coin-red.glb", "/coin-green.glb"];
+
+  let divRef: HTMLDivElement;
   let scene: THREE.Scene;
   let camera: THREE.PerspectiveCamera;
   let renderer: THREE.WebGLRenderer;
@@ -23,33 +26,30 @@
   }
 
   onMount(async () => {
-    const container = document.getElementById("cube-container")!;
-
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(
       75,
-      container.clientWidth / container.clientHeight,
+      divRef.clientWidth / divRef.clientHeight,
       0.1,
       1000
     );
 
     try {
-      const greenModel = await loadModel("/coin-blue.glb");
-      const blueModel = await loadModel("/coin-red.glb");
-      const redModel = await loadModel("/coin-green.glb");
-
-      models.push(greenModel, blueModel, redModel);
-      models.forEach((model) => {
-        model.rotation.y = Math.PI / 2;
-        scene.add(model);
-      });
+      models = await Promise.all(
+        modelPaths.map(async (modelPath) => {
+          const model = await loadModel(modelPath);
+          model.rotation.y = Math.PI / 2;
+          scene.add(model);
+          return model;
+        })
+      );
     } catch (error) {
       console.error("Error loading models:", error);
     }
 
     renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(divRef.clientWidth, divRef.clientHeight);
     renderer.render(scene, camera);
     models.forEach((model, index) => {
       if (index !== 0) {
@@ -57,7 +57,7 @@
       }
     });
     renderer.render(scene, camera);
-    container.appendChild(renderer.domElement);
+    divRef.appendChild(renderer.domElement);
 
     camera.position.z = 25;
 
@@ -89,20 +89,19 @@
     }
 
     window.addEventListener("resize", function () {
-      const container = document.getElementById("cube-container")!;
-      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.aspect = divRef.clientWidth / divRef.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setSize(divRef.clientWidth, divRef.clientHeight);
     });
 
     animate();
   });
 </script>
 
-<div id="cube-container"></div>
+<div bind:this={divRef}></div>
 
 <style>
-  #cube-container {
+  div {
     height: 100%;
     display: flex;
     justify-content: center;

@@ -34,12 +34,12 @@
       gap: var(--s16);
 
       label {
-        color: var(--color5);
+        color: var(--color1);
       }
 
       .error {
-        color: var(--color2);
-        font-size: var(--xs-font-size);
+        color: var(--color5);
+        font-size: var(--s-font-size);
       }
     }
   }

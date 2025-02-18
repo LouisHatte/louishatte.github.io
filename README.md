@@ -1,9 +1,9 @@
-## TODO 12/25, 32%
+## TODO 15/33, 32%
 
 ------ MAIN ------
 
 - Stars [OK]
-- Cursor [OK]
+- Cursor: [OK]
 
 ------ TOP BAR ------
 
@@ -17,13 +17,13 @@
 
 ------ PRESENTATION SECTION ------
 
-- Short description of myself
-- Contact button
-- CV download button
+- Short description of myself [OK]
+- CV download button [OK]
+- Contact button: [OK]
 
 ------ CHAT BOT SECTION ------
 
-- Chat bot: fix a small UI bug and add a new message if the user change the language
+- Chat bot [OK]
 - Chat bot context: improve the context
 
 ------ CAROUSEL CARD ------
@@ -34,17 +34,26 @@
 
 ------ 3D COIN ------
 
-- 3D coin model
+- 3D coin model [OK]
+- 3D coins model [OK]
+- Maybe add fliping animation
+- Replace with real models
 - Thanks to my sister
+
+------ FOOTER ------
+
+- Copyright [OK]
 
 ------ OTHER ------
 
+- Check colors
+- Mobile version
+- Add more transition animations
 - Google analytics [OK]
 - Add tracking everywhere
 
-- Copyright?
 - Solve last bugs
 - Clean the code
 - Dockerise
 - Deploy
-- Adjust based of feedbacks
+- Adjust based on feedbacks

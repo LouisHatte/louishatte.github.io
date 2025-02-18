@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { getContext } from "svelte";
   import { _ } from "svelte-i18n";
   import { createForm } from "felte";
   import { validator } from "@felte/validator-zod";
@@ -13,6 +12,7 @@
   import { addToast } from "@/lib/toasts/toasts";
   import SendIcon from "@/lib/icons/SendIcon.svelte";
   import { isMobile } from "@/stores/screenSize";
+  import { closeDialog } from "@/lib/dialogs/Dialog.svelte";
 
   const key: string = import.meta.env.VITE_EMAIL_JS_API_KEY;
   const serviceId: string = import.meta.env.VITE_EMAIL_JS_SERVICE_ID;
@@ -26,13 +26,14 @@
   let isSubmitting = $state(false);
 
   const schema = z.object({
-    username: z.string().nonempty($_("required")),
-    email: z.string().nonempty($_("required")).email($_("invalidEmail")),
+    username: z.string().nonempty($_("contact-error-required")),
+    email: z
+      .string()
+      .nonempty($_("contact-error-required"))
+      .email($_("contact-error-email")),
     message: z.string().nonempty($_("required")),
   });
   type Form = z.infer<typeof schema>;
-
-  const closeModal: () => void = getContext("closeModal");
 
   const { form, errors } = createForm<Form>({
     onSubmit: async (values) => {
@@ -47,10 +48,10 @@
 
       try {
         await emailjs.send(serviceId, templateId, templateParams);
-        addToast($_("contactSuccess"), "success");
-        closeModal();
+        addToast($_("contact-on-success"), "success");
+        closeDialog();
       } catch (error) {
-        addToast($_("contactError"), "error");
+        addToast($_("contact-on-error"), "error");
         console.error("Error while sending email", error);
       }
 
@@ -61,15 +62,19 @@
 </script>
 
 <form use:form>
-  <FormField id="name" label={$_("contactName")} errors={$errors.username}>
+  <FormField id="name" label={$_("contact-name")} errors={$errors.username}>
     <Input autoFocus type="text" id="username" bind:value={username} />
   </FormField>
 
-  <FormField id="email" label={$_("contactEmail")} errors={$errors.email}>
+  <FormField id="email" label={$_("contact-email")} errors={$errors.email}>
     <Input type="text" id="email" bind:value={email} />
   </FormField>
 
-  <FormField id="message" label={$_("contactMessage")} errors={$errors.message}>
+  <FormField
+    id="message"
+    label={$_("contact-message")}
+    errors={$errors.message}
+  >
     <TextArea rows={5} id="message" bind:value={message} />
   </FormField>
 
@@ -79,7 +84,7 @@
       type="submit"
       disabled={isSubmitting}
     >
-      {$_("send")}
+      {$_("contact-send-button")}
       <SendIcon />
     </Button>
   </div>

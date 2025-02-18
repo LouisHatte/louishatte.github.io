@@ -23,8 +23,8 @@
   const coordinates = new Spring(
     { x: centerX, y: centerY },
     {
-      stiffness: 0.1,
-      damping: 0.3,
+      stiffness: 0.2,
+      damping: 0.5,
     }
   );
 
@@ -40,7 +40,7 @@
 
   function createSubCircle(event: MouseEvent) {
     const tween: SubCircleTween = new Tween(
-      { diameter: 0, opacity: 1 },
+      { diameter: 0, opacity: 2 },
       {
         duration: 1000,
         easing: cubicOut,
