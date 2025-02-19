@@ -60,4 +60,15 @@
   ];
 </script>
 
-<Carousel {items} />
+<div class="main">
+  <Carousel {items} />
+</div>
+
+<style lang="scss">
+  .main {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>

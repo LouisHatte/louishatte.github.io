@@ -1,89 +1,96 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { fade, scale } from "svelte/transition";
+  import { cubicOut } from "svelte/easing";
+  import Presentation from "./Presentation.svelte";
+  import ChatBot from "./ChatBot.svelte";
+  import Projects from "./Projects.svelte";
+  import Coins from "../canvas/Coins.svelte";
+  import {
+    goToPreviousView,
+    gotToNextView,
+    view,
+  } from "@/stores/viewIndex.svelte";
 
-  import Coin from "@/components/canvas/Coin.svelte";
-  import Coins from "@/components/canvas/Coins.svelte";
-  import Presentation from "@/components/body/Presentation.svelte";
-  import ChatBot from "@/components/body/ChatBot.svelte";
-  import Projects from "@/components/body/Projects.svelte";
+  const ALL_ANIMATION_DURATION = 5000;
+  let isTransitioning = false;
+  let timeoutId: NodeJS.Timeout;
 
-  const divs: HTMLDivElement[] = [];
-  let currentDivIndex = 0;
+  function handleWheel(event: WheelEvent) {
+    if (isTransitioning) return;
 
-  const handleWheel = (event: WheelEvent) => {
+    isTransitioning = true;
+
     if (event.deltaY > 0) {
-      const nextDiv = divs[currentDivIndex + 1];
-      if (nextDiv) {
-        currentDivIndex += 1; // Move to the next div
-        nextDiv.scrollIntoView({ behavior: "smooth" });
-      }
+      gotToNextView();
+    } else {
+      goToPreviousView();
     }
-  };
+
+    timeoutId = setTimeout(() => {
+      isTransitioning = false;
+    }, ALL_ANIMATION_DURATION);
+  }
 
   onMount(() => {
     window.addEventListener("wheel", handleWheel, { passive: true });
+
     return () => {
       window.removeEventListener("wheel", handleWheel);
+      clearTimeout(timeoutId);
     };
   });
 </script>
 
-<div bind:this={divs[0]} class="scroll-div">
-  <h1>First Div Content</h1>
-  <p>Scroll to the next div...</p>
-</div>
-
-<div bind:this={divs[1]} class="scroll-div">
-  <h1>Second Div Content</h1>
-  <p>Scroll to the next div...</p>
-</div>
-
-<!-- <div class="main">
-  <div class="first-row">
-    <div class="left-column">
+<div class="main">
+  {#if $view.name === "preview"}
+    <div
+      in:scale={{
+        start: 0,
+        duration: ALL_ANIMATION_DURATION,
+        easing: cubicOut,
+      }}
+      class="one"
+    >
+      <Coins />
+    </div>
+  {:else if $view.name === "introduction"}
+    <div
+      in:fade={{ duration: ALL_ANIMATION_DURATION, easing: cubicOut }}
+      class="two"
+    >
       <Presentation />
       <ChatBot />
     </div>
-    <div class="right-column">
-      <Coins />
+  {:else if $view.name === "projects"}
+    <div
+      in:fade={{ duration: ALL_ANIMATION_DURATION, easing: cubicOut }}
+      class="three"
+    >
+      <Projects />
     </div>
-  </div>
-  <div class="second-row">
-    <Projects />
-  </div>
-</div> -->
+  {/if}
+</div>
 
 <style lang="scss">
-  .scroll-div {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    margin: 10px 0;
-    background-color: #f0f0f0;
-  }
-
   .main {
-    display: flex;
-    flex-direction: column;
-    margin: var(--s32);
+    flex-grow: 1;
+    height: 100%;
 
-    .first-row {
-      display: flex;
-      margin-bottom: var(--s64);
-
-      .left-column {
-        width: 50%;
-      }
-
-      .right-column {
-        width: 50%;
-      }
+    .one {
+      // position: absolute;
+      // width: 100%;
+      height: 100%;
     }
-    .second-row {
-      display: flex;
-      justify-content: center;
+    .two {
+      // position: absolute;
+      // width: 100%;
+      height: 100%;
+    }
+    .three {
+      // position: absolute;
+      // width: 100%;
+      height: 100%;
     }
   }
 </style>

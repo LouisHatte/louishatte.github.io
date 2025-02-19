@@ -1,54 +1,86 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import * as THREE from "three";
-
   import { theme } from "@/lib/styles/colors";
+  import { view } from "@/stores/viewIndex.svelte";
+  import { tick } from "svelte";
 
-  let container: HTMLDivElement;
+  let divRef: HTMLDivElement;
   const starMaterial = new THREE.MeshBasicMaterial({ color: $theme["color2"] });
 
   $effect(() => {
     starMaterial.color.set($theme["color2"]);
   });
 
-  onMount(() => {
-    const scene = new THREE.Scene();
+  let scene: THREE.Scene;
+  let camera: THREE.PerspectiveCamera;
+  let renderer: THREE.WebGLRenderer;
+  let isRotating = true;
 
-    const camera = new THREE.PerspectiveCamera(
+  // @ts-expect-error
+  $effect(async () => {
+    $view;
+    console.log("A!");
+    isRotating = false;
+    await tick();
+
+    const startPosition = camera.position.clone();
+    const targetPosition = new THREE.Vector3(...$view.position);
+    let progress = 0;
+
+    function smoothMove() {
+      if (progress < 1) {
+        progress += 0.02;
+        camera.position.lerpVectors(startPosition, targetPosition, progress);
+        camera.lookAt(0, 0, 0);
+        requestAnimationFrame(smoothMove);
+      } else {
+        isRotating = true;
+      }
+    }
+    smoothMove();
+  });
+
+  onMount(() => {
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera(
       75,
-      container.clientWidth / container.clientHeight,
+      divRef.clientWidth / divRef.clientHeight,
       0.1,
       1000
     );
     camera.position.set(0, 0, 5);
 
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.render(scene, camera);
-    container.appendChild(renderer.domElement);
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(divRef.clientWidth, divRef.clientHeight);
+    divRef.appendChild(renderer.domElement);
 
     const starGeometry = new THREE.SphereGeometry(0.05, 8, 8);
-
     for (let i = 0; i < 500; i++) {
       const star = new THREE.Mesh(starGeometry, starMaterial);
-      star.position.x = (Math.random() - 0.5) * 50;
-      star.position.y = (Math.random() - 0.5) * 50;
-      star.position.z = (Math.random() - 0.5) * 50;
+      star.position.set(
+        (Math.random() - 0.5) * 50,
+        (Math.random() - 0.5) * 50,
+        (Math.random() - 0.5) * 50
+      );
       scene.add(star);
     }
 
     function animate() {
       requestAnimationFrame(animate);
-      scene.rotation.y += 0.002;
-      scene.rotation.x += 0.001;
+      if (isRotating) {
+        scene.rotation.y += 0.002;
+        scene.rotation.x += 0.001;
+      }
       renderer.render(scene, camera);
     }
     animate();
 
     window.addEventListener("resize", () => {
-      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.aspect = divRef.clientWidth / divRef.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setSize(divRef.clientWidth, divRef.clientHeight);
     });
 
     return () => {
@@ -57,7 +89,7 @@
   });
 </script>
 
-<div bind:this={container} class="stars"></div>
+<div bind:this={divRef} class="stars"></div>
 
 <style lang="scss">
   .stars {

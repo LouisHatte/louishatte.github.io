@@ -22,8 +22,7 @@
 <Crosshair />
 <main>
   {#if !$isDialogOpen}
-    <div>
-      <!-- <BlackHoleButton /> -->
+    <div class="portfolio">
       <TopBar />
       <Body />
       <Footer />
@@ -42,5 +41,11 @@
     width: 100%;
     max-width: 1434px;
     padding: var(--s24);
+  }
+
+  .portfolio {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 </style>

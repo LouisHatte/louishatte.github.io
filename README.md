@@ -4,6 +4,7 @@
 
 - Stars [OK]
 - Cursor: [OK]
+- Screen navigation system
 
 ------ TOP BAR ------
 

@@ -33,6 +33,7 @@
 <style lang="scss">
   .main {
     margin-bottom: var(--s24);
+    max-width: 790px;
 
     h1 {
       font-size: var(--xxl-font-size);

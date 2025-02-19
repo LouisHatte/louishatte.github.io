@@ -12,6 +12,11 @@
   scrollbar-width: none;
 }
 
+html, body, #app {
+  height: 100%;
+  overflow: hidden;
+}
+
 html {
   background-color: var(--color9);
 }

@@ -11,7 +11,7 @@
   .copyright {
     display: flex;
     justify-content: center;
+    flex-shrink: 0;
     font-size: var(--xs-font-size);
-    margin-top: var(--s24);
   }
 </style>

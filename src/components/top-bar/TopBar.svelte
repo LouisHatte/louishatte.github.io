@@ -32,7 +32,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--s32);
+    flex-shrink: 0;
 
     .buttons {
       display: flex;
