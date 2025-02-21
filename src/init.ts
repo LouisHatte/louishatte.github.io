@@ -1,10 +1,10 @@
 import { init, addMessages, getLocaleFromNavigator } from "svelte-i18n";
 
+import { Liker } from "@/classes/Liker";
+import { QuestionCounter } from "@/classes/QuestionCounter";
 import en from "@/locales/en.json";
 import fr from "@/locales/fr.json";
-import { QuestionCounter } from "@/classes/QuestionCounter";
 import { DateHelper } from "@/utils/date";
-import { Liker } from "./classes/Liker";
 
 export function initLanquage() {
   addMessages("en", en);

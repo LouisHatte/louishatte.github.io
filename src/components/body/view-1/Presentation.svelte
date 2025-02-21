@@ -2,12 +2,11 @@
   import { _, locale } from "svelte-i18n";
 
   import { Locale } from "@/classes/Locale";
-  import ContactForm from "@/components/body/ContactForm.svelte";
   import Button from "@/lib/buttons/Button.svelte";
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
   import LinkIcon from "@/lib/icons/LinkIcon.svelte";
   import MailIcon from "@/lib/icons/MailIcon.svelte";
-  import Dialog, { openDialog } from "@/lib/dialogs/Dialog.svelte";
+  import { openDialog } from "@/lib/dialogs/Dialog.svelte";
 
   let cvLink = $derived(`/public/CV-${Locale.get($locale)}.pdf`);
 </script>

@@ -1,35 +1,25 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { fade, scale } from "svelte/transition";
-  import { cubicOut } from "svelte/easing";
-  import Presentation from "./Presentation.svelte";
-  import ChatBot from "./ChatBot.svelte";
-  import Projects from "./Projects.svelte";
-  import Coins from "../canvas/Coins.svelte";
+  import { fade } from "svelte/transition";
+
   import {
     goToPreviousView,
     gotToNextView,
+    isViewTransitioning,
+    TRANSITION_VIEW_DURATION,
     view,
-  } from "@/stores/viewIndex.svelte";
+  } from "@/stores/view";
 
-  const ALL_ANIMATION_DURATION = 5000;
-  let isTransitioning = false;
-  let timeoutId: NodeJS.Timeout;
+  let ViewContent = $derived($view.body);
 
   function handleWheel(event: WheelEvent) {
-    if (isTransitioning) return;
-
-    isTransitioning = true;
+    if ($isViewTransitioning) return;
 
     if (event.deltaY > 0) {
       gotToNextView();
     } else {
       goToPreviousView();
     }
-
-    timeoutId = setTimeout(() => {
-      isTransitioning = false;
-    }, ALL_ANIMATION_DURATION);
   }
 
   onMount(() => {
@@ -37,59 +27,28 @@
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
-      clearTimeout(timeoutId);
     };
   });
 </script>
 
 <div class="main">
-  {#if $view.name === "preview"}
+  {#key ViewContent}
     <div
-      in:scale={{
-        start: 0,
-        duration: ALL_ANIMATION_DURATION,
-        easing: cubicOut,
-      }}
-      class="one"
+      class="body"
+      in:fade={{ duration: 500, delay: TRANSITION_VIEW_DURATION + 500 }}
+      out:fade={{ duration: 500 }}
     >
-      <Coins />
+      <ViewContent />
     </div>
-  {:else if $view.name === "introduction"}
-    <div
-      in:fade={{ duration: ALL_ANIMATION_DURATION, easing: cubicOut }}
-      class="two"
-    >
-      <Presentation />
-      <ChatBot />
-    </div>
-  {:else if $view.name === "projects"}
-    <div
-      in:fade={{ duration: ALL_ANIMATION_DURATION, easing: cubicOut }}
-      class="three"
-    >
-      <Projects />
-    </div>
-  {/if}
+  {/key}
 </div>
 
 <style lang="scss">
   .main {
+    height: 1px;
     flex-grow: 1;
-    height: 100%;
 
-    .one {
-      // position: absolute;
-      // width: 100%;
-      height: 100%;
-    }
-    .two {
-      // position: absolute;
-      // width: 100%;
-      height: 100%;
-    }
-    .three {
-      // position: absolute;
-      // width: 100%;
+    .body {
       height: 100%;
     }
   }

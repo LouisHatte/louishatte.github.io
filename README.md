@@ -1,10 +1,10 @@
-## TODO 15/33, 32%
+## TODO 20/31, 65%
 
 ------ MAIN ------
 
 - Stars [OK]
-- Cursor: [OK]
-- Screen navigation system
+- Cursor [OK]
+- View navigation system [OK]
 
 ------ TOP BAR ------
 
@@ -25,7 +25,7 @@
 ------ CHAT BOT SECTION ------
 
 - Chat bot [OK]
-- Chat bot context: improve the context
+- Chat bot context [OK]
 
 ------ CAROUSEL CARD ------
 
@@ -37,9 +37,6 @@
 
 - 3D coin model [OK]
 - 3D coins model [OK]
-- Maybe add fliping animation
-- Replace with real models
-- Thanks to my sister
 
 ------ FOOTER ------
 
@@ -49,11 +46,11 @@
 
 - Check colors
 - Mobile version
-- Add more transition animations
+- Add more transition animations (modals)
 - Google analytics [OK]
 - Add tracking everywhere
 
-- Solve last bugs
+- Solve last bugs, freeze a little when transitioning on the coin, non passive event listener scrolling
 - Clean the code
 - Dockerise
 - Deploy

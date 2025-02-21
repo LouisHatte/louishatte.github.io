@@ -1,18 +1,16 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
-  import { cubicIn } from "svelte/easing";
   import { _ } from "svelte-i18n";
 
-  import GlobalStyle from "@/GlobalStyle.svelte";
-  import Stars from "@/components/canvas/Stars.svelte";
-  import TopBar from "@/components/top-bar/TopBar.svelte";
-  import Footer from "@/components/footer/Footer.svelte";
-  import Body from "@/components/body/Body.svelte";
+  import Stars from "@/components/Stars.svelte";
   import Crosshair from "@/lib/misc/Crosshair.svelte";
+  import TopBar from "@/components/top-bar/TopBar.svelte";
+  import Body from "@/components/body/Body.svelte";
+  import Footer from "@/components/footer/Footer.svelte";
   import ToastBox from "@/lib/toasts/ToastBox.svelte";
   import Dialog, { isDialogOpen } from "@/lib/dialogs/Dialog.svelte";
   import { dialog } from "@/stores/dialog";
 
+  import GlobalStyle from "@/GlobalStyle.svelte";
   import "@/global.scss";
 
   let DialogContent = $derived($dialog.body);
@@ -39,7 +37,7 @@
 <style>
   main {
     width: 100%;
-    max-width: 1434px;
+    max-width: 1500px;
     padding: var(--s24);
   }
 

@@ -25,7 +25,7 @@ export async function getAnswer(
     );
     return response.data.choices[0].message.content as string;
   } catch (error) {
-    console.error("Error fetching completion:", error);
+    console.error("Fetching Groq error.", error);
     throw error;
   }
 }

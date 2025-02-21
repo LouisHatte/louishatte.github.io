@@ -8,9 +8,7 @@ export class Locale {
     return currentLocale.startsWith("en") ? "en" : "fr";
   }
 
-  static switch(_locale: "en" | "fr") {
-    const currentLocale = Locale.get();
-    if (_locale === currentLocale) return;
-    locale.set(currentLocale === "en" ? "fr" : "en");
+  static switch(newLocale: "en" | "fr") {
+    locale.set(newLocale);
   }
 }

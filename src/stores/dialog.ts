@@ -1,7 +1,7 @@
 import type { Component } from "svelte";
 import { writable, type Writable } from "svelte/store";
 
-import ContactForm from "@/components/body/ContactForm.svelte";
+import ContactForm from "@/components/forms/ContactForm.svelte";
 import Spinner from "@/lib/spinners/Spinner.svelte";
 
 type DialogContentKey = "contact" | "test";

@@ -19,6 +19,9 @@ dependencies:
   firebase:
     specifier: ^11.2.0
     version: 11.2.0
+  gsap:
+    specifier: ^3.12.7
+    version: 3.12.7
   maath:
     specifier: ^0.10.8
     version: 0.10.8(@types/three@0.171.0)(three@0.171.0)
@@ -2224,6 +2227,10 @@ packages:
 
   /globrex@0.1.2:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
+    dev: false
+
+  /gsap@3.12.7:
+    resolution: {integrity: sha512-V4GsyVamhmKefvcAKaoy0h6si0xX7ogwBoBSs2CTJwt7luW0oZzC0LhdkyuKV8PJAXr7Yaj8pMjCKD4GJ+eEMg==}
     dev: false
 
   /http-parser-js@0.5.9:

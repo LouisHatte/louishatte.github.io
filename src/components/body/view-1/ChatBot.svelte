@@ -8,13 +8,7 @@
   import Input from "@/lib/inputs/Input.svelte";
   import { addToast } from "@/lib/toasts/toasts";
   import SendIcon from "@/lib/icons/SendIcon.svelte";
-
-  type Message = {
-    role: "user" | "bot";
-    content: string;
-  };
-
-  const firstMessage = $_("chatbot-first-message");
+  import { addMessage, messages } from "@/stores/chatMessages";
 
   let context = $state("");
   let question = $state("");
@@ -23,25 +17,24 @@
   let isAsking = $state(false);
   let typingMessage = $state("");
   let isInputDisabled = $state(false);
+  let hasAskedOneQuestion = $state(false);
 
-  let messages: Message[] = $state([
-    {
-      role: "bot",
-      content: firstMessage,
-    },
-  ]);
-  let messagesRef: HTMLDivElement;
+  let divRef: HTMLDivElement;
 
-  // load the CV context
   onMount(async () => {
     const response = await fetch("/CV-context.txt");
     context = await response.text();
+    if ($messages.length === 0) {
+      addMessage({ role: "bot", content: $_("chatbot-first-message") });
+    }
   });
 
   // handle the writing animation
   $effect(() => {
+    if (!$messages.length) return;
+
     let i = 0;
-    const lastMessage = messages[messages.length - 1];
+    const lastMessage = $messages[$messages.length - 1];
     const { role, content } = lastMessage;
 
     if (role === "user") {
@@ -61,15 +54,6 @@
     }, 10);
   });
 
-  $inspect(messages);
-
-  // $effect(() => {
-  //   console.log("EFFECT!");
-  //   messages;
-  //   const messagesBox = document.getElementById("messages-box-id")!;
-  //   messagesBox.scrollTop = -messagesBox.scrollHeight;
-  // });
-
   async function sendMessage() {
     if (!context || !question || isAsking) return;
 
@@ -78,31 +62,39 @@
       return;
     }
 
+    hasAskedOneQuestion = true;
     typingMessage = "";
     isAsking = true;
     isInputDisabled = true;
 
-    messages.push({ role: "user", content: question });
+    addMessage({ role: "user", content: question });
     await tick();
-    messagesRef.scrollTop = messagesRef.scrollHeight;
+    divRef.scrollTop = divRef.scrollHeight;
 
+    // const answer = $_("lorem");
     const answer = await getAnswer(input);
-    messages.push({ role: "bot", content: answer });
+    addMessage({ role: "bot", content: answer });
     await tick();
-    messagesRef.scrollTop = messagesRef.scrollHeight;
+    divRef.scrollTop = divRef.scrollHeight;
 
     question = "";
     // QuestionCounter.increment();
     isAsking = false;
   }
+
+  function stopScrollEventPropagation(e: WheelEvent) {
+    if (divRef.clientHeight !== divRef.scrollHeight) {
+      e.stopPropagation();
+    }
+  }
 </script>
 
-<div class="chatbot">
-  <div class="messages" bind:this={messagesRef}>
-    {#each messages as message, index}
+<div class="chatbot" onwheel={stopScrollEventPropagation}>
+  <div class="messages" bind:this={divRef}>
+    {#each $messages as message, index}
       <div class="message {message.role === 'user' ? 'user' : ''}">
         <div class="bubble">
-          {#if index !== messages.length - 1}
+          {#if index !== $messages.length - 1}
             {message.content}
           {:else}
             {typingMessage}
@@ -129,8 +121,8 @@
 
 <style lang="scss">
   .chatbot {
-    max-width: 790px;
-    height: 400px;
+    // max-width: 790px;
+    // height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -140,6 +132,7 @@
     overflow: scroll;
 
     .messages {
+      height: 100%;
       display: flex;
       flex-direction: column;
       gap: var(--s16);
