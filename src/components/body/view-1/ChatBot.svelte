@@ -121,8 +121,8 @@
 
 <style lang="scss">
   .chatbot {
-    // max-width: 790px;
-    // height: 400px;
+    height: 100%;
+    max-height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

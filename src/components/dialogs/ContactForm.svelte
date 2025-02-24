@@ -90,9 +90,4 @@
     display: flex;
     justify-content: end;
   }
-
-  .submit_M {
-    display: flex;
-    justify-content: center;
-  }
 </style>

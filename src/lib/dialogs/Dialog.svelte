@@ -57,19 +57,6 @@
 </dialog>
 
 <style lang="scss">
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-
-    h1 {
-      font-size: 30px;
-    }
-  }
-
-  .modal-body {
-    margin-top: var(--s32);
-  }
-
   .modal {
     position: fixed;
     top: 50%;
@@ -84,26 +71,17 @@
     display: flex;
     flex-direction: column;
 
-    @extend .modal-header;
-    @extend .modal-body;
-  }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
 
-  .modal_M {
-    width: 100%;
-    height: 60%;
-    max-width: 450px;
-    background-color: rgba(0, 0, 0, 0.01);
-    backdrop-filter: blur(1px);
-    padding: var(--s12);
-    border: solid 1px var(--color5);
-    border-bottom: none;
-    border-top-left-radius: var(--xl-border-radius_M);
-    border-top-right-radius: var(--xl-border-radius_M);
-    overflow: scroll;
-    display: flex;
-    flex-direction: column;
+      h1 {
+        font-size: 30px;
+      }
+    }
 
-    @extend .modal-header;
-    @extend .modal-body;
+    .modal-body {
+      margin-top: var(--s32);
+    }
   }
 </style>
