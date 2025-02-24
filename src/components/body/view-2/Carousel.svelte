@@ -10,11 +10,17 @@
 </script>
 
 <script lang="ts">
+  import Button from "@/lib/buttons/Button.svelte";
+
+  import ChevronLeftIcon from "@/lib/icons/ChevronLeftIcon.svelte";
+  import ChevronRightIcon from "@/lib/icons/ChevronRightIcon.svelte";
+
   type Props = {
     items: SlideItem[];
+    itemIndex: number;
   };
 
-  let { items }: Props = $props();
+  let { items, itemIndex = $bindable() }: Props = $props();
 
   const slideIndexes = [0, 1, 2, 3, 4];
   const n = slideIndexes.length;
@@ -25,7 +31,7 @@
   let slideIndex = $state(2);
 
   let previousSlideIndex = 2;
-  let itemIndex = 2;
+  // let itemIndex = 2;
 
   $effect(() => {
     if (slideIndex === previousSlideIndex) return;
@@ -54,40 +60,42 @@
     visibleItemIndexes[i] = v;
   }
 
-  function openModal(index: number) {
-    if (slideIndex !== index) return;
-    visibleItemModals[index] = true;
+  function goLeft() {
+    slideIndex = (slideIndex + n - 1) % n;
+  }
+
+  function goRight() {
+    slideIndex = (slideIndex + 1) % n;
   }
 </script>
 
-<div class="slider">
-  {#each slideIndexes as index}
-    <input
-      type="radio"
-      name="slider"
-      id={`s${index}`}
-      value={index}
-      bind:group={slideIndex}
-    />
-  {/each}
+<div class="main">
+  <Button onclick={goLeft}>
+    <ChevronLeftIcon width={32} height={32} />
+  </Button>
+  <div class="carousel">
+    {#each slideIndexes as index}
+      <input
+        type="radio"
+        name="slider"
+        id={`s${index}`}
+        value={index}
+        bind:group={slideIndex}
+      />
+    {/each}
 
-  {#each visibleItemIndexes as visibleItemIndex, index}
-    <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-    <label
-      for={`s${index}`}
-      id={`slide${index}`}
-      onclick={() => openModal(index)}
-      onkeydown={() => {}}
-      style={`background-image: url(${items[visibleItemIndex].image});`}
-    >
-      <div class="title">{items[visibleItemIndex].year}</div>
-    </label>
-    <!-- <Dialog
-      title={`${items[visibleItemIndex].category} - ${items[visibleItemIndex].title}`}
-    >
-      hello
-    </Dialog> -->
-  {/each}
+    {#each visibleItemIndexes as visibleItemIndex, index}
+      <label
+        for={`s${index}`}
+        id={`slide${index}`}
+        style={`background-image: url(${items[visibleItemIndex].image});`}
+      >
+      </label>
+    {/each}
+  </div>
+  <Button onclick={goRight}>
+    <ChevronRightIcon width={32} height={32} />
+  </Button>
 </div>
 
 <style lang="scss">
@@ -95,12 +103,21 @@
     display: none;
   }
 
-  .slider {
-    width: 80%;
-    height: 300px;
+  .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s32);
+  }
+
+  .carousel {
+    width: 100%;
+    max-width: 1000px;
+    height: 250px;
     position: relative;
     perspective: 1000px;
     transform-style: preserve-3d;
+    // border: solid 3px pink;
 
     label {
       margin: auto;
@@ -120,13 +137,6 @@
       display: flex;
       justify-content: end;
       align-items: end;
-
-      .title {
-        color: var(--color9);
-        font-size: var(--xl-font-size);
-        font-weight: 900;
-        margin-right: var(--s12);
-      }
     }
 
     #s0:checked ~ #slide3,

@@ -30,16 +30,18 @@ type Create3DScene = {
   width: number;
   height: number;
   modelPaths: string[];
+  alpha: boolean;
 };
 
 export async function create3DScene({
   width,
   height,
   modelPaths,
+  alpha,
 }: Create3DScene) {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ alpha: true });
+  const renderer = new THREE.WebGLRenderer({ alpha });
   const models = await getModels(modelPaths);
 
   models.forEach((model) => scene.add(model));

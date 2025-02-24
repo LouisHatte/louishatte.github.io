@@ -1,4 +1,6 @@
 {
+  "main-mobile-warning": "Your screen is too small to display this content properly. For the best experience, please view this site on a larger screen.",
+
   "presentation-title": "Hey, I'm Louis.",
   "presentation-job": "From Full Stack to Smart Contract developer",
   "presentation-description": "I'm a full-stack developer transitioning into smart contract development, with a passion for blockchain technology and AI. I'm currently deepening my expertise in Solidity and decentralized systems in order to find a job in this domain.",
@@ -20,5 +22,21 @@
   "chatbot-send-button": "Send",
   "chatbot-no-more-credits": "No more credits for today.",
 
-  "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  "project-project-category": "Project",
+  "project-side-project-category": "Side Project",
+  "project-challenge-category": "Challenge",
+  "project-ai-harvard-title": "Algorithm & AI",
+  "project-ai-harvard-description": "I completed an online certification from Harvard in AI, covering machine and deep learning. I developed 8 Python projects, including game-playing bots for Tic-Tac-Toe and Nim, a bot to find degrees of separation between an actor and a movie, and an AI system to recognize road signs.",
+  "project-ethernaut-title": "Ethernaut",
+  "project-ethernaut-description": "I successfully tackled and resolved every security challenge on the Ethernaut platform. This experience provided me with a valuable opportunity to explore the security aspects of Solidity and deepen my understanding of the language at an advanced level. Through solving these challenges, I gained hands-on experience in identifying and exploiting vulnerabilities, enhancing my skills in smart contract security and secure development practices.",
+  "project-portfolio-title": "Porfolio",
+  "project-portfolio-description": "I built my entire portfolio from scratch using Svelte 5 and SCSS exclusively. After working extensively with React, Svelte has quickly become one of my favorite frameworks due to its simplicity, efficiency, and reactivity. This project allowed me to dive deeper into Svelte’s new run-time model, optimize performance, and craft a clean, maintainable codebase while leveraging SCSS for advanced styling and better modularity.",
+  "project-stock-market-title": "Trading AI",
+  "project-stock-market-description": "Inspired by Renaissance Technologies and AI advancements, I started a personal project to predict stock market prices. Using deep learning, I combine financial indicators (bid, P/E ratio, MACD, RSI…) with social media scraping to capture market sentiment while improving my financial knowledge.",
+  "project-leet-code-title": "LeetCode",
+  "project-leet-code-description": "I love solving problems, and what better place for that than LeetCode? I’m currently working through the top 150 problems to sharpen my algorithmic skills and improve my problem-solving abilities.",
+  "project-flappy-bird-title": "Flappy bird game",
+  "project-flappy-bird-description": "I recreated the Flappy Bird game using Python and Pygame just for fun. Although the game’s physics aren’t perfect, it was an enjoyable side project and my first ever game! My best score is 51—think you can beat it?",
+
+  "footer-copyright": "Made by Louis Hatté. All Rights Reserved."
 }

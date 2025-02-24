@@ -11,7 +11,6 @@
   import TextArea from "@/lib/inputs/TextArea.svelte";
   import { addToast } from "@/lib/toasts/toasts";
   import SendIcon from "@/lib/icons/SendIcon.svelte";
-  import { isMobile } from "@/stores/screenSize";
   import { closeDialog } from "@/lib/dialogs/Dialog.svelte";
 
   const key: string = import.meta.env.VITE_EMAIL_JS_API_KEY;
@@ -78,12 +77,8 @@
     <TextArea rows={5} id="message" bind:value={message} />
   </FormField>
 
-  <div class={$isMobile ? "submit_M" : "submit"}>
-    <Button
-      _class={$isMobile ? "_send-button_M" : "_send-button"}
-      type="submit"
-      disabled={isSubmitting}
-    >
+  <div class="submit">
+    <Button _class="_send-button" type="submit" disabled={isSubmitting}>
       {$_("contact-send-button")}
       <SendIcon />
     </Button>

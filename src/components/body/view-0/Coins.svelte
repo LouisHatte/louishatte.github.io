@@ -22,6 +22,7 @@
       width: divRef.clientWidth,
       height: divRef.clientHeight,
       modelPaths,
+      alpha: true,
     }));
 
     renderer.render(scene, camera);

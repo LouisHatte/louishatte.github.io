@@ -13,9 +13,9 @@ type View = {
 };
 
 export const views: View[] = [
+  { body: View2, position: [0, -15, -15] },
   { body: View0, position: [0, 0, 5] },
   { body: View1, position: [20, 10, 10] },
-  { body: View2, position: [0, -15, -15] },
 ];
 
 let viewIndex = 0;

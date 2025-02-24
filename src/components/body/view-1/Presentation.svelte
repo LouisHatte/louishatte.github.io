@@ -13,7 +13,7 @@
 
 <div class="main">
   <h1>{$_("presentation-title")}</h1>
-  <h2>{$_("presentation-job")}</h2>
+  <h2><span class="_gradient">{$_("presentation-job")}</span></h2>
   <div class="description">
     {$_("presentation-description")}
   </div>

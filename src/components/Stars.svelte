@@ -40,6 +40,7 @@
       width: divRef.clientWidth,
       height: divRef.clientHeight,
       modelPaths: [],
+      alpha: false,
     }));
 
     camera.position.z = 5;

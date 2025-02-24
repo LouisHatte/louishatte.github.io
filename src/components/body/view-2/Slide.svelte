@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
   import { type SlideItem } from "./Carousel.svelte";
   import githubSVG from "@/assets/icons/github.svg";
@@ -82,4 +82,4 @@
       justify-content: end;
     }
   }
-</style>
+</style> -->

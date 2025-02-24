@@ -31,7 +31,7 @@
 
 - Carousel UI [OK]
 - Carousel content
-- Carousel modal content
+- Orbits
 
 ------ 3D COIN ------
 
@@ -41,11 +41,13 @@
 ------ FOOTER ------
 
 - Copyright [OK]
+- Version [OK]
 
 ------ OTHER ------
 
 - Check colors
-- Mobile version
+- Check locales
+- Mobile version [OK]
 - Add more transition animations (modals)
 - Google analytics [OK]
 - Add tracking everywhere

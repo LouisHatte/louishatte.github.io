@@ -2,16 +2,17 @@
   import { _ } from "svelte-i18n";
 
   import Stars from "@/components/Stars.svelte";
-  import Crosshair from "@/lib/misc/Crosshair.svelte";
   import TopBar from "@/components/top-bar/TopBar.svelte";
   import Body from "@/components/body/Body.svelte";
   import Footer from "@/components/footer/Footer.svelte";
+  import Crosshair from "@/lib/misc/Crosshair.svelte";
   import ToastBox from "@/lib/toasts/ToastBox.svelte";
   import Dialog, { isDialogOpen } from "@/lib/dialogs/Dialog.svelte";
   import { dialog } from "@/stores/dialog";
 
   import GlobalStyle from "@/GlobalStyle.svelte";
   import "@/global.scss";
+  import { isMobile } from "./stores/screenSize";
 
   let DialogContent = $derived($dialog.body);
 </script>
@@ -19,31 +20,46 @@
 <Stars />
 <Crosshair />
 <main>
-  {#if !$isDialogOpen}
-    <div class="portfolio">
-      <TopBar />
-      <Body />
-      <Footer />
+  {#if $isMobile}
+    <div class="screen-warning">
+      {$_("main-mobile-warning")}
     </div>
-  {/if}
+  {:else}
+    {#if !$isDialogOpen}
+      <div class="portfolio">
+        <TopBar />
+        <Body />
+        <Footer />
+      </div>
+    {/if}
 
-  <ToastBox />
-  <GlobalStyle />
-  <Dialog title={$_($dialog.title)}>
-    <DialogContent />
-  </Dialog>
+    <ToastBox />
+    <GlobalStyle />
+    <Dialog title={$_($dialog.title)}>
+      <DialogContent />
+    </Dialog>
+  {/if}
 </main>
 
-<style>
+<style lang="scss">
   main {
     width: 100%;
     max-width: 1500px;
     padding: var(--s24);
-  }
 
-  .portfolio {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    .screen-warning {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: var(--l-font-size);
+    }
+
+    .portfolio {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
   }
 </style>

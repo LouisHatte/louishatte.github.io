@@ -1,4 +1,6 @@
 {
+  "main-mobile-warning": "Votre écran est trop petit pour afficher ce contenu correctement. Pour une meilleure expérience, veuillez consulter ce site sur un écran plus large.",
+
   "presentation-title": "Bonjour, je suis Louis.",
   "presentation-job": "De Développeur Full Stack à Développeur de Smart Contracts",
   "presentation-description": "Je suis un développeur full-stack en transition vers le développement de smart contracts, avec une passion pour la blockchain et l'intelligence artificielle. Actuellement, j'approfondis mon expertise en Solidity et en systèmes décentralisés afin de trouver un poste dans ce domaine.",
@@ -20,5 +22,5 @@
   "chatbot-send-button": "Envoyer",
   "chatbot-no-more-credits": "Crédits épuisés pour aujourd'hui.",
 
-  "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  "footer-copyright": "Réalisé par Louis Hatté. Tous droits réservés."
 }
