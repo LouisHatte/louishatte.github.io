@@ -1,9 +1,15 @@
 <script lang="ts">
+  import { analytics, logEvent } from "@/apis/firebase";
   import Button from "@/lib/buttons/Button.svelte";
   import { updateTheme } from "@/lib/styles/colors";
+
+  function onclick() {
+    logEvent(analytics, "mystery-button");
+    updateTheme();
+  }
 </script>
 
-<Button onclick={updateTheme}>
+<Button {onclick}>
   <div class="loader"></div>
 </Button>
 

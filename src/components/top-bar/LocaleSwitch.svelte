@@ -1,13 +1,20 @@
 <script lang="ts">
   import { locale } from "svelte-i18n";
 
-  import { Locale } from "@/classes/Locale";
+  import { Locale, type TLocale } from "@/classes/Locale";
   import Button from "@/lib/buttons/Button.svelte";
+  import { logEvent } from "firebase/analytics";
+  import { analytics } from "@/apis/firebase";
+
+  function switchLocale(locale: TLocale) {
+    Locale.switch(locale);
+    logEvent(analytics, `${locale}-button`);
+  }
 </script>
 
 <div class="switch" data-lang={$locale}>
-  <Button onclick={() => Locale.switch("en")}>English</Button>
-  <Button onclick={() => Locale.switch("fr")}>Français</Button>
+  <Button onclick={() => switchLocale("en")}>English</Button>
+  <Button onclick={() => switchLocale("fr")}>Français</Button>
   <div class="underline"></div>
 </div>
 

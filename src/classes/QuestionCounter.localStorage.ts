@@ -1,3 +1,5 @@
+import { DateHelper } from "@/utils/date";
+
 type QuestionCounterData = {
   count: number;
   updatedAt: Date;
@@ -7,6 +9,15 @@ const QUESTION_COUNTER = "questionCounter";
 const QUESTION_COUNTER_LIMIT = 10;
 
 export class QuestionCounter {
+  static init(): void {
+    const { updatedAt } = QuestionCounter.get();
+    const today = new Date();
+
+    if (!DateHelper.isSameDay(updatedAt, today)) {
+      QuestionCounter.reset();
+    }
+  }
+
   static reset(): void {
     const counter: QuestionCounterData = { count: 0, updatedAt: new Date() };
     localStorage.setItem(QUESTION_COUNTER, JSON.stringify(counter));

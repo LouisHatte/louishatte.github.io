@@ -3,12 +3,14 @@
   import { _ } from "svelte-i18n";
 
   import { getAnswer } from "@/apis/groq";
-  import { QuestionCounter } from "@/classes/QuestionCounter";
+  import { QuestionCounter } from "@/classes/QuestionCounter.localStorage";
   import Button from "@/lib/buttons/Button.svelte";
   import Input from "@/lib/inputs/Input.svelte";
   import { addToast } from "@/lib/toasts/toasts";
   import SendIcon from "@/lib/icons/SendIcon.svelte";
   import { addMessage, messages } from "@/stores/chatMessages";
+  import { logEvent } from "firebase/analytics";
+  import { analytics } from "@/apis/firebase";
 
   let context = $state("");
   let question = $state("");
@@ -56,6 +58,8 @@
 
   async function sendMessage() {
     if (!context || !question || isAsking) return;
+
+    logEvent(analytics, "send-question", { message: question });
 
     if (!QuestionCounter.isIncrementable()) {
       addToast($_("chatbot-no-more-credits"), "info");
@@ -162,7 +166,7 @@
     .input {
       display: flex;
       justify-content: space-between;
-      gap: var(--s8);
+      gap: var(--s24);
       padding: var(--s16);
       margin-top: var(--s16);
       border-top: solid 1px var(--color5);

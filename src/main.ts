@@ -1,12 +1,12 @@
 import { mount } from "svelte";
 
 import App from "@/App.svelte";
-import { initLanquage, initLocalStorage } from "@/init";
+import { initLanguage, initLocalStorage } from "@/init";
 import "@/apis/firebase";
 import { initColors } from "@/lib/styles/colors";
 
 initColors();
-initLanquage();
+initLanguage();
 initLocalStorage();
 
 const app = mount(App, {

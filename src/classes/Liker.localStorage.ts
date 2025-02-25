@@ -6,7 +6,7 @@ import { db } from "@/apis/firebase";
 const LIKER = "liker";
 
 export class Liker {
-  static set() {
+  static init() {
     let liked = localStorage.getItem(LIKER);
     if (liked === null) {
       localStorage.setItem(LIKER, "false");

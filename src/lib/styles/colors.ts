@@ -1,3 +1,4 @@
+import { ColorIndex } from "@/classes/ColorIndex.localStorage";
 import { get, writable, type Writable } from "svelte/store";
 
 type Color = "neutral" | "purple" | "indigo";
@@ -7,6 +8,7 @@ type ColorId = `${Color}${Id}`;
 type ActiveColorId = `color${Id}`;
 
 const COLORS: Color[] = ["neutral", "purple", "indigo"];
+const NUMBER_OF_COLORS = 10;
 
 const COLOR_IDS: Record<ColorId, string> = {
   neutral0: "rgba(255, 255, 255, 0.3)",
@@ -43,20 +45,18 @@ const COLOR_IDS: Record<ColorId, string> = {
   indigo9: "rgba(6, 17, 120, 1)",
 };
 
-export const theme: Writable<Record<ActiveColorId, string>> = writable({
-  color0: COLOR_IDS.neutral0,
-  color1: COLOR_IDS.neutral1,
-  color2: COLOR_IDS.neutral2,
-  color3: COLOR_IDS.neutral3,
-  color4: COLOR_IDS.neutral4,
-  color5: COLOR_IDS.neutral5,
-  color6: COLOR_IDS.neutral6,
-  color7: COLOR_IDS.neutral7,
-  color8: COLOR_IDS.neutral8,
-  color9: COLOR_IDS.neutral9,
-});
+const colorIndex = Number(ColorIndex.get());
+const color: Writable<Color> = writable(COLORS[colorIndex]);
 
-const color: Writable<Color> = writable(COLORS[0]);
+const startingTheme: Record<ActiveColorId, string> = Object.fromEntries(
+  Array.from({ length: NUMBER_OF_COLORS }, (_, i) => {
+    const index = `${i}` as Id;
+    return [`color${i}`, COLOR_IDS[`${get(color)}${index}`]];
+  })
+) as Record<ActiveColorId, string>;
+
+export const theme: Writable<Record<ActiveColorId, string>> =
+  writable(startingTheme);
 
 export function initColors() {
   for (const [key, value] of Object.entries(get(theme))) {
@@ -67,15 +67,19 @@ export function initColors() {
 function getNextColor() {
   const currentColor = get(color);
   const currentIndex = COLORS.findIndex((c) => c === currentColor);
-  if (currentIndex === -1) return;
+  if (currentIndex === -1) {
+    throw new Error("Index color error.");
+  }
 
   const nextIndex = (currentIndex + 1) % COLORS.length;
-  return COLORS[nextIndex];
+  return { nextIndex, nextColor: COLORS[nextIndex] };
 }
 
 export function updateTheme() {
-  const nextColor = getNextColor();
+  const { nextIndex, nextColor } = getNextColor();
   if (!nextColor) return;
+
+  ColorIndex.set(nextIndex);
 
   Object.keys(get(theme)).forEach((_, i) => {
     const index = `${i}` as Id;

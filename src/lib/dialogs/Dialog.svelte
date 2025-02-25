@@ -17,7 +17,6 @@
 <script lang="ts">
   import { type Snippet } from "svelte";
   import { fade } from "svelte/transition";
-  import { cubicOut } from "svelte/easing";
 
   import Button from "@/lib/buttons/Button.svelte";
   import CloseIcon from "@/lib/icons/CloseIcon.svelte";
@@ -29,31 +28,30 @@
   };
 
   let { children, title }: Props = $props();
-
-  const fadeOptions = { duration: 250, easing: cubicOut, delay: 250 };
-  const flyOptions = { y: 500, duration: 500, easing: cubicOut };
 </script>
 
 <dialog bind:this={dialogRef}>
-  <div
-    class="modal"
-    in:fade={fadeOptions}
-    onkeydown={(event) => {
-      if (event.key === "Escape") closeDialog();
-    }}
-    tabindex="0"
-    role="button"
-  >
-    <div class="modal-header">
-      <h1>{title}</h1>
-      <Button onclick={closeDialog}>
-        <CloseIcon />
-      </Button>
+  {#if $isDialogOpen}
+    <div
+      class="modal"
+      onkeydown={(event) => {
+        if (event.key === "Escape") closeDialog();
+      }}
+      tabindex="0"
+      role="button"
+      in:fade={{ delay: 400, duration: 500 }}
+    >
+      <div class="modal-header">
+        <h1>{title}</h1>
+        <Button onclick={closeDialog}>
+          <CloseIcon />
+        </Button>
+      </div>
+      <div class="modal-body">
+        {@render children()}
+      </div>
     </div>
-    <div class="modal-body">
-      {@render children()}
-    </div>
-  </div>
+  {/if}
 </dialog>
 
 <style lang="scss">

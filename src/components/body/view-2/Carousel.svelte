@@ -10,10 +10,13 @@
 </script>
 
 <script lang="ts">
+  import { analytics } from "@/apis/firebase";
+
   import Button from "@/lib/buttons/Button.svelte";
 
   import ChevronLeftIcon from "@/lib/icons/ChevronLeftIcon.svelte";
   import ChevronRightIcon from "@/lib/icons/ChevronRightIcon.svelte";
+  import { logEvent } from "firebase/analytics";
 
   type Props = {
     items: SlideItem[];
@@ -27,11 +30,9 @@
   const m = items.length;
 
   let visibleItemIndexes = $state(slideIndexes);
-  let visibleItemModals = $state([false, false, false, false, false]);
   let slideIndex = $state(2);
 
   let previousSlideIndex = 2;
-  // let itemIndex = 2;
 
   $effect(() => {
     if (slideIndex === previousSlideIndex) return;
@@ -45,6 +46,7 @@
         : cyclicDiff;
 
     itemIndex = (itemIndex + m + shift) % m;
+    logEvent(analytics, "view-project", { project: items[itemIndex].title });
 
     if (shift === 1 || shift === 2) updateSlide(2, 2);
     if (shift === -1 || shift === -2) updateSlide(3, -2);
@@ -71,7 +73,7 @@
 
 <div class="main">
   <Button onclick={goLeft}>
-    <ChevronLeftIcon width={32} height={32} />
+    <ChevronLeftIcon width={40} height={40} />
   </Button>
   <div class="carousel">
     {#each slideIndexes as index}
@@ -94,7 +96,7 @@
     {/each}
   </div>
   <Button onclick={goRight}>
-    <ChevronRightIcon width={32} height={32} />
+    <ChevronRightIcon width={40} height={40} />
   </Button>
 </div>
 

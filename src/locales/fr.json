@@ -17,10 +17,27 @@
   "contact-on-success": "Email envoyé !",
   "contact-on-error": "Une erreur est survenue.",
 
-  "chatbot-first-message": "Bonjour ! Avez vous des questions spécifiques à mon sujet ? N'hésitez pas !",
+  "chatbot-first-message": "Bonjour ! N'hésitez pas à me poser toutes vos questions ici.",
   "chatbot-input-example": "Quel est ton langage de programmation préféré ?",
   "chatbot-send-button": "Envoyer",
   "chatbot-no-more-credits": "Crédits épuisés pour aujourd'hui.",
+
+  "project-project-category": "Projet",
+  "project-side-project-category": "Petit Projet",
+  "project-challenge-category": "Challenge",
+  "project-ai-harvard-title": "Algorithmes & IA",
+  "project-ai-harvard-description": "J'ai suivi une certification en ligne de Harvard en IA, couvrant le machine learning et le deep learning. J'ai développé 8 projets en Python, dont des bots pour jouer parfaitement à Tic-Tac-Toe et Nim, un bot pour trouver le nombre de degrés de séparation entre un acteur et un film, ainsi qu'un système d'IA pour reconnaître des panneaux de signalisation.",
+  "project-ethernaut-title": "Ethernaut",
+  "project-ethernaut-description": "J'ai résolu tous les défis de sécurité sur la plateforme Ethernaut, ce qui m'a permis d'explorer la sécurité de Solidity et d'approfondir ma maîtrise du langage. C'est par ces défis que j'accorde aujourd'hui une passion pour le développement de smart contracts.",
+  "project-portfolio-title": "Porfolio",
+  "project-portfolio-description": "J'ai construit mon portfolio de A à Z avec Svelte 5 et du SCSS. Svelte est devenu mon framework préféré pour sa simplicité et ses runes. Je me suis aussi amusé avec Three.js pour les rendus 3D, et je remercie Rebecca Hatté pour ses magnifiques modèles de pièces.",
+  "project-stock-market-title": "IA de Trading",
+  "project-stock-market-description": "Inspiré par RenTec et les avancées en IA, j'ai lancé un projet personnel pour prédire les prix du marché boursier. En utilisant le deep learning, je combine des indicateurs financiers avec du scraping sur les réseaux sociaux pour capter le sentiment du marché.",
+  "project-leet-code-title": "LeetCode",
+  "project-leet-code-description": "J'adore résoudre des problèmes et LeetCode est l'endroit idéal pour ça. Je travaille actuellement sur les 150 meilleurs exercices pour améliorer mes compétences en algorithmie et renforcer mes capacités de résolution de problèmes.",
+  "project-flappy-bird-title": "Flappy Bird",
+  "project-flappy-bird-description": "J'ai recréé le jeu Flappy Bird avec Python et Pygame pour le fun. Bien que la physique du jeu ne soit pas parfaite, c'était un projet sympa et mon tout premier jeu. Mon meilleur score est 51. Pensez vous pouvoir le battre ?",
+  "project-view-project": "Voir le projet",
 
   "footer-copyright": "Réalisé par Louis Hatté. Tous droits réservés."
 }

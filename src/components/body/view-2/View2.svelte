@@ -5,7 +5,6 @@
   import Carousel, {
     type SlideItem,
   } from "@/components/body/view-2/Carousel.svelte";
-  import Orbits from "@/components/body/view-2/Orbits.svelte";
 
   import brainImage from "@/assets/images/carousel/brain.jpg";
   import openZeppelinImage from "@/assets/images/carousel/open-zeppelin.webp";
@@ -15,7 +14,7 @@
   import flappyBirdImage from "@/assets/images/carousel/flappy-bird.jpg";
   import { fly } from "svelte/transition";
 
-  const items: SlideItem[] = [
+  let items: SlideItem[] = $derived([
     {
       category: $_("project-challenge-category"),
       title: $_("project-ai-harvard-title"),
@@ -59,7 +58,7 @@
       year: "2020",
       githubLink: "https://github.com/LouisHatte/Game-flappyBird",
     },
-  ];
+  ]);
 
   let itemIndex = $state(2);
 </script>
@@ -83,10 +82,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: var(--s24);
+    padding: var(--s64);
+    // border: solid 3px red;
 
     .top-box {
       display: flex;
+      padding-left: var(--s64);
       // height: 60%;
       // border: solid 3px green;
     }

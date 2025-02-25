@@ -2,9 +2,8 @@ import type { Component } from "svelte";
 import { writable, type Writable } from "svelte/store";
 
 import ContactForm from "@/components/dialogs/ContactForm.svelte";
-import Spinner from "@/lib/spinners/Spinner.svelte";
 
-type DialogContentKey = "contact" | "test";
+type DialogContentKey = "contact";
 type DialogContentValue = {
   title: string;
   body: Component;
@@ -15,10 +14,6 @@ const dialogContents: DialogContents = {
   contact: {
     title: "contact-title",
     body: ContactForm,
-  },
-  test: {
-    title: "A!",
-    body: Spinner,
   },
 };
 

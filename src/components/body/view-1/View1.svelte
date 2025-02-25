@@ -4,33 +4,21 @@
 </script>
 
 <div class="main">
-  <div class="top-box">
-    <Presentation />
-  </div>
-  <div class="bottom-box">
+  <Presentation />
+  <div class="right-box">
     <ChatBot />
   </div>
 </div>
 
 <style lang="scss">
   .main {
-    // border: solid 3px red;
     height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: var(--s24);
+    padding: var(--s64);
+    gap: var(--s48);
 
-    .top-box {
-      display: flex;
-      // height: 60%;
-      // border: solid 3px green;
-    }
-
-    .bottom-box {
+    .right-box {
       flex: 1;
-      // border: solid 3px blue;
-      margin-top: var(--s24);
     }
   }
 </style>

@@ -1,12 +1,9 @@
 <script lang="ts">
+  import { _, locale } from "svelte-i18n";
+
   import { type SlideItem } from "@/components/body/view-2/Carousel.svelte";
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
   import GithubIcon from "@/lib/icons/GithubIcon.svelte";
-
-  import Orbit from "@/components/body/view-2/Orbit.svelte";
-  import SendIcon from "@/lib/icons/SendIcon.svelte";
-  import LinkedinIcon from "@/lib/icons/LinkedinIcon.svelte";
-  import Orbits from "./Orbits.svelte";
 
   type Props = {
     item: SlideItem;
@@ -23,7 +20,7 @@
     {#if item.githubLink}
       <ButtonLink href={item.githubLink}>
         <GithubIcon />
-        View Project
+        {$_("project-view-project")}
       </ButtonLink>
     {/if}
   </div>
@@ -49,6 +46,7 @@
 
     .text {
       margin-bottom: var(--s12);
+      color: var(--color3);
     }
   }
 </style>

@@ -12,6 +12,8 @@
   import { addToast } from "@/lib/toasts/toasts";
   import SendIcon from "@/lib/icons/SendIcon.svelte";
   import { closeDialog } from "@/lib/dialogs/Dialog.svelte";
+  import { logEvent } from "firebase/analytics";
+  import { analytics } from "@/apis/firebase";
 
   const key: string = import.meta.env.VITE_EMAIL_JS_API_KEY;
   const serviceId: string = import.meta.env.VITE_EMAIL_JS_SERVICE_ID;
@@ -37,6 +39,7 @@
   const { form, errors } = createForm<Form>({
     onSubmit: async (values) => {
       if (isSubmitting) return;
+      logEvent(analytics, "send-email");
       isSubmitting = true;
 
       const templateParams = {

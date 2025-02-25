@@ -13,6 +13,7 @@
   import GlobalStyle from "@/GlobalStyle.svelte";
   import "@/global.scss";
   import { isMobile } from "./stores/screenSize";
+  import { fade } from "svelte/transition";
 
   let DialogContent = $derived($dialog.body);
 </script>
@@ -26,7 +27,7 @@
     </div>
   {:else}
     {#if !$isDialogOpen}
-      <div class="portfolio">
+      <div class="portfolio" transition:fade={{ duration: 500 }}>
         <TopBar />
         <Body />
         <Footer />
@@ -44,7 +45,7 @@
 <style lang="scss">
   main {
     width: 100%;
-    max-width: 1500px;
+    max-width: 2100px;
     padding: var(--s24);
 
     .screen-warning {
