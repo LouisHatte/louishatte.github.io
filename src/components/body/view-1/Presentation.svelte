@@ -58,7 +58,7 @@
     .description {
       font-size: var(--m-font-size);
       margin-bottom: var(--s32);
-      color: var(--color3);
+      color: var(--color2);
     }
 
     .buttons {

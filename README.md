@@ -1,15 +1,27 @@
-- Clean the code
-- Test
+# Portfolio
 
-LAST FEATURES
+## Run the project
 
-- add more colors
-- influencer le like en fonction de la prod ou non
+```sh
+pnpm install
+pnpm run dev
+```
 
-BUGS
+## Deploy the project
 
-- freeze a little when transitioning on the coin
-- non passive event listener scrolling
-- the coin doesn't rotate perfectly for unknown reason
-- Le carousel tourne pas sur safari et firefox
-- View1 responsivness height
+```sh
+pnpm run build
+pnpm run deploy
+```
+
+## TODO
+
+- Clean the code.
+- Test it all.
+
+## BUGS
+
+- The 3D coin model rotates weirdly.
+- Freeze 0.1s when transitioning on the View0 with the 3D coin model.
+- View0, View1 and View2 responsive width and height are not perfect.
+- Carousel right side is broken.

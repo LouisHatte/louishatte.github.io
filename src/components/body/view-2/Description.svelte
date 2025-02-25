@@ -46,7 +46,7 @@
 
     .text {
       margin-bottom: var(--s12);
-      color: var(--color3);
+      color: var(--color2);
     }
   }
 </style>

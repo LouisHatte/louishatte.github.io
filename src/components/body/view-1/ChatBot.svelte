@@ -23,12 +23,25 @@
 
   let divRef: HTMLDivElement;
 
-  onMount(async () => {
+  async function loadCVContext() {
     const response = await fetch("/CV-context.txt");
     context = await response.text();
+  }
+
+  onMount(() => {
+    loadCVContext();
+
     if ($messages.length === 0) {
       addMessage({ role: "bot", content: $_("chatbot-first-message") });
     }
+
+    divRef.addEventListener("wheel", stopScrollEventPropagation, {
+      passive: true,
+    });
+
+    return () => {
+      divRef.removeEventListener("wheel", stopScrollEventPropagation);
+    };
   });
 
   // handle the writing animation
@@ -93,7 +106,7 @@
   }
 </script>
 
-<div class="chatbot" onwheel={stopScrollEventPropagation}>
+<div class="chatbot">
   <div class="messages" bind:this={divRef}>
     {#each $messages as message, index}
       <div class="message {message.role === 'user' ? 'user' : ''}">
@@ -131,7 +144,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 0 var(--s16) var(--s16) var(--s16);
-    border: solid 1px var(--color5);
+    border: solid 1px var(--color3);
     border-radius: var(--border-radius);
     overflow: scroll;
 
@@ -156,7 +169,7 @@
           padding: var(--s8);
           background: var(--color1);
           border-radius: var(--border-radius);
-          color: var(--color9);
+          color: var(--color4);
           line-height: 1.5;
           word-wrap: break-word;
         }
@@ -169,7 +182,7 @@
       gap: var(--s24);
       padding: var(--s16);
       margin-top: var(--s16);
-      border-top: solid 1px var(--color5);
+      border-top: solid 1px var(--color3);
     }
   }
 </style>

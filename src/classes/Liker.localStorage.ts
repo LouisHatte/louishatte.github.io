@@ -29,7 +29,9 @@ export class Liker {
 export const likes = writable(0);
 export const liked = writable(Liker.isLiked());
 
-const likesRef = ref(db, "likes");
+const isProduction = process.env.NODE_ENV === "production";
+const refName = isProduction ? "likes" : "likesLocal";
+const likesRef = ref(db, refName);
 
 onValue(likesRef, (snapshot) => {
   if (snapshot.exists()) {

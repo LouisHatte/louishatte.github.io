@@ -64,7 +64,7 @@
     min-width: 450px;
     background-color: rgba(0, 0, 0, 0.01);
     padding: var(--s16);
-    border: solid 1px var(--color5);
+    border: solid 1px var(--color3);
     border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;

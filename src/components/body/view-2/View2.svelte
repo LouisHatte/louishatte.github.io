@@ -77,22 +77,20 @@
 
 <style lang="scss">
   .main {
-    // border: solid 3px red;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding: var(--s64);
-    // border: solid 3px red;
 
     .top-box {
       display: flex;
       padding-left: var(--s64);
-      // height: 60%;
-      // border: solid 3px green;
+      height: 50%;
     }
 
     .bottom-box {
+      height: 50%;
       margin-top: var(--s24);
     }
   }

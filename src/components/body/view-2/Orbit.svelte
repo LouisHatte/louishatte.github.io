@@ -61,7 +61,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        border: 1px dashed var(--color5);
+        border: 1px dashed var(--color3);
         border-radius: 50%;
 
         .orbiting-wrapper {

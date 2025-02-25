@@ -50,11 +50,11 @@
     width: 100%;
     padding: var(--s8);
     background: transparent;
-    border: solid 1px var(--color5);
+    border: solid 1px var(--color3);
     border-radius: var(--border-radius);
 
     &::placeholder {
-      color: var(--color5);
+      color: var(--color3);
     }
 
     &:hover,

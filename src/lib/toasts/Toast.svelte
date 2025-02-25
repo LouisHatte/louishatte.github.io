@@ -51,7 +51,7 @@
 <style lang="scss">
   .toast {
     padding: var(--s12);
-    border: 1px solid var(--color5);
+    border: 1px solid var(--color3);
     border-radius: var(--border-radius);
     background: transparent;
     display: flex;

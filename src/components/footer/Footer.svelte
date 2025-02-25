@@ -19,7 +19,7 @@
 
     .copyright {
       font-size: var(--xs-font-size);
-      color: var(--color5);
+      color: var(--color3);
     }
 
     .version {
@@ -27,7 +27,7 @@
       top: -3px;
       right: 0;
       font-size: var(--s-font-size);
-      color: var(--color3);
+      color: var(--color2);
     }
   }
 </style>

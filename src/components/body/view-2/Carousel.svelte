@@ -85,7 +85,6 @@
         bind:group={slideIndex}
       />
     {/each}
-
     {#each visibleItemIndexes as visibleItemIndex, index}
       <label
         for={`s${index}`}
@@ -109,94 +108,102 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--s32);
-  }
 
-  .carousel {
-    width: 100%;
-    max-width: 1000px;
-    height: 250px;
-    position: relative;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    // border: solid 3px pink;
+    .carousel {
+      width: 100%;
+      max-width: 1000px;
+      height: 250px;
+      position: relative;
 
-    label {
-      margin: auto;
-      width: 60%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      right: 0;
-      cursor: pointer;
-      background: black;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      border: solid 1px #1d1d1d;
-      border-radius: var(--border-radius);
-      transition: transform 0.4s ease;
-      display: flex;
-      justify-content: end;
-      align-items: end;
-    }
+      label {
+        margin: auto;
+        width: 500px;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        cursor: pointer;
+        background: black;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: solid 1px #1d1d1d;
+        border-radius: var(--border-radius);
+        transition: all 0.4s ease;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        will-change: transform, opacity;
+      }
 
-    #s0:checked ~ #slide3,
-    #s1:checked ~ #slide4,
-    #s2:checked ~ #slide0,
-    #s3:checked ~ #slide1,
-    #s4:checked ~ #slide2 {
-      box-shadow:
-        0 1px 4px 0 rgba(0, 0, 0, 0.37),
-        var(--box-shadow);
-      transform: translate3d(-50%, 0, -200px);
-    }
+      #s0:checked ~ #slide3,
+      #s1:checked ~ #slide4,
+      #s2:checked ~ #slide0,
+      #s3:checked ~ #slide1,
+      #s4:checked ~ #slide2 {
+        box-shadow:
+          0 1px 4px 0 rgba(0, 0, 0, 0.37),
+          var(--box-shadow);
+        transform: scale(0.8);
+        left: -50%;
+        z-index: 1;
+      }
 
-    #s0:checked ~ #slide4,
-    #s1:checked ~ #slide0,
-    #s2:checked ~ #slide1,
-    #s3:checked ~ #slide2,
-    #s4:checked ~ #slide3 {
-      box-shadow:
-        0 6px 10px 0 rgba(0, 0, 0, 0.3),
-        0 2px 2px 0 rgba(0, 0, 0, 0.2),
-        var(--box-shadow);
-      transform: translate3d(-25%, 0, -100px);
-    }
+      #s0:checked ~ #slide4,
+      #s1:checked ~ #slide0,
+      #s2:checked ~ #slide1,
+      #s3:checked ~ #slide2,
+      #s4:checked ~ #slide3 {
+        box-shadow:
+          0 6px 10px 0 rgba(0, 0, 0, 0.3),
+          0 2px 2px 0 rgba(0, 0, 0, 0.2),
+          var(--box-shadow);
+        transform: scale(0.9);
+        left: -25%;
+        z-index: 2;
+      }
 
-    #s0:checked ~ #slide0,
-    #s1:checked ~ #slide1,
-    #s2:checked ~ #slide2,
-    #s3:checked ~ #slide3,
-    #s4:checked ~ #slide4 {
-      box-shadow:
-        0 13px 25px 0 rgba(0, 0, 0, 0.3),
-        0 11px 7px 0 rgba(0, 0, 0, 0.19),
-        var(--box-shadow);
-      transform: translate3d(0, 0, 0);
-    }
+      #s0:checked ~ #slide0,
+      #s1:checked ~ #slide1,
+      #s2:checked ~ #slide2,
+      #s3:checked ~ #slide3,
+      #s4:checked ~ #slide4 {
+        box-shadow:
+          0 13px 25px 0 rgba(0, 0, 0, 0.3),
+          0 11px 7px 0 rgba(0, 0, 0, 0.19),
+          var(--box-shadow);
+        transform: scale(1);
+        left: 0;
+        right: 0;
+        z-index: 5;
+      }
 
-    #s0:checked ~ #slide1,
-    #s1:checked ~ #slide2,
-    #s2:checked ~ #slide3,
-    #s3:checked ~ #slide4,
-    #s4:checked ~ #slide0 {
-      box-shadow:
-        0 6px 10px 0 rgba(0, 0, 0, 0.3),
-        0 2px 2px 0 rgba(0, 0, 0, 0.2),
-        var(--box-shadow);
-      transform: translate3d(25%, 0, -100px);
-    }
+      #s0:checked ~ #slide1,
+      #s1:checked ~ #slide2,
+      #s2:checked ~ #slide3,
+      #s3:checked ~ #slide4,
+      #s4:checked ~ #slide0 {
+        box-shadow:
+          0 6px 10px 0 rgba(0, 0, 0, 0.3),
+          0 2px 2px 0 rgba(0, 0, 0, 0.2),
+          var(--box-shadow);
+        transform: scale(0.9);
+        left: 25%;
+        z-index: 2;
+      }
 
-    #s0:checked ~ #slide2,
-    #s1:checked ~ #slide3,
-    #s2:checked ~ #slide4,
-    #s3:checked ~ #slide0,
-    #s4:checked ~ #slide1 {
-      box-shadow:
-        0 1px 4px 0 rgba(0, 0, 0, 0.37),
-        var(--box-shadow);
-      transform: translate3d(50%, 0, -200px);
+      #s0:checked ~ #slide2,
+      #s1:checked ~ #slide3,
+      #s2:checked ~ #slide4,
+      #s3:checked ~ #slide0,
+      #s4:checked ~ #slide1 {
+        box-shadow:
+          0 1px 4px 0 rgba(0, 0, 0, 0.37),
+          var(--box-shadow);
+        transform: scale(0.8);
+        left: 50%;
+        z-index: 1;
+      }
     }
   }
 </style>
