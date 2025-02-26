@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { ThreeHelper } from "@/utils/threeJS";
   import { onMount } from "svelte";
   import * as THREE from "three";
 
-  const modelPaths = ["/coin-blue.glb", "/coin-green.glb", "/coin-red.glb"];
+  import { ThreeHelper } from "@/utils/threeJS";
+
+  const modelPaths = [`/coin-blue.glb`, `/coin-green.glb`, `/coin-red.glb`];
 
   let divRef: HTMLDivElement;
 
