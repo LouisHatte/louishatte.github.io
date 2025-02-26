@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import Button from "@/lib/buttons/Button.svelte";
   import { onMount } from "svelte";
 
@@ -85,4 +85,4 @@
     //   transform: translate(-50%, -50%);
     // }
   }
-</style>
+</style> -->

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { _, locale } from "svelte-i18n";
-
+  import { _ } from "@/classes/Locale";
   import { type SlideItem } from "@/components/body/view-2/Carousel.svelte";
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
   import GithubIcon from "@/lib/icons/GithubIcon.svelte";
@@ -31,8 +30,6 @@
     position: relative;
     width: 60%;
     display: flex;
-    // flex-direction: column;
-    // border: solid 3px purple;
 
     h1 {
       font-size: var(--l-font-size);
@@ -40,8 +37,11 @@
     }
 
     h2 {
-      font-size: var(--xxl-font-size);
-      margin-bottom: var(--s12);
+      padding-bottom: var(--s48);
+
+      span {
+        font-size: var(--l-font-size);
+      }
     }
 
     .text {

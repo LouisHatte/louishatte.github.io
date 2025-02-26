@@ -10,12 +10,10 @@
   --s64: 64px;
   --s96: 96px;
 
-  /* colors (check colors.ts) */
+  /* colors Check colors.ts file. */
 
   /* borders */
   --border-radius: 6px;
-  --border-radius_M: 12px;
-  --xl-border-radius_M: 20px;
 
   /* texts */
   --xxl-font-size: 42px;
@@ -31,7 +29,5 @@
   /* z-indexes */
   --z-first: 9999;
   --z-second: 1000;
-  --z-third: 500;
-  --z-fourth: 250;
-  --z-last: -1;
+  --z-last: -9999;
 }

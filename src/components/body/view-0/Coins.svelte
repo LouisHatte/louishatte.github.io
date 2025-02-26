@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { create3DScene } from "@/utils/threeJS";
+  import { ThreeHelper } from "@/utils/threeJS";
   import { onMount } from "svelte";
   import * as THREE from "three";
 
@@ -18,7 +18,7 @@
   let requestId: number;
 
   async function initScene() {
-    ({ scene, camera, renderer, models } = await create3DScene({
+    ({ scene, camera, renderer, models } = await ThreeHelper.create3DScene({
       width: divRef.clientWidth,
       height: divRef.clientHeight,
       modelPaths,
@@ -77,6 +77,7 @@
       divRef.removeChild(renderer.domElement);
       renderer.dispose();
     }
+
     cancelAnimationFrame(requestId);
     window.removeEventListener("resize", handleResize);
   }
@@ -84,7 +85,7 @@
 
 <div bind:this={divRef}></div>
 
-<style>
+<style lang="scss">
   div {
     height: 100%;
   }

@@ -1,18 +1,18 @@
 <script lang="ts">
-  import { _ } from "svelte-i18n";
+  import { fly } from "svelte/transition";
 
+  import { _ } from "@/classes/Locale";
   import Description from "@/components/body/view-2/Description.svelte";
   import Carousel, {
     type SlideItem,
   } from "@/components/body/view-2/Carousel.svelte";
 
-  import brainImage from "@/assets/images/carousel/brain.jpg";
-  import openZeppelinImage from "@/assets/images/carousel/open-zeppelin.webp";
-  import spaceImage from "@/assets/images/carousel/space.webp";
-  import stockMarketImage from "@/assets/images/carousel/stock-market.webp";
-  import leetCodeImage from "@/assets/images/carousel/leetCode.jpeg";
-  import flappyBirdImage from "@/assets/images/carousel/flappy-bird.jpg";
-  import { fly } from "svelte/transition";
+  import brainImage from "@/assets/images/brain.jpg";
+  import openZeppelinImage from "@/assets/images/open-zeppelin.webp";
+  import spaceImage from "@/assets/images/space.webp";
+  import stockMarketImage from "@/assets/images/stock-market.webp";
+  import leetCodeImage from "@/assets/images/leetCode.jpeg";
+  import flappyBirdImage from "@/assets/images/flappy-bird.jpg";
 
   let items: SlideItem[] = $derived([
     {
@@ -67,7 +67,6 @@
   {#key itemIndex}
     <div class="top-box" in:fly={{ y: 100, duration: 1000 }}>
       <Description item={items[itemIndex]} />
-      <!-- <Orbits /> -->
     </div>
   {/key}
   <div class="bottom-box">

@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import { writable } from "svelte/store";
+
   let dialogRef: HTMLDialogElement;
 
   export const isDialogOpen = writable(false);
@@ -20,7 +22,6 @@
 
   import Button from "@/lib/buttons/Button.svelte";
   import CloseIcon from "@/lib/icons/CloseIcon.svelte";
-  import { writable } from "svelte/store";
 
   type Props = {
     children: Snippet;
@@ -62,7 +63,7 @@
     transform: translate(-50%, -50%);
     width: 30%;
     min-width: 450px;
-    background-color: rgba(0, 0, 0, 0.01);
+    background-color: transparent;
     padding: var(--s16);
     border: solid 1px var(--color3);
     border-radius: var(--border-radius);
@@ -74,7 +75,7 @@
       justify-content: space-between;
 
       h1 {
-        font-size: 30px;
+        font-size: var(--xl-font-size);
       }
     }
 

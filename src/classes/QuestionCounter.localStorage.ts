@@ -6,7 +6,7 @@ type QuestionCounterData = {
 };
 
 const QUESTION_COUNTER = "questionCounter";
-const QUESTION_COUNTER_LIMIT = 10;
+export const QUESTION_COUNTER_LIMIT = 10;
 
 export class QuestionCounter {
   static init(): void {

@@ -1,5 +1,5 @@
 type StyleProps = {
-  _class?: string;
+  className?: string;
   style?: string;
 };
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { _ } from "svelte-i18n";
+  import { _ } from "@/classes/Locale";
 </script>
 
 <div class="main">

@@ -15,16 +15,18 @@
   "contact-error-required": "required",
   "contact-error-email": "invalid email",
   "contact-on-success": "Email sent!",
-  "contact-on-error": "Something went wrong.",
 
   "chatbot-first-message": "Hey there! Feel free to ask any questions about me here.",
   "chatbot-input-example": "What's your favorite programming language?",
   "chatbot-send-button": "Send",
+  "chatbot-questions-remaining-1": "remaining.",
+  "chatbot-questions-remaining-2": "remaining.",
   "chatbot-no-more-credits": "No more credits for today.",
 
   "project-project-category": "Project",
   "project-side-project-category": "Side Project",
   "project-challenge-category": "Challenge",
+  "project-view-project": "View Project",
   "project-ai-harvard-title": "Algorithm & AI",
   "project-ai-harvard-description": "I completed an online certification from Harvard in AI, covering machine learning and deep learning. I developed 8 Python projects, including bots to play Tic-Tac-Toe and Nim perfectly, a bot to find the degrees of separation between an actor and a movie, and an AI system to recognize road signs.",
   "project-ethernaut-title": "Ethernaut",
@@ -37,7 +39,8 @@
   "project-leet-code-description": "I love solving problems, and LeetCode is the perfect place for that. I'm currently working through the top 150 problems to improve my algorithmic skills and strengthen my problem-solving abilities.",
   "project-flappy-bird-title": "Flappy Bird",
   "project-flappy-bird-description": "I recreated the Flappy Bird game with Python and Pygame just for fun. Although the game's physics aren't perfect, it was an enjoyable project and my very first game. My best score is 51. Do you think you can beat it?",
-  "project-view-project": "View Project",
 
-  "footer-copyright": "Made by Louis Hatté. All Rights Reserved."
+  "footer-copyright": "Made by Louis Hatté. All Rights Reserved.",
+
+  "on-error": "Something went wrong."
 }

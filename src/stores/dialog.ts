@@ -21,6 +21,6 @@ export const dialog: Writable<DialogContentValue> = writable({
   ...dialogContents["contact"],
 });
 
-export function updateDialogContent(dialogContentKey: DialogContentKey) {
+export function changeDialogContent(dialogContentKey: DialogContentKey) {
   dialog.set({ ...dialogContents[dialogContentKey] });
 }

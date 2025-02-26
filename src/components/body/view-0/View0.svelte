@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Coins from "@/components/body/view-0/Coins.svelte";
 </script>
 

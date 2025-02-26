@@ -1,17 +1,8 @@
 <div></div>
 
 <style lang="scss">
-  :global(._send-button) {
-    padding: var(--s4) var(--s32) !important;
-  }
-
-  :global(._is-border) {
-    border: solid 1px var(--color1) !important;
-    border-radius: var(--border-radius);
-  }
-
   :global(._shake:hover) {
-    animation: _shake 0.5s ease-in-out !important;
+    animation: _shake 0.5s ease-in-out;
   }
 
   @keyframes _shake {
@@ -45,12 +36,33 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: _animate-gradient 4s linear infinite;
+    animation: _gradient 4s linear infinite;
   }
 
-  @keyframes _animate-gradient {
+  @keyframes _gradient {
     to {
       background-position: 200%;
+    }
+  }
+
+  :global(._pulse) {
+    &:hover,
+    &:focus {
+      border: solid 1px var(--color1);
+      box-shadow: var(--box-shadow);
+      transition:
+        border 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
+      animation: _pulse 2s infinite alternate ease-in-out;
+    }
+  }
+
+  @keyframes _pulse {
+    0% {
+      box-shadow: 0px 0px 7px 2px var(--color0);
+    }
+    100% {
+      box-shadow: 0px 0px 7px 2px var(--color1);
     }
   }
 </style>

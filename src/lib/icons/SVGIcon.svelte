@@ -17,17 +17,17 @@
     };
 
   let {
-    _class,
     children,
+    className = "",
     fill = "none",
     height = 24,
-    style,
+    style = "",
     width = 24,
   }: Props = $props();
 </script>
 
 <svg
-  class={"icon" + _class}
+  class={className}
   {style}
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24"

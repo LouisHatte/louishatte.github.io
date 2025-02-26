@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { IconProps } from "@/lib/icons/SvgIcon.svelte";
-  import SvgIcon from "@/lib/icons/SvgIcon.svelte";
+  import SvgIcon, { type IconProps } from "@/lib/icons/SvgIcon.svelte";
 
   let props: IconProps = $props();
 </script>

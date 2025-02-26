@@ -5,8 +5,7 @@
 
   import { theme } from "@/lib/styles/colors";
   import { view } from "@/stores/view";
-  import { create3DScene } from "@/utils/threeJS";
-  import { tick } from "svelte";
+  import { ThreeHelper } from "@/utils/threeJS";
 
   let divRef: HTMLDivElement;
   const starMaterial = new THREE.MeshBasicMaterial({ color: $theme["color2"] });
@@ -36,7 +35,7 @@
   });
 
   async function initScene() {
-    ({ scene, camera, renderer, models } = await create3DScene({
+    ({ scene, camera, renderer, models } = await ThreeHelper.create3DScene({
       width: divRef.clientWidth,
       height: divRef.clientHeight,
       modelPaths: [],
@@ -87,6 +86,7 @@
       divRef.removeChild(renderer.domElement);
       renderer.dispose();
     }
+
     cancelAnimationFrame(requestId);
     window.removeEventListener("resize", handleResize);
   }

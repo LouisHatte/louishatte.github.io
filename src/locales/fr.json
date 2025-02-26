@@ -15,16 +15,18 @@
   "contact-error-required": "requis",
   "contact-error-email": "email invalide",
   "contact-on-success": "Email envoyé !",
-  "contact-on-error": "Une erreur est survenue.",
 
   "chatbot-first-message": "Bonjour ! N'hésitez pas à me poser toutes vos questions ici.",
   "chatbot-input-example": "Quel est ton langage de programmation préféré ?",
   "chatbot-send-button": "Envoyer",
+  "chatbot-questions-remaining-1": "restante.",
+  "chatbot-questions-remaining-2": "restantes.",
   "chatbot-no-more-credits": "Crédits épuisés pour aujourd'hui.",
 
   "project-project-category": "Projet",
   "project-side-project-category": "Petit Projet",
   "project-challenge-category": "Challenge",
+  "project-view-project": "Voir le projet",
   "project-ai-harvard-title": "Algorithmes & IA",
   "project-ai-harvard-description": "J'ai suivi une certification en ligne de Harvard en IA, couvrant le machine learning et le deep learning. J'ai développé 8 projets en Python, dont des bots pour jouer parfaitement à Tic-Tac-Toe et Nim, un bot pour trouver le nombre de degrés de séparation entre un acteur et un film, ainsi qu'un système d'IA pour reconnaître des panneaux de signalisation.",
   "project-ethernaut-title": "Ethernaut",
@@ -37,7 +39,8 @@
   "project-leet-code-description": "J'adore résoudre des problèmes et LeetCode est l'endroit idéal pour ça. Je travaille actuellement sur les 150 meilleurs exercices pour améliorer mes compétences en algorithmie et renforcer mes capacités de résolution de problèmes.",
   "project-flappy-bird-title": "Flappy Bird",
   "project-flappy-bird-description": "J'ai recréé le jeu Flappy Bird avec Python et Pygame pour le fun. Bien que la physique du jeu ne soit pas parfaite, c'était un projet sympa et mon tout premier jeu. Mon meilleur score est 51. Pensez vous pouvoir le battre ?",
-  "project-view-project": "Voir le projet",
 
-  "footer-copyright": "Réalisé par Louis Hatté. Tous droits réservés."
+  "footer-copyright": "Réalisé par Louis Hatté. Tous droits réservés.",
+
+  "on-error": "Une erreur est survenue."
 }

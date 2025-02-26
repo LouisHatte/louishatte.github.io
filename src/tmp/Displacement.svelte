@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import { onMount } from "svelte";
   import * as THREE from "three";
   import { GLTFLoader } from "three-stdlib";
@@ -77,7 +77,7 @@
 
 <div id="bitcoin"></div>
 
-<style>
+<style lang="scss">
   #bitcoin {
     width: 100vw;
     height: 100vh;
@@ -85,4 +85,4 @@
     background: radial-gradient(#292929, #000000);
     overflow: hidden;
   }
-</style>
+</style> -->

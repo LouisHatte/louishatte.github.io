@@ -1,14 +1,11 @@
 <script lang="ts">
-  import { locale } from "svelte-i18n";
-
-  import { Locale, type TLocale } from "@/classes/Locale";
+  import { analytics, logEvent } from "@/apis/firebase";
+  import { _, Locale, type TLocale, locale } from "@/classes/Locale";
   import Button from "@/lib/buttons/Button.svelte";
-  import { logEvent } from "firebase/analytics";
-  import { analytics } from "@/apis/firebase";
 
   function switchLocale(locale: TLocale) {
-    Locale.switch(locale);
     logEvent(analytics, `${locale}-button`);
+    Locale.switch(locale);
   }
 </script>
 

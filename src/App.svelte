@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { _ } from "svelte-i18n";
+  import { fade } from "svelte/transition";
 
+  import { _ } from "@/classes/Locale";
   import Stars from "@/components/Stars.svelte";
   import TopBar from "@/components/top-bar/TopBar.svelte";
   import Body from "@/components/body/Body.svelte";
@@ -9,15 +10,15 @@
   import ToastBox from "@/lib/toasts/ToastBox.svelte";
   import Dialog, { isDialogOpen } from "@/lib/dialogs/Dialog.svelte";
   import { dialog } from "@/stores/dialog";
+  import { isMobile } from "@/stores/screenSize";
 
   import GlobalStyle from "@/GlobalStyle.svelte";
   import "@/global.scss";
-  import { isMobile } from "./stores/screenSize";
-  import { fade } from "svelte/transition";
 
   let DialogContent = $derived($dialog.body);
 </script>
 
+<GlobalStyle />
 <Stars />
 <Crosshair />
 <main>
@@ -35,7 +36,6 @@
     {/if}
 
     <ToastBox />
-    <GlobalStyle />
     <Dialog title={$_($dialog.title)}>
       <DialogContent />
     </Dialog>

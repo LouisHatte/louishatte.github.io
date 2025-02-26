@@ -6,10 +6,11 @@
   outline: none;
   color: var(--color1);
   text-decoration: none;
+  user-select: none;
   box-sizing: border-box;
-  font-size: var(--font-size);
+  font-size: var(--m-font-size);
   line-height: 1.5;
-  font-family: "Arial";
+  font-family: Arial, Helvetica, sans-serif;
   scrollbar-width: none;
 }
 
@@ -27,7 +28,7 @@ html {
   justify-content: center;
 }
 
-/* Remove input autofill browser style */
+/* Remove input auto complete browser style. */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

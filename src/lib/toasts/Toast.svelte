@@ -1,7 +1,7 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { cubicOut } from "svelte/easing";
   import { fly } from "svelte/transition";
-  import { onDestroy, onMount } from "svelte";
 
   import { removeToast, type ToastType } from "@/lib/toasts/toasts";
 
@@ -10,13 +10,14 @@
   import ErrorIcon from "@/lib/icons/ErrorIcon.svelte";
 
   type Props = {
-    duration?: number;
+    duration: number;
     id: string;
     message: String;
     type: ToastType;
   };
 
-  let { duration = 3000, id, message, type }: Props = $props();
+  let { duration, id, message, type }: Props = $props();
+
   let show = $state(false);
 
   const svgs = {
@@ -26,14 +27,14 @@
   };
   const Icon = svgs[type];
 
-  const timeout = setTimeout(() => (show = false), duration);
+  const timeoutId = setTimeout(() => (show = false), duration);
 
   onMount(() => {
     show = true;
-  });
 
-  onDestroy(() => {
-    clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeoutId);
+    };
   });
 </script>
 

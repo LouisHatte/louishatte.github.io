@@ -10,13 +10,10 @@
 </script>
 
 <script lang="ts">
-  import { analytics } from "@/apis/firebase";
-
+  import { analytics, logEvent } from "@/apis/firebase";
   import Button from "@/lib/buttons/Button.svelte";
-
   import ChevronLeftIcon from "@/lib/icons/ChevronLeftIcon.svelte";
   import ChevronRightIcon from "@/lib/icons/ChevronRightIcon.svelte";
-  import { logEvent } from "firebase/analytics";
 
   type Props = {
     items: SlideItem[];
@@ -103,36 +100,42 @@
   [type="radio"] {
     display: none;
   }
-
   .main {
+    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: var(--s48);
 
     .carousel {
-      width: 100%;
-      max-width: 1000px;
-      height: 250px;
       position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 900px;
+      max-height: 500px;
+      min-height: 250px;
+      display: flex;
+      align-items: center;
 
       label {
-        margin: auto;
-        width: 500px;
-        height: 100%;
         position: absolute;
+        width: 60%;
+        height: 80%;
+        margin: auto;
         left: 0;
         right: 0;
+        top: 0;
+        bottom: 0;
+        border: solid 1px var(--color1);
+        border-radius: var(--border-radius);
         cursor: pointer;
-        background: black;
+        background: transparent;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        border: solid 1px #1d1d1d;
-        border-radius: var(--border-radius);
         transition: all 0.4s ease;
-        display: flex;
-        justify-content: end;
-        align-items: end;
         will-change: transform, opacity;
       }
 
@@ -144,8 +147,7 @@
         box-shadow:
           0 1px 4px 0 rgba(0, 0, 0, 0.37),
           var(--box-shadow);
-        transform: scale(0.8);
-        left: -50%;
+        transform: translateX(-50%) scale(0.8);
         z-index: 1;
       }
 
@@ -158,8 +160,7 @@
           0 6px 10px 0 rgba(0, 0, 0, 0.3),
           0 2px 2px 0 rgba(0, 0, 0, 0.2),
           var(--box-shadow);
-        transform: scale(0.9);
-        left: -25%;
+        transform: translateX(-25%) scale(0.9);
         z-index: 2;
       }
 
@@ -173,9 +174,7 @@
           0 11px 7px 0 rgba(0, 0, 0, 0.19),
           var(--box-shadow);
         transform: scale(1);
-        left: 0;
-        right: 0;
-        z-index: 5;
+        z-index: 3;
       }
 
       #s0:checked ~ #slide1,
@@ -187,8 +186,7 @@
           0 6px 10px 0 rgba(0, 0, 0, 0.3),
           0 2px 2px 0 rgba(0, 0, 0, 0.2),
           var(--box-shadow);
-        transform: scale(0.9);
-        left: 25%;
+        transform: translateX(25%) scale(0.9);
         z-index: 2;
       }
 
@@ -200,8 +198,7 @@
         box-shadow:
           0 1px 4px 0 rgba(0, 0, 0, 0.37),
           var(--box-shadow);
-        transform: scale(0.8);
-        left: 50%;
+        transform: translateX(50%) scale(0.8);
         z-index: 1;
       }
     }

@@ -1,14 +1,11 @@
-<script>
-  import { _, locale } from "svelte-i18n";
-
-  import { Locale } from "@/classes/Locale";
+<script lang="ts">
+  import { analytics, logEvent } from "@/apis/firebase";
+  import { _, Locale, locale } from "@/classes/Locale";
   import Button from "@/lib/buttons/Button.svelte";
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
-  import LinkIcon from "@/lib/icons/LinkIcon.svelte";
+  import ExternalLinkIcon from "@/lib/icons/ExternalLinkIcon.svelte";
   import MailIcon from "@/lib/icons/MailIcon.svelte";
   import { openDialog } from "@/lib/dialogs/Dialog.svelte";
-  import { logEvent } from "firebase/analytics";
-  import { analytics } from "@/apis/firebase";
 
   let cvLink = $derived(`/public/CV-${Locale.get($locale)}.pdf`);
 
@@ -24,13 +21,13 @@
 
 <div class="main">
   <h1>{$_("presentation-title")}</h1>
-  <h2><span class="_gradient">{$_("presentation-job")}</span></h2>
+  <h2><span class="_gradient job">{$_("presentation-job")}</span></h2>
   <div class="description">
     {$_("presentation-description")}
   </div>
   <div class="buttons">
     <ButtonLink href={cvLink} onclick={cvOnclick}>
-      <LinkIcon />
+      <ExternalLinkIcon />
       {$_("presentation-cv-button")}
     </ButtonLink>
     <Button onclick={contactOnclick}>
@@ -42,8 +39,8 @@
 
 <style lang="scss">
   .main {
-    // margin-bottom: var(--s24);
     max-width: 650px;
+    min-width: 475px;
 
     h1 {
       font-size: var(--xxl-font-size);
@@ -51,12 +48,14 @@
     }
 
     h2 {
-      font-size: var(--l-font-size);
-      margin-bottom: var(--s48);
+      padding-bottom: var(--s48);
+
+      span {
+        font-size: var(--l-font-size);
+      }
     }
 
     .description {
-      font-size: var(--m-font-size);
       margin-bottom: var(--s32);
       color: var(--color2);
     }

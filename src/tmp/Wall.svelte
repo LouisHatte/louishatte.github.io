@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import * as THREE from "three";
   import { onMount } from "svelte";
   // @ts-expect-error
@@ -53,7 +53,7 @@
 
 <div id="wall"></div>
 
-<style>
+<style lang="scss">
   #wall {
     width: 100vw !important;
     height: 100vh !important;
@@ -61,4 +61,4 @@
     top: 0;
     left: 0;
   }
-</style>
+</style> -->

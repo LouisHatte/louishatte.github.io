@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import * as THREE from "three";
   import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
   import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
@@ -78,7 +78,7 @@
 
 <div id="bitcoin"></div>
 
-<style>
+<style lang="scss">
   #bitcoin {
     width: 100vw;
     height: 100vh;
@@ -86,4 +86,4 @@
     background: radial-gradient(#292929, #000000);
     overflow: hidden;
   }
-</style>
+</style> -->

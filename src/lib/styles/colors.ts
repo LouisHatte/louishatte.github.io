@@ -1,5 +1,6 @@
-import { ColorIndex } from "@/classes/ColorIndex.localStorage";
 import { get, writable, type Writable } from "svelte/store";
+
+import { ColorIndex } from "@/classes/ColorIndex.localStorage";
 
 type Color = "neutral" | "purple" | "blue" | "green" | "red";
 type Id = "0" | "1" | "2" | "3" | "4";

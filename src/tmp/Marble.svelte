@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import * as THREE from "three";
   import { onMount } from "svelte";
   // @ts-expect-error
@@ -85,7 +85,7 @@
 
 <div id="marble"></div>
 
-<style>
+<style lang="scss">
   #marble {
     width: 100vw;
     height: 100vh;
@@ -93,4 +93,4 @@
     background: radial-gradient(#292929, #000000);
     overflow: hidden;
   }
-</style>
+</style> -->

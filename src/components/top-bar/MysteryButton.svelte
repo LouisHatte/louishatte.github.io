@@ -15,8 +15,8 @@
 
 <style lang="scss">
   .loader {
-    width: 48px;
-    height: 48px;
+    width: var(--s48);
+    height: var(--s48);
     display: inline-block;
     position: relative;
 
@@ -26,8 +26,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 48px;
-      height: 48px;
+      width: var(--s48);
+      height: var(--s48);
       border-radius: 50%;
       background: var(--color1);
       animation: loading 2s linear infinite;

@@ -1,10 +1,10 @@
 import type { Component } from "svelte";
 import { writable } from "svelte/store";
 
+import { ViewIndex } from "@/classes/ViewIndex.localStorage";
 import View0 from "@/components/body/view-0/View0.svelte";
 import View1 from "@/components/body/view-1/View1.svelte";
 import View2 from "@/components/body/view-2/View2.svelte";
-import { ViewIndex } from "@/classes/ViewIndex.localStorage";
 
 export const TRANSITION_VIEW_DURATION = 1000;
 

@@ -1,13 +1,14 @@
-import { ref, onValue, set } from "firebase/database";
 import { writable, get } from "svelte/store";
 
-import { db } from "@/apis/firebase";
+import { db, onValue, ref, set } from "@/apis/firebase";
+import { IS_PRODUCTION } from "@/constants";
 
 const LIKER = "liker";
 
 export class Liker {
   static init() {
     let liked = localStorage.getItem(LIKER);
+
     if (liked === null) {
       localStorage.setItem(LIKER, "false");
     }
@@ -29,8 +30,7 @@ export class Liker {
 export const likes = writable(0);
 export const liked = writable(Liker.isLiked());
 
-const isProduction = process.env.NODE_ENV === "production";
-const refName = isProduction ? "likes" : "likesLocal";
+const refName = IS_PRODUCTION ? "likes" : "likesLocal";
 const likesRef = ref(db, refName);
 
 onValue(likesRef, (snapshot) => {
@@ -39,6 +39,7 @@ onValue(likesRef, (snapshot) => {
   }
 });
 
+// Keep like button style synchronized between all tabs of the same browser.
 window.addEventListener("storage", (event) => {
   if (event.key !== LIKER || event.newValue === null) return;
   liked.set(JSON.parse(event.newValue));

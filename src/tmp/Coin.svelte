@@ -1,8 +1,8 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import { onMount } from "svelte";
   import * as THREE from "three";
 
-  import { create3DScene } from "@/utils/threeJS";
+  import { ThreeHelper } from "@/utils/threeJS";
 
   const modelPaths = ["/coin-red.glb"];
 
@@ -18,7 +18,7 @@
   let requestId: number;
 
   async function initScene() {
-    ({ scene, camera, renderer, models } = await create3DScene({
+    ({ scene, camera, renderer, models } = await ThreeHelper.create3DScene({
       width: divRef.clientWidth,
       height: divRef.clientHeight,
       modelPaths,
@@ -69,8 +69,8 @@
 
 <div bind:this={divRef}></div>
 
-<style>
+<style lang="scss">
   div {
     height: 100%;
   }
-</style>
+</style> -->

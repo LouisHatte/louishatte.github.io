@@ -69,16 +69,21 @@
 
 <div
   class="shape"
-  style={`--x: ${coordinates.current.x}px; --y: ${coordinates.current.y}px; --size: ${circleDiameter}px;`}
+  style:--x="{coordinates.current.x}px"
+  style:--y="{coordinates.current.y}px"
+  style:--size="{circleDiameter}px"
 ></div>
 {#each subCircles as { id, x, y, tween } (id)}
   <div
     class="shape"
-    style={`--x: ${x}px; --y: ${y}px; --size: ${tween.current.diameter}px; --opacity: ${tween.current.opacity}`}
+    style:--x="{x}px"
+    style:--y="{y}px"
+    style:--size="{tween.current.diameter}px"
+    style:--opacity={tween.current.opacity}
   ></div>
 {/each}
 
-<style>
+<style lang="scss">
   .shape {
     position: absolute;
     pointer-events: none;

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { getDatabase, onValue, ref, set } from "firebase/database";
 import {
   getAnalytics,
   logEvent,
@@ -33,4 +33,4 @@ const analytics = getAnalytics(app);
 
 setAnalyticsCollectionEnabled(analytics, false);
 
-export { db, analytics, logEvent };
+export { db, analytics, logEvent, onValue, ref, set };

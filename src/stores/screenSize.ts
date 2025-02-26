@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-const MAX_MOBILE_SCREEN_SIZE = 768;
+const MAX_MOBILE_SCREEN_SIZE = 1130;
 
 export const isMobile = writable(window.innerWidth <= MAX_MOBILE_SCREEN_SIZE);
 

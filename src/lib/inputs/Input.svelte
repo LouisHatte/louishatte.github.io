@@ -8,40 +8,40 @@
     id: string;
     onkeydown?: (event: KeyboardEvent) => void;
     placeholder?: string;
-    type: HTMLInputTypeAttribute;
+    type?: HTMLInputTypeAttribute;
     value: string;
   };
 
   let {
     autoFocus = false,
+    className = "",
     disabled = false,
-    _class,
     id,
     onkeydown,
-    placeholder,
-    style,
+    placeholder = "",
+    style = "",
     type = "text",
     value = $bindable(),
   }: Props = $props();
 
-  let ref: HTMLInputElement | null = null;
+  let inputRef: HTMLInputElement;
 
   onMount(() => {
-    if (ref && autoFocus) {
-      ref.focus();
+    if (autoFocus) {
+      inputRef.focus();
     }
   });
 </script>
 
 <input
-  class={_class}
+  class={"_pulse" + className}
   {style}
   {type}
   name={id}
   {placeholder}
   {disabled}
   {onkeydown}
-  bind:this={ref}
+  bind:this={inputRef}
   bind:value
 />
 
@@ -55,25 +55,6 @@
 
     &::placeholder {
       color: var(--color3);
-    }
-
-    &:hover,
-    &:focus {
-      border: solid 1px var(--color1);
-      box-shadow: var(--box-shadow);
-      transition:
-        border 0.3s ease-in-out,
-        box-shadow 0.3s ease-in-out;
-      animation: shadowPulse 2s infinite alternate ease-in-out;
-    }
-
-    @keyframes shadowPulse {
-      0% {
-        box-shadow: 0px 0px 7px 2px var(--color0);
-      }
-      100% {
-        box-shadow: 0px 0px 7px 2px var(--color1);
-      }
     }
   }
 </style>

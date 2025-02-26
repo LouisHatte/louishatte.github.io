@@ -13,11 +13,11 @@
   import Spinner from "@/lib/spinners/Spinner.svelte";
 
   let {
-    _class,
+    className = "",
     children,
-    disabled,
+    disabled = false,
     onclick,
-    style,
+    style = "",
     type = "button",
   }: ButtonProps = $props();
 
@@ -31,7 +31,7 @@
 
 <button
   bind:this={buttonRef}
-  class={_class}
+  class={className}
   style={`min-width: ${originalWidth};` + style}
   {type}
   {disabled}

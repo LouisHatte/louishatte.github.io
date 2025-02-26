@@ -1,10 +1,9 @@
 <script lang="ts">
-  import { analytics } from "@/apis/firebase";
+  import { analytics, logEvent } from "@/apis/firebase";
   import { Liker, likes, liked } from "@/classes/Liker.localStorage";
   import HeartIcon from "@/components/top-bar/HeartIcon.svelte";
   import Button from "@/lib/buttons/Button.svelte";
   import { addToast } from "@/lib/toasts/toasts";
-  import { logEvent } from "firebase/analytics";
 
   let displayedLikes = $derived.by(getDisplayedLikes);
 

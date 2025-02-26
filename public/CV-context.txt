@@ -31,7 +31,7 @@ I obtained my baccalaureate with a specialization in mathematics, a subject I tr
 3. Experience
 
 Personal Project (2024–Present):
-Inspired by RenTec, my brother and I started developing AI-driven strategies to analyze stock market data using the Yahoo Finance API, web scraping, and financial metrics like MACD and RSI.
+Inspired by RenTec, I started developing AI-driven strategies to analyze stock market data using the Yahoo Finance API, web scraping, and financial metrics like MACD and RSI.
 
 Lamster (2022–2024), Besançon, France:
 Full Stack Engineer, Lead Role
