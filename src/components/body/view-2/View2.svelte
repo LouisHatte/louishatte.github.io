@@ -35,6 +35,7 @@
       image: spaceImage,
       description: $_("project-portfolio-description"),
       year: "2025",
+      githubLink: "https://github.com/LouisHatte/louishatte.github.io",
     },
     {
       category: $_("project-project-category"),

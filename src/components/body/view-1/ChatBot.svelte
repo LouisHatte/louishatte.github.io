@@ -8,6 +8,7 @@
     QUESTION_COUNTER_LIMIT,
     QuestionCounter,
   } from "@/classes/QuestionCounter.localStorage";
+  import { BASE_URL } from "@/constants";
   import Button from "@/lib/buttons/Button.svelte";
   import Input from "@/lib/inputs/Input.svelte";
   import { addToast } from "@/lib/toasts/toasts";
@@ -36,7 +37,7 @@
   let divRef: HTMLDivElement;
 
   async function loadCVContext() {
-    const response = await fetch("/CV-context.txt");
+    const response = await fetch(`${BASE_URL}CV-context.txt`);
     context = await response.text();
   }
 

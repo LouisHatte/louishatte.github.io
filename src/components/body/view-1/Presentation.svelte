@@ -1,14 +1,16 @@
 <script lang="ts">
   import { analytics, logEvent } from "@/apis/firebase";
   import { _, Locale, locale } from "@/classes/Locale";
+  import { BASE_URL, IS_PRODUCTION } from "@/constants";
   import Button from "@/lib/buttons/Button.svelte";
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
   import ExternalLinkIcon from "@/lib/icons/ExternalLinkIcon.svelte";
   import MailIcon from "@/lib/icons/MailIcon.svelte";
   import { openDialog } from "@/lib/dialogs/Dialog.svelte";
 
-  let cvLink = $derived(`/public/CV-${Locale.get($locale)}.pdf`);
+  let cvLink = $derived(`${BASE_URL}CV-${Locale.get($locale)}.pdf`);
 
+  $inspect(cvLink);
   function cvOnclick() {
     logEvent(analytics, "cv-button");
   }

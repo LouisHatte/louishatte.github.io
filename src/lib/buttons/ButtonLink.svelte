@@ -8,6 +8,6 @@
   let { href, ...rest }: Props = $props();
 </script>
 
-<a {href} target="_blank">
+<a {href} target="_blank" rel="noopener noreferrer">
   <Button {...rest}></Button>
 </a>

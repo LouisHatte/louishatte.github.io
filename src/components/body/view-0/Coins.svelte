@@ -2,9 +2,14 @@
   import { onMount } from "svelte";
   import * as THREE from "three";
 
+  import { BASE_URL } from "@/constants";
   import { ThreeHelper } from "@/utils/threeJS";
 
-  const modelPaths = [`/coin-blue.glb`, `/coin-green.glb`, `/coin-red.glb`];
+  const modelPaths = [
+    `${BASE_URL}coin-blue.glb`,
+    `${BASE_URL}coin-green.glb`,
+    `${BASE_URL}coin-red.glb`,
+  ];
 
   let divRef: HTMLDivElement;
 
