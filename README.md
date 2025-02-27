@@ -2,6 +2,8 @@
 
 ## Run the project
 
+Create your `.env` file based on `.env.example`.
+
 ```sh
 pnpm install
 pnpm run dev
@@ -15,7 +17,9 @@ pnpm run build && pnpm run deploy
 
 ## FEATURE IDEAS
 
-- Add a scroll indicator in View0.
+- Make scroll down indicator color dynamic in View0.
+- Add a part for skills in View1.
+- Add more details for each carousel slide with a modal.
 
 ## CODE IMPROVMENTS
 
@@ -23,8 +27,8 @@ pnpm run build && pnpm run deploy
 
 ## BUGS
 
-- Bar under English and Français not well centered.
-- Icon next to Envoyer super small.
-- Bad responsive with large screens.
+- Likes decrease to 0 sometimes plus display number latency, solved?
+
+- Bug when the modal is opened and you open/close the browser inspector.
 - The 3D coin model rotates weirdly.
 - Freeze 0.1s when transitioning on the View0 with the 3D coin model.

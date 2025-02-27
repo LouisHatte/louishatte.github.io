@@ -33,7 +33,7 @@
     background: transparent;
     border: solid 1px var(--color3);
     border-radius: var(--border-radius);
-    resize: "none";
+    resize: none;
 
     &::placeholder {
       color: var(--color3);

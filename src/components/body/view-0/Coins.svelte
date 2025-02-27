@@ -93,6 +93,6 @@
 
 <style lang="scss">
   div {
-    height: 100%;
+    height: 85%;
   }
 </style>

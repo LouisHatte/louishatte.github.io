@@ -9,7 +9,7 @@ type ColorId = `${Color}${Id}`;
 type ActiveColorId = `color${Id}`;
 
 const COLORS: Color[] = ["neutral", "purple", "blue", "green", "red"];
-const NUMBER_OF_COLORS = 5;
+export const NUMBER_OF_COLORS = 5;
 
 const COLOR_IDS: Record<ColorId, string> = {
   neutral0: "rgba(255, 255, 255, 0.3)",
@@ -43,7 +43,7 @@ const COLOR_IDS: Record<ColorId, string> = {
   red4: "rgba(255, 0, 0, 1)",
 };
 
-const colorIndex = Number(ColorIndex.get());
+const colorIndex = ColorIndex.get();
 const color: Writable<Color> = writable(COLORS[colorIndex]);
 
 const startingTheme: Record<ActiveColorId, string> = Object.fromEntries(

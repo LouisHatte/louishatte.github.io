@@ -10,7 +10,6 @@
 
   let cvLink = $derived(`${BASE_URL}CV-${Locale.get($locale)}.pdf`);
 
-  $inspect(cvLink);
   function cvOnclick() {
     logEvent(analytics, "cv-button");
   }

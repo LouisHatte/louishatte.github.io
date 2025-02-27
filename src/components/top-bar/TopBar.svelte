@@ -3,7 +3,6 @@
   import LocaleSwitch from "@/components/top-bar/LocaleSwitch.svelte";
   import LikeButton from "@/components/top-bar/LikeButton.svelte";
   import MysteryButton from "@/components/top-bar/MysteryButton.svelte";
-  import EthIcon from "@/lib/icons/EthIcon.svelte";
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
   import LinkedinIcon from "@/lib/icons/LinkedinIcon.svelte";
   import GithubIcon from "@/lib/icons/GithubIcon.svelte";
@@ -21,7 +20,6 @@
 </script>
 
 <div class="main">
-  <EthIcon width={32} height={32} />
   <div class="buttons">
     <LocaleSwitch />
     <ButtonLink
@@ -43,7 +41,7 @@
   .main {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     flex-grow: 0;
 

@@ -27,8 +27,6 @@
   let conversation: string[] = $state([]);
   let input = $derived(`${context}${conversation.join("\n")}\n`);
 
-  $inspect(conversation);
-
   let isAsking = $state(false);
   let typingMessage = $state("");
   let isInputDisabled = $state(false);
@@ -159,7 +157,7 @@
         onkeydown={(e) => e.key === "Enter" && sendMessage()}
         bind:value={question}
       />
-      <Button onclick={sendMessage} disabled={isAsking}>
+      <Button onclick={sendMessage} disabled={isAsking} style="width: 150px;">
         {$_("chatbot-send-button")}
         <SendIcon />
       </Button>

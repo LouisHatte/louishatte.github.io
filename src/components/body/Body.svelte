@@ -6,7 +6,6 @@
     goToPreviousView,
     gotToNextView,
     isViewTransitioning,
-    TRANSITION_VIEW_DURATION,
     view,
   } from "@/stores/view";
 
@@ -35,7 +34,7 @@
   {#key ViewContent}
     <div
       class="body"
-      in:fade={{ duration: 500, delay: TRANSITION_VIEW_DURATION + 500 }}
+      in:fade={{ duration: 500, delay: 1000 }}
       out:fade={{ duration: 500 }}
     >
       <ViewContent />

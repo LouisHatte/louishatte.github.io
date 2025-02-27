@@ -6,7 +6,7 @@ import View0 from "@/components/body/view-0/View0.svelte";
 import View1 from "@/components/body/view-1/View1.svelte";
 import View2 from "@/components/body/view-2/View2.svelte";
 
-export const TRANSITION_VIEW_DURATION = 1000;
+const TRANSITION_VIEW_DURATION = 1500;
 
 type View = {
   body: Component;

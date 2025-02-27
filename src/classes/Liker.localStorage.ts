@@ -7,23 +7,31 @@ const LIKER = "liker";
 
 export class Liker {
   static init() {
-    let liked = localStorage.getItem(LIKER);
+    Liker._sanitizeValue();
+  }
 
-    if (liked === null) {
+  private static _sanitizeValue() {
+    const rawLiker = localStorage.getItem(LIKER);
+    if (rawLiker === null) {
       localStorage.setItem(LIKER, "false");
+      return false;
     }
+
+    if (rawLiker !== "false" && rawLiker !== "true") {
+      localStorage.setItem(LIKER, "false");
+      return false;
+    }
+    return !!rawLiker;
+  }
+
+  static isLiked() {
+    return Liker._sanitizeValue();
   }
 
   static async like() {
     liked.set(true);
     await set(likesRef, get(likes) + 1);
     localStorage.setItem(LIKER, "true");
-  }
-
-  static isLiked() {
-    const liker = localStorage.getItem(LIKER);
-    if (!liker) return false;
-    return JSON.parse(liker);
   }
 }
 

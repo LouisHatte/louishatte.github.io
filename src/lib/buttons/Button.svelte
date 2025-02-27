@@ -1,5 +1,6 @@
 <script lang="ts" module>
   export type ButtonProps = StyleProps & {
+    buttonRef?: HTMLButtonElement | null;
     children: Snippet;
     disabled?: boolean;
     onclick?: (e: MouseEvent) => void;
@@ -13,6 +14,7 @@
   import Spinner from "@/lib/spinners/Spinner.svelte";
 
   let {
+    buttonRef = $bindable(null),
     className = "",
     children,
     disabled = false,
@@ -20,19 +22,12 @@
     style = "",
     type = "button",
   }: ButtonProps = $props();
-
-  let buttonRef: HTMLButtonElement;
-  let originalWidth = $state("auto");
-
-  onMount(() => {
-    originalWidth = `${buttonRef.offsetWidth}px`;
-  });
 </script>
 
 <button
   bind:this={buttonRef}
   class={className}
-  style={`min-width: ${originalWidth};` + style}
+  {style}
   {type}
   {disabled}
   {onclick}
