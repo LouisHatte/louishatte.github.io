@@ -19,9 +19,6 @@ dependencies:
   gsap:
     specifier: ^3.12.7
     version: 3.12.7
-  lottie-web:
-    specifier: ^5.12.2
-    version: 5.12.2
   sass:
     specifier: ^1.83.1
     version: 1.83.1
@@ -2874,10 +2871,6 @@ packages:
 
   /long@5.3.1:
     resolution: {integrity: sha512-ka87Jz3gcx/I7Hal94xaN2tZEOPoUOEVftkQqZx2EeQRN7LGdfLlI3FvZ+7WDplm+vK2Urx9ULrvSowtdCieng==}
-    dev: false
-
-  /lottie-web@5.12.2:
-    resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
     dev: false
 
   /lower-case@2.0.2:

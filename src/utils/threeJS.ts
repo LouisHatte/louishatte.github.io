@@ -5,6 +5,7 @@ type Create3DScene = {
   width: number;
   height: number;
   modelPaths: string[];
+  texturePaths: string[];
   alpha: boolean;
 };
 
@@ -34,20 +35,32 @@ export class ThreeHelper {
     return models;
   }
 
+  private static _getTextures(texturePaths: string[]) {
+    const textureLoader = new THREE.TextureLoader();
+
+    return texturePaths.map((path) =>
+      textureLoader.load(path, (texture) => {
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+      })
+    );
+  }
+
   static async create3DScene({
     width,
     height,
     modelPaths,
+    texturePaths,
     alpha,
   }: Create3DScene) {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha });
     const models = await ThreeHelper._getModels(modelPaths);
+    const textures = ThreeHelper._getTextures(texturePaths);
 
-    models.forEach((model) => scene.add(model));
     renderer.setSize(width, height);
 
-    return { scene, camera, renderer, models };
+    return { scene, camera, renderer, models, textures };
   }
 }

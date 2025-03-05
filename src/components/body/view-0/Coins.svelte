@@ -11,6 +11,12 @@
     `${BASE_URL}coin-red.glb`,
   ];
 
+  const texturePaths = [
+    `${BASE_URL}heightmap-clean.png`,
+    `${BASE_URL}heightmap-destroy.png`,
+    `${BASE_URL}heightmap-scratched.png`,
+  ];
+
   let divRef: HTMLDivElement;
 
   let scene: THREE.Scene;
@@ -18,18 +24,21 @@
   let renderer: THREE.WebGLRenderer;
 
   let models: THREE.Group[] = [];
+  let textures: THREE.Texture[];
   let modelIndex = 0;
   let prevYRotation: number;
 
   let requestId: number;
 
   async function initScene() {
-    ({ scene, camera, renderer, models } = await ThreeHelper.create3DScene({
-      width: divRef.clientWidth,
-      height: divRef.clientHeight,
-      modelPaths,
-      alpha: true,
-    }));
+    ({ scene, camera, renderer, models, textures } =
+      await ThreeHelper.create3DScene({
+        width: divRef.clientWidth,
+        height: divRef.clientHeight,
+        modelPaths,
+        texturePaths,
+        alpha: true,
+      }));
 
     renderer.render(scene, camera);
     models.forEach((model, index) => {

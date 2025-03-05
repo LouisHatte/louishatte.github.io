@@ -33,23 +33,25 @@
     const gltfLoader = new GLTFLoader();
     const textureLoader = new THREE.TextureLoader();
 
-    gltfLoader.load("/reb4.glb", (gltf) => {
+    gltfLoader.load("/the-coin.glb", (gltf) => {
       const model = gltf.scene;
 
-      const heightmap = textureLoader.load("/height.png", (texture) => {
-        texture.wrapS = THREE.RepeatWrapping;
-        texture.wrapT = THREE.RepeatWrapping;
-      });
+      const heightmap = textureLoader.load(
+        "/heightmap-clean.png",
+        (texture) => {
+          texture.wrapS = THREE.RepeatWrapping;
+          texture.wrapT = THREE.RepeatWrapping;
+        }
+      );
 
       model.traverse((child) => {
         // @ts-expect-error
         if (child.isMesh) {
           // Clone the existing material to retain original properties
-          // @ts-expect-error
-          const material = child.material.clone();
-          material.map = heightmap; // Apply texture color
-          material.displacementMap = heightmap; // Apply height map (optional)
-          material.displacementScale = 1; // Adjust as needed
+          // const material = child.material.clone();
+          // material.map = heightmap; // Apply texture color
+          // material.displacementMap = heightmap; // Apply height map (optional)
+          // material.displacementScale = 1; // Adjust as needed
 
           // @ts-expect-error
           child.material = material;

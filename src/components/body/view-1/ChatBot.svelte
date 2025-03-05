@@ -171,7 +171,7 @@
 <style lang="scss">
   .chatbot {
     height: 100%;
-    min-width: 505px;
+    min-width: 570px;
     max-height: 600px;
     min-height: 340px;
     display: flex;

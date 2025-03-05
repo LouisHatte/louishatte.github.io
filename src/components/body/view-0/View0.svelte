@@ -1,15 +1,16 @@
 <script lang="ts">
-  import Coins from "@/components/body/view-0/Coins.svelte";
-  import ScrollDown from "@/components/body/view-0/ScrollDown.svelte";
+  import Coin from "@/components/body/view-0/Coin.svelte";
+  import ScrollDownIcon from "@/components/body/view-0/ScrollDownIcon.svelte";
 </script>
 
 <div class="main">
-  <Coins />
-  <ScrollDown />
+  <Coin />
+  <ScrollDownIcon />
 </div>
 
 <style lang="scss">
   .main {
+    position: relative;
     height: 100%;
   }
 </style>

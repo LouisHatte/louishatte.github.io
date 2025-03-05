@@ -39,6 +39,7 @@
       width: divRef.clientWidth,
       height: divRef.clientHeight,
       modelPaths: [],
+      texturePaths: [],
       alpha: false,
     }));
 
