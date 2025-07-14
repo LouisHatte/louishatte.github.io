@@ -23,7 +23,7 @@ export class Locale {
     const currentLocale = _locale ?? get(locale);
 
     if (!currentLocale) throw new Error("Current locale doesn't exist.");
-    return currentLocale.startsWith("en") ? "en" : "fr";
+    return currentLocale.startsWith("fr") ? "fr" : "en";
   }
 
   static switch(newLocale: TLocale) {

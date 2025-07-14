@@ -22,26 +22,17 @@
   }
 
   :global(._gradient) {
-    background: linear-gradient(
-      to right,
-      #008baa,
-      #7e42a7,
-      #6600c5,
-      #6070fd,
-      #2a46ff,
-      #0099ff,
-      #008ea0
-    );
+    background: var(--gradient);
     background-size: 200%;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: _gradient 4s linear infinite;
+    animation: _gradient 5s linear infinite;
   }
 
   @keyframes _gradient {
     to {
-      background-position: 200%;
+      background-position: -200%;
     }
   }
 

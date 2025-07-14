@@ -12,10 +12,10 @@
   let underlineLeft = $state(0);
 
   function updateUnderline() {
-    const activeButton = $locale === "en" ? enButton : frButton;
+    const activeButton = $locale?.startsWith("fr") ? frButton : enButton;
     if (!activeButton) return;
 
-    underlineWidth = activeButton.offsetWidth + 8;
+    underlineWidth = activeButton.offsetWidth;
     underlineLeft = activeButton.offsetLeft;
   }
 
@@ -25,8 +25,8 @@
 
   function switchLocale(locale: TLocale) {
     logEvent(analytics, `${locale}-button`);
-    updateUnderline();
     Locale.switch(locale);
+    updateUnderline();
   }
 </script>
 
@@ -34,14 +34,14 @@
   <Button
     bind:buttonRef={enButton}
     onclick={() => switchLocale("en")}
-    style={"padding: 0; margin: 4px;"}
+    style={"padding: 0; margin: 0;"}
   >
     English
   </Button>
   <Button
     bind:buttonRef={frButton}
     onclick={() => switchLocale("fr")}
-    style={"padding: 0; margin: 4px;"}
+    style={"padding: 0; margin: 0;"}
   >
     Français
   </Button>
@@ -56,13 +56,13 @@
   .switch {
     position: relative;
     display: flex;
-    gap: var(--s24);
+    gap: var(--s16);
     cursor: pointer;
 
     .underline {
       position: absolute;
       bottom: -5px;
-      height: 2px;
+      height: 1.5px;
       background: var(--color1);
       border-radius: var(--border-radius);
       transition:

@@ -30,13 +30,11 @@
         if ((node as THREE.Mesh).isMesh) {
           const mesh = node as THREE.Mesh;
           const material = mesh.material as THREE.MeshStandardMaterial;
-          console.log(material);
 
           const displacementTexture = await gltf.parser.getDependency(
             "texture",
             0
           );
-          console.log(displacementTexture);
 
           if (displacementTexture) {
             material.displacementMap = displacementTexture;

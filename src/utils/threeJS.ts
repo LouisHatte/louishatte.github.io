@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { GLTFLoader } from "three-stdlib";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 
 type Create3DScene = {
   width: number;
@@ -11,7 +11,7 @@ type Create3DScene = {
 
 export class ThreeHelper {
   private static async _getModels(modelPaths: string[]) {
-    const loader = new GLTFLoader();
+    const loader = new FBXLoader();
     let models: THREE.Group[] = [];
 
     try {
@@ -20,7 +20,7 @@ export class ThreeHelper {
           return new Promise((resolve, reject) => {
             loader.load(
               path,
-              (gltf) => resolve(gltf.scene),
+              (fbx) => resolve(fbx),
               undefined,
               (error) => reject(error)
             );

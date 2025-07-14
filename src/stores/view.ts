@@ -4,19 +4,18 @@ import { writable } from "svelte/store";
 import { ViewIndex } from "@/classes/ViewIndex.localStorage";
 import View0 from "@/components/body/view-0/View0.svelte";
 import View1 from "@/components/body/view-1/View1.svelte";
-import View2 from "@/components/body/view-2/View2.svelte";
 
-const TRANSITION_VIEW_DURATION = 1500;
+export const TRANSITION_VIEW_DURATION = 3000;
 
 type View = {
+  id: number;
   body: Component;
   position: Vec3D;
 };
 
 export const views: View[] = [
-  { body: View0, position: [0, 0, 5] },
-  { body: View1, position: [20, 10, 10] },
-  { body: View2, position: [-10, 10, 30] },
+  { id: 0, body: View0, position: [0, 0, 1.7] },
+  { id: 1, body: View1, position: [20, 20, 20] },
 ];
 
 let viewIndex = Number(ViewIndex.get());

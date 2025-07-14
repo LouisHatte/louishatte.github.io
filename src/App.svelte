@@ -46,13 +46,13 @@
   main {
     width: 100%;
     max-width: 2100px;
-    padding: var(--s24);
+    padding: var(--s8) var(--s24) var(--s24);
 
     .screen-warning {
       height: 100%;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: end;
       text-align: center;
       font-size: var(--l-font-size);
     }

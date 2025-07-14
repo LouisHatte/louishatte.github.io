@@ -1,9 +1,11 @@
 {
   "main-mobile-warning": "Your screen is too small to display this content properly. For the best experience, please view this site on a larger screen.",
 
-  "presentation-title": "Hey, I'm Louis.",
-  "presentation-job": "From Full Stack to Smart Contract developer",
-  "presentation-description": "I'm a full-stack developer transitioning into smart contract development, with a passion for blockchain technology and AI. I'm currently deepening my expertise in Solidity and decentralized systems in order to find a job in this domain.",
+  "welcome-scroll": "Scroll down",
+
+  "presentation-title": "Hi, I'm Louis.",
+  "presentation-job": "Blockchain Engineer - DeFi - Cybersecurity",
+  "presentation-description": "I'm a Blockchain Engineer specializing in DeFi and cybersecurity. I develop smart contracts in Solidity/Rust, and build cross-chain protocols. I'm currently sharpening my skills in bug bounties and working on personal projects. I'm open to Web3 opportunities to build innovative decentralized applications.",
   "presentation-cv-button": "View Full Resume",
   "presentation-contact-button": "Contact me",
 
@@ -16,29 +18,12 @@
   "contact-error-email": "invalid email",
   "contact-on-success": "Email sent!",
 
-  "chatbot-first-message": "Hey there! Feel free to ask any questions about me here.",
-  "chatbot-input-example": "What's your favorite programming language?",
+  "chatbot-first-message": "Feel free to ask any questions about me here.",
+  "chatbot-input-example": "What was your last project?",
   "chatbot-send-button": "Send",
   "chatbot-questions-remaining-1": "remaining.",
   "chatbot-questions-remaining-2": "remaining.",
   "chatbot-no-more-credits": "No more credits for today.",
-
-  "project-project-category": "Project",
-  "project-side-project-category": "Side Project",
-  "project-challenge-category": "Challenge",
-  "project-view-project": "View Project",
-  "project-ai-harvard-title": "Algorithm & AI",
-  "project-ai-harvard-description": "I completed an online certification from Harvard in AI, covering machine learning and deep learning. I developed 8 Python projects, including bots to play Tic-Tac-Toe and Nim perfectly, a bot to find the degrees of separation between an actor and a movie, and an AI system to recognize road signs.",
-  "project-ethernaut-title": "Ethernaut",
-  "project-ethernaut-description": "I solved all the security challenges on the Ethernaut platform, which allowed me to explore Solidity security and deepen my understanding of the language. It's through these challenges that I developed a passion for smart contract development.",
-  "project-portfolio-title": "Porfolio",
-  "project-portfolio-description": "I built my portfolio from scratch using Svelte 5 and SCSS. Svelte has become my preferred framework for its simplicity and runes. I also had fun with Three.js for 3D rendering, and I thank Rebecca Hatté for her beautiful coin models.",
-  "project-stock-market-title": "Trading AI",
-  "project-stock-market-description": "Inspired by RenTec and advancements in AI, I started a personal project to predict stock market prices. Using deep learning, I combine financial indicators with social media scraping to capture market sentiment.",
-  "project-leet-code-title": "LeetCode",
-  "project-leet-code-description": "I love solving problems, and LeetCode is the perfect place for that. I'm currently working through the top 150 problems to improve my algorithmic skills and strengthen my problem-solving abilities.",
-  "project-flappy-bird-title": "Flappy Bird",
-  "project-flappy-bird-description": "I recreated the Flappy Bird game with Python and Pygame just for fun. Although the game's physics aren't perfect, it was an enjoyable project and my very first game. My best score is 51. Do you think you can beat it?",
 
   "footer-copyright": "Made by Louis Hatté. All Rights Reserved.",
 

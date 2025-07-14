@@ -2,14 +2,14 @@ import { get, writable, type Writable } from "svelte/store";
 
 import { ColorIndex } from "@/classes/ColorIndex.localStorage";
 
-type Color = "neutral" | "purple" | "blue" | "green" | "red";
-type Id = "0" | "1" | "2" | "3" | "4";
+type Color = "neutral" | "purple" | "blue" | "red";
+type Id = "0" | "1" | "2" | "3" | "4" | "5";
 
 type ColorId = `${Color}${Id}`;
 type ActiveColorId = `color${Id}`;
 
-const COLORS: Color[] = ["neutral", "purple", "blue", "green", "red"];
-export const NUMBER_OF_COLORS = 5;
+const COLORS: Color[] = ["neutral", "purple", "blue", "red"];
+export const NUMBER_OF_COLORS = 6;
 
 const COLOR_IDS: Record<ColorId, string> = {
   neutral0: "rgba(255, 255, 255, 0.3)",
@@ -17,30 +17,81 @@ const COLOR_IDS: Record<ColorId, string> = {
   neutral2: "rgba(225, 225, 225, 1)",
   neutral3: "rgba(158, 158, 158, 1)",
   neutral4: "rgba(0, 0, 0, 1)",
+  neutral5: `linear-gradient(
+    to left,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(166, 166, 166, 1) 10%,
+    rgba(105, 105, 105, 1) 20%,
+    rgba(64, 62, 62, 1) 30%,
+    rgba(0, 0, 0, 1) 45%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 1) 55%,
+    rgba(64, 62, 62, 1) 70%,
+    rgba(105, 105, 105, 1) 80%,
+    rgba(166, 166, 166, 1) 90%,
+    rgba(255, 255, 255, 1) 100%
+    )
+    `,
 
   purple0: "rgba(240, 230, 255, 0.3)",
   purple1: "rgba(220, 200, 255, 1)",
   purple2: "rgba(200, 170, 255, 1)",
   purple3: "rgba(150, 100, 220, 1)",
   purple4: "rgba(75, 0, 130, 1)",
+  purple5: `linear-gradient(
+    to left,
+    rgba(150, 100, 220, 1) 0%,
+    rgba(113, 90, 150, 1) 10%,
+    rgba(78, 68, 92, 1) 20%,
+    rgba(52, 47, 56, 1) 30%,
+    rgba(0, 0, 0, 1) 45%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 1) 55%,
+    rgba(52, 47, 56, 1) 70%,
+    rgba(78, 68, 92, 1) 80%,
+    rgba(113, 90, 150, 1) 90%,
+    rgba(150, 100, 220, 1) 100%
+    )`,
 
   blue0: "rgba(230, 240, 255, 0.3)",
   blue1: "rgba(200, 220, 255, 1)",
   blue2: "rgba(160, 190, 255, 1)",
   blue3: "rgba(100, 150, 255, 1)",
   blue4: "rgba(0, 0, 255, 1)",
-
-  green0: "rgba(230, 255, 230, 0.3)",
-  green1: "rgba(200, 255, 200, 1)",
-  green2: "rgba(160, 255, 160, 1)",
-  green3: "rgba(100, 200, 100, 1)",
-  green4: "rgba(0, 128, 0, 1)",
+  blue5: `linear-gradient(
+    to left,
+    rgba(100, 150, 255, 1) 0%,
+    rgba(106, 128, 176, 1) 10%,
+    rgba(81, 88, 112, 1) 20%,
+    rgba(43, 47, 51, 1) 30%,
+    rgba(0, 0, 0, 1) 45%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 1) 55%,
+    rgba(43, 47, 51, 1) 70%,
+    rgba(81, 88, 112, 1) 80%,
+    rgba(106, 128, 176, 1) 90%,
+    rgba(100, 150, 255, 1) 100%
+    )`,
 
   red0: "rgba(255, 230, 230, 0.3)",
   red1: "rgba(255, 200, 200, 1)",
   red2: "rgba(255, 150, 150, 1)",
   red3: "rgba(220, 100, 100, 1)",
   red4: "rgba(255, 0, 0, 1)",
+  red5: `linear-gradient(
+    to left,
+    rgba(220, 100, 100, 1) 0%,
+    rgba(163, 98, 98, 1) 10%,
+    rgba(92, 68, 68, 1) 20%,
+    rgba(43, 36, 36, 1) 30%,
+    rgba(0, 0, 0, 1) 45%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 1) 55%,
+    rgba(43, 36, 36, 1) 70%,
+    rgba(92, 68, 68, 1) 80%,
+    rgba(163, 98, 98, 1) 90%,
+    rgba(220, 100, 100, 1) 100%
+    )`,
 };
 
 const colorIndex = ColorIndex.get();

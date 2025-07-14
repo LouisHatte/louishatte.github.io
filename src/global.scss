@@ -10,11 +10,13 @@
   box-sizing: border-box;
   font-size: var(--m-font-size);
   line-height: 1.5;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   scrollbar-width: none;
 }
 
-html, body, #app {
+html,
+body,
+#app {
   height: 100%;
   overflow: hidden;
 }

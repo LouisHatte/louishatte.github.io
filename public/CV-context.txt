@@ -14,10 +14,54 @@ Solidity is, without a doubt, my favorite programming language.
 Its structure is clear-cut, with no hidden complexities.
 You can grasp it at the deepest level, from the very first to the last EVM instruction.
 I also appreciate that, beyond memory usage and execution time, it introduces the concept of gas efficiency, adding an extra layer of challenge.
-Compared to all the languages I've encountered, this is the one I’m finally committed to mastering, dedicating all my energy to achieving expertise like never before.
-I'm seeking a job that will allow me to validate my knowledge in this field and continue improving.
 
-2. Education
+2. Projects & challenges
+
+Challenge: Top 2 on Smart Contract Engineer, username: ehl
+- Completed advanced low-level programming challenges in Solidity and Rust: Demonstrated deep understanding of blockchain fundamentals, memory management, and gas optimization techniques
+
+Challenge: Top 320 on Ethernaut from OpenZeppelin, username: ehl
+- Solved Ethernaut CTF security challenges: Completed OpenZeppelin's smart contract security capture-the-flag exercises, mastering vulnerability detection and exploit mitigation techniques
+
+Project: ERC-20 SNAIL token bridge, available on Github
+- Built cross-chain ERC-20 token bridge: Developed lightweight SNAIL token bridge using Chainlink CCIP protocol for secure cross-chain transfers between Sepolia and Base Sepolia testnets
+- Created React-based bridge interface: Built responsive frontend using modern Web3 stack (Wagmi, Viem, RainbowKit) with real-time transaction tracking, wallet integration, and intuitive user experience for seamless cross-chain operations
+
+3. Experience
+
+Full Stack Engineer - Lead role | Lamster | Besançon, France | 2022 - 2024
+Lamster develops specialised management solutions for hotel industry operations and workforce management.
+- Built hotel maintenance platform from scratch: Developed Inara web application using React/TypeScript frontend and Node.js/GraphQL backend with PostgreSQL database, scaling to 50+ hotel clients and generating measurable revenue
+- Managed full-stack development lifecycle: Oversaw complete technical architecture from frontend (React/Redux/AntDesign) to backend (Apollo/Sequelize) and mobile deployment (React Native), including server cost optimisation on Scaleway infrastructure
+- Led cross-platform mobile development: Delivered native Android/iOS applications using React Native with Firebase Cloud Messaging for push notifications, enabling real-time maintenance updates for hotel staff
+- Implemented AI-powered pest recognition: Created convolutional neural network using TensorFlow for automated pest detection and classification, reducing manual inspection time and improving maintenance response accuracy
+- Supervised technical team growth: Mentored and managed multiple interns while collaborating directly with product managers and CTO on feature prioritisation, sprint planning, and technical decision-making through Jira workflows
+
+Full Stack Engineer | Audiowizard | Lyon, France | 2021, 6 months
+AudioWizard provides management software solutions specifically designed for audioprosthetists.
+- Automated inventory synchronisation: Developed automatic Hiboutik API integration script to synchronise product databases across 60+ client boutiques, eliminating manual updates and reducing data inconsistencies
+- Solved complex data management challenges: Implemented solutions for duplicate product handling, ID mapping discrepancies, and client-specific business rules within the inventory system, improving data integrity
+- Contributed to React/TypeScript frontend: Developed features for the web application used by audioprosthetists to manage clients, appointments, inventory, and statistics with focus on user interface clarity
+- Collaborated in remote-first environment: Participated in daily standups and cross-functional teamwork with 15-person team including developers, support staff, and business stakeholders using Discord-based communication
+
+IoT Developer | Prediktas | Lyon, France | 2019, 4 months
+Prediktas is a startup developing predictive maintenance solutions with autonomous connected sensors.
+- Developed 3 solutions: Created sensor firmware across three different technologies (TI RTOS, ESP, nRF), ensuring optimal performance and low energy consumption for autonomous sensor operation
+- Enhanced data collection system: Rebuilt collector software with state machine architecture to receive Bluetooth measurements from sensors and transmit via Sigfox/LoRa protocols, extending operational range to tens of kilometers
+- Optimized hardware integration: Implemented low-level C programming for binary operations, register management, and communication protocols (SPI, I2C), enabling efficient sensor-to-microprocessor data transfer
+
+Full Stack Engineer | Lizeo Group | Lyon, France | 2017, 6 months
+Lizeo is a data intelligence company specialising in tire market analytics for consumers and manufacturers globally.
+- Full-Stack Development on Rezulteo v2: Developed consumer-facing features for tire comparison platform using Scala (backend) and Polymer (frontend), contributing to a site serving millions of European consumers seeking tire purchasing guidance
+- UK Market Data Integration: Built comprehensive data matching system connecting ~48,000 UK cities with 65,000 tire service stations, creating geolocation-based recommendations that enhanced user experience and market coverage
+- Back-Office Management Tool Creation: Led end-to-end development of Rzv2-Cities-BackOffice project, creating database management interface for market managers to manually curate city-station relationships, improving data quality and potential for B2B sales
+
+Pedagogical Assistant in Digital School | Epitech | Lyon, France | 2017 - 2019
+Epitech is the French tech school where I studied, focused on project-based learning in computer science and innovation.
+- Mentored programming students: Provided technical guidance to 400+ students on C programming projects using Socratic questioning methodology, improving student self-confidence and debugging capabilities through individualized support rather than direct solutions
+- Collaborated in educational team: Worked with 20-member interdisciplinary teaching staff through regular pedagogical meetings and curriculum coordination, enhancing educational delivery and establishing standardized mentoring approaches
+
+4. Education
 
 Epitech, Lyon (2016-2021): Expert in Information Technology
 I spent five years at Epitech, completing over 100 projects in various programming languages, and earned my diploma.
@@ -28,62 +72,25 @@ During my fourth year at Epitech, I spent a year in South Korea—a magical expe
 Notre Dame de Bellegarde, Neuville sur Saône (2016): Scientific Baccalaureate
 I obtained my baccalaureate with a specialization in mathematics, a subject I truly enjoy.
 
-3. Experience
+5. Programming Skills
 
-Personal Project (2024–Present):
-Inspired by RenTec, I started developing AI-driven strategies to analyze stock market data using the Yahoo Finance API, web scraping, and financial metrics like MACD and RSI.
+Main programming: Python, Solidity, Rust, Typescript, Javascript
+Sub programming: Vyper, C, Go, ASM, Ruby, Dart, Bash, C++, Scala, Haskell, HTML, CSS, SQL
+ML & Data Science: Tensorflow, Pytorch, Sklearn, Numpy, Pandas
+Blockchain: Foundry, Hardhat, Ethereum, Sepolia, ZKSync, OpenZeppelin, ChainLink, EtherJS, Viem, Wagmi
+Frontend: React, Svelte, SASS, Tailwind, MaterialUI, Zod, React Native, Flutter
+Backend: NodeJS, Apollo, REST, GraphQL, Sequelize, Prisma, PostgreSQL, Firebase, Redis, Minio, Docker
+Outils: Git, Github, Gitlab, CI/CD, VSCode, Remix, Vim, MacOS, Linux
+Langues: French (Native), English (Advanced), German (Beginner), Korean (Beginner)
 
-Lamster (2022–2024), Besançon, France:
-Full Stack Engineer, Lead Role
-Technologies: React, Node.js, Apollo
-I developed a maintenance management software from scratch, which could be described as a Trello-like tool for hotels and restaurants.
-I handled the front-end, back-end, server architecture, as well as Android and iOS applications, and even created an AI for pest recognition.
-As time went on, I took on more responsibility and eventually led a small development team, working closely with the product manager to plan new features.
-
-Personal Challenge: Ethernaut (2023, 2 months)
-I solved every security challenge on the Ethernaut platform under the username "ehl".
-I found it incredibly interesting, and it quickly became my passion.
-
-Audiowizard (2021, 6 months), Lyon, France:
-Full Stack Engineer
-I helped develop a SaaS software for hearing-aid acousticians using React, a framework/library I was particularly passionate about.
-I also created an update system based on Hiboutik to keep hearing-aid stock information up to date.
-
-Blockchain Project Manager (2019–2021):
-I developed the BlinkCoin token on the Ethereum test blockchain using Solidity, Truffle, Ganache, and Metamask.
-It was my first time exploring the blockchain ecosystem, and it was quite an interesting experience, especially since almost nobody had a clear idea of what they were doing at the time.
-
-Prediktas (2019, 4 months), Lyon, France:
-IoT Developer
-I built IoT-connected devices to predict machine failures.
-I experimented with two different technologies, faced setbacks, but succeeded on the third attempt. I never gave up.
-
-Lizeo Group (2017, 6 months), Lyon, France:
-Full Stack Engineer
-I was part of a collaborative team developing the company's website using Polymer, Scala, and MySQL.
-After spending four months there, I was entrusted with leading the creation of a new back office for my final two months.
-
-Epitech, Lyon (2017–2019):
-Pedagogical Assistant
-I was part of a teaching team, supervising and assisting students from the years below me throughout their studies.
-This experience taught me how to coordinate within a team while helping others learn—something I truly enjoy.
-
-4. Programming Skills
-
-I've been a full stack developer for the past two years, so I’m very comfortable with JavaScript/TypeScript, NodeJS and React. I prefer Svelte 5 though.
-I completed an online certification at Harvard in AI with Python, so I’m fairly confident with the subject.
-I believe I have a deep understanding of the Solidity language through the Ethernaut challenges, but I lack practical experience in its applications.
-I’ve also worked with Go on personal projects.
-I plan to learn Rust and gain true expertise in Solidity.
-
-5. Languages
+6. Languages
 
 I'm a native French.
-I've a correct level in English but I'm less confident in speaking. I'm working on that though.
+I've a correct level in English.
 I learned German during high school.
 I also took a few Korean lessons during my year there.
 
-6. Hobbies
+7. Hobbies
 
 I enjoy playing chess to relax, but even more so solving chess puzzles.
 I also like sports—my two favorites are skiing and still rings.

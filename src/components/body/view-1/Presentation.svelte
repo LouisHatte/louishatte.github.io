@@ -1,12 +1,13 @@
 <script lang="ts">
   import { analytics, logEvent } from "@/apis/firebase";
   import { _, Locale, locale } from "@/classes/Locale";
-  import { BASE_URL, IS_PRODUCTION } from "@/constants";
+  import { BASE_URL } from "@/constants";
   import Button from "@/lib/buttons/Button.svelte";
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
   import ExternalLinkIcon from "@/lib/icons/ExternalLinkIcon.svelte";
   import MailIcon from "@/lib/icons/MailIcon.svelte";
   import { openDialog } from "@/lib/dialogs/Dialog.svelte";
+  import { theme } from "@/lib/styles/colors";
 
   let cvLink = $derived(`${BASE_URL}CV-${Locale.get($locale)}.pdf`);
 
@@ -22,7 +23,11 @@
 
 <div class="main">
   <h1>{$_("presentation-title")}</h1>
-  <h2><span class="_gradient job">{$_("presentation-job")}</span></h2>
+  <h2>
+    <span class="_gradient job" style="--gradient: {$theme['color5']}"
+      >{$_("presentation-job")}
+    </span>
+  </h2>
   <div class="description">
     {$_("presentation-description")}
   </div>

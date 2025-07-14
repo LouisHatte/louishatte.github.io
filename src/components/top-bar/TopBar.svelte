@@ -7,7 +7,8 @@
   import LinkedinIcon from "@/lib/icons/LinkedinIcon.svelte";
   import GithubIcon from "@/lib/icons/GithubIcon.svelte";
 
-  const linkedinLink = "https://www.linkedin.com/in/louis-hatte-94160111b/";
+  const linkedinLink =
+    "https://www.linkedin.com/in/louis-hatt%C3%A9-94160111b/";
   const githubLink = "https://github.com/LouisHatte";
 
   function linkedinOnclick() {
@@ -48,7 +49,7 @@
     .buttons {
       display: flex;
       align-items: center;
-      gap: var(--s24);
+      gap: var(--s12);
     }
   }
 </style>
