@@ -14,10 +14,12 @@
   .main {
     height: 100%;
     display: flex;
+    justify-content: center;
     padding: var(--s64);
     gap: var(--s48);
 
     .right-box {
+      max-width: 850px;
       flex: 1;
     }
   }
