@@ -16,7 +16,7 @@
   }
 
   .scroll {
-    font-size: 16px;
+    font-size: var(--l-font-size);
     font-weight: bold;
     position: absolute;
     bottom: var(--s32);

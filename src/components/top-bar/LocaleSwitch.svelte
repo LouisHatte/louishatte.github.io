@@ -56,7 +56,7 @@
   .switch {
     position: relative;
     display: flex;
-    gap: var(--s16);
+    gap: var(--s24);
     cursor: pointer;
 
     .underline {

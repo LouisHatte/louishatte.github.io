@@ -5,11 +5,7 @@
 
   import { BASE_URL } from "@/constants";
   import { theme } from "@/lib/styles/colors";
-  import {
-    view,
-    isViewTransitioning,
-    TRANSITION_VIEW_DURATION,
-  } from "@/stores/view";
+  import { view, isViewTransitioning } from "@/stores/view";
   import { ThreeHelper } from "@/utils/threeJS";
 
   const modelPaths = [`${BASE_URL}ethereum.fbx`];
@@ -55,7 +51,7 @@
       x: $view.position[0],
       y: $view.position[1],
       z: $view.position[2],
-      duration: TRANSITION_VIEW_DURATION / 1000,
+      duration: 2.9,
       onUpdate: () => camera.lookAt(0, 0, 0),
       onComplete: () => {
         if ($view.id === 0) {

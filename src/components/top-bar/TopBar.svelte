@@ -47,7 +47,7 @@
     .buttons {
       display: flex;
       align-items: center;
-      gap: var(--s12);
+      gap: var(--s24);
     }
   }
 </style>

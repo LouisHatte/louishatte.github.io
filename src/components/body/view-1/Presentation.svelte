@@ -45,8 +45,7 @@
 
 <style lang="scss">
   .main {
-    max-width: 650px;
-    min-width: 420px;
+    width: 420px;
 
     h1 {
       font-size: var(--xxl-font-size);

@@ -46,7 +46,7 @@
   main {
     width: 100%;
     max-width: 2100px;
-    padding: var(--s8) var(--s24) var(--s24);
+    padding: var(--s24);
 
     .screen-warning {
       height: 100%;

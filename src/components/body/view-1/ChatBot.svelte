@@ -30,7 +30,6 @@
   let isAsking = $state(false);
   let typingMessage = $state("");
   let isInputDisabled = $state(false);
-  let hasAskedOneQuestion = $state(false);
 
   let divRef: HTMLDivElement;
 
@@ -90,7 +89,6 @@
 
     logEvent(analytics, "send-question", { message: question });
 
-    hasAskedOneQuestion = true;
     typingMessage = "";
     isAsking = true;
     isInputDisabled = true;
