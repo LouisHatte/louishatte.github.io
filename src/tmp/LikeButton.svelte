@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import { analytics, logEvent } from "@/apis/firebase";
   import { Liker, likes, liked } from "@/classes/Liker.localStorage";
   import HeartIcon from "@/components/top-bar/HeartIcon.svelte";
@@ -40,4 +40,4 @@
     display: flex;
     width: 69px;
   }
-</style>
+</style> -->

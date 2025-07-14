@@ -1,7 +1,6 @@
 <script lang="ts">
   import { analytics, logEvent } from "@/apis/firebase";
   import LocaleSwitch from "@/components/top-bar/LocaleSwitch.svelte";
-  import LikeButton from "@/components/top-bar/LikeButton.svelte";
   import MysteryButton from "@/components/top-bar/MysteryButton.svelte";
   import ButtonLink from "@/lib/buttons/ButtonLink.svelte";
   import LinkedinIcon from "@/lib/icons/LinkedinIcon.svelte";
@@ -33,7 +32,6 @@
     <ButtonLink className="_shake" href={githubLink} onclick={githubOnClick}>
       <GithubIcon />
     </ButtonLink>
-    <LikeButton />
     <MysteryButton />
   </div>
 </div>
