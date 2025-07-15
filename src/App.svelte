@@ -19,7 +19,9 @@
 </script>
 
 <GlobalStyle />
-<Stars />
+{#if !$isMobile}
+  <Stars />
+{/if}
 <Crosshair />
 <main>
   {#if $isMobile}
@@ -52,7 +54,7 @@
       height: 100%;
       display: flex;
       justify-content: center;
-      align-items: end;
+      align-items: center;
       text-align: center;
       font-size: var(--l-font-size);
     }
