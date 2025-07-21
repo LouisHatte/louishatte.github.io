@@ -29,6 +29,6 @@ const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
 
-setAnalyticsCollectionEnabled(analytics, false);
+setAnalyticsCollectionEnabled(analytics, true);
 
 export { analytics, logEvent };
