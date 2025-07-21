@@ -5,6 +5,8 @@ import {
   setAnalyticsCollectionEnabled,
 } from "firebase/analytics";
 
+import { IS_PRODUCTION } from "@/constants";
+
 const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
 const AUTH_DOMAIN = import.meta.env.VITE_FIREBASE_AUTH_DOMAIN;
 const DATABASE_URL = import.meta.env.VITE_FIREBASE_DATABASE_URL;
@@ -28,7 +30,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
-
-setAnalyticsCollectionEnabled(analytics, true);
+console.log(IS_PRODUCTION);
+setAnalyticsCollectionEnabled(analytics, IS_PRODUCTION);
 
 export { analytics, logEvent };
