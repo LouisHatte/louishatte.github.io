@@ -30,7 +30,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
-console.log(IS_PRODUCTION);
+
 setAnalyticsCollectionEnabled(analytics, IS_PRODUCTION);
 
 export { analytics, logEvent };
