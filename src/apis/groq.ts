@@ -5,7 +5,7 @@ import { _ } from "@/classes/Locale";
 import { addToast } from "@/lib/toasts/toasts";
 
 const URL = "https://api.groq.com/openai/v1/chat/completions";
-const KEY: string = import.meta.env.VITE_GROQ_API_KEY;
+const KEY: string = import.meta.env.VITE_TMP;
 const LLAMA_MODEL = "llama-3.3-70b-versatile";
 
 export async function getGroqAnswer(
