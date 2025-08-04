@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
 import {
   getAnalytics,
   logEvent,
@@ -30,7 +31,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
+const functions = getFunctions(app, "us-central1");
+
+if (!IS_PRODUCTION) {
+  connectFunctionsEmulator(functions, "localhost", 5001);
+}
 
 setAnalyticsCollectionEnabled(analytics, IS_PRODUCTION);
 
-export { analytics, logEvent };
+export { analytics, logEvent, functions };

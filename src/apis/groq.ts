@@ -1,36 +1,23 @@
-import axios from "axios";
-import { get } from "svelte/store";
-
-import { _ } from "@/classes/Locale";
-import { addToast } from "@/lib/toasts/toasts";
-
-const URL = "https://api.groq.com/openai/v1/chat/completions";
-const KEY: string = import.meta.env.VITE_TMP;
-const LLAMA_MODEL = "llama-3.3-70b-versatile";
+import { FIREBASE_FUNCTION_ENDPOINT } from "@/constants";
 
 export async function getGroqAnswer(
   content: string,
   role = "user",
-  model = LLAMA_MODEL
+  model = "llama-3.3-70b-versatile"
 ) {
-  try {
-    const response = await axios.post(
-      URL,
-      {
-        model,
-        messages: [{ role, content }],
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${KEY}`,
-        },
-      }
-    );
-    return response.data.choices[0].message.content as string;
-  } catch (error) {
-    console.error("Fetching Groq error.", error);
-    addToast(get(_)("on-error"), "error");
-    throw error;
+  const response = await fetch(FIREBASE_FUNCTION_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ content, role, model }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || "Something went wrong");
   }
+
+  return data.answer;
 }
