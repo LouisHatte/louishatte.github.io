@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, tick } from "svelte";
 
-  import { analytics, logEvent } from "@/apis/firebase";
+  import { analytics, logEvent, saveQuestion } from "@/apis/firebase";
   import { getGroqAnswer } from "@/apis/groq";
   import { _ } from "@/classes/Locale";
   import {
@@ -87,7 +87,8 @@
       return;
     }
 
-    logEvent(analytics, "send-question", { message: question });
+    logEvent(analytics, "send-question");
+    await saveQuestion(question);
 
     typingMessage = "";
     isAsking = true;

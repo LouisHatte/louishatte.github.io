@@ -5,6 +5,7 @@ import {
   logEvent,
   setAnalyticsCollectionEnabled,
 } from "firebase/analytics";
+import { getDatabase, ref, push, set } from "firebase/database";
 
 import { IS_PRODUCTION } from "@/constants";
 
@@ -32,6 +33,10 @@ const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
 const functions = getFunctions(app, "us-central1");
+const db = getDatabase(
+  app,
+  import.meta.env.VITE_FIREBASE_REALTIME_DATABASE_URL
+);
 
 if (!IS_PRODUCTION) {
   connectFunctionsEmulator(functions, "localhost", 5001);
@@ -39,4 +44,11 @@ if (!IS_PRODUCTION) {
 
 setAnalyticsCollectionEnabled(analytics, IS_PRODUCTION);
 
-export { analytics, logEvent, functions };
+const REF = IS_PRODUCTION ? "questions" : "questions-test";
+
+async function saveQuestion(text: string) {
+  const messageRef = push(ref(db, REF));
+  await set(messageRef, { text });
+}
+
+export { analytics, logEvent, functions, saveQuestion };
