@@ -27,4 +27,5 @@ pnpm run deploy # deploys the backend
 - Add a constellation minimap.
 - Turn everything in 3D.
 - Add 3D custom planets/coins.
+- Add a background with the stars
 - Add a page loader.
