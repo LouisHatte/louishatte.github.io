@@ -15,12 +15,17 @@
     height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: var(--s64);
     gap: var(--s48);
 
     .right-box {
-      max-width: 850px;
+      max-width: 1000px;
+      width: 100%;
       flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
     }
   }
 </style>

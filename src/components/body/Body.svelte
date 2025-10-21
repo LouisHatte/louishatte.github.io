@@ -34,7 +34,7 @@
   {#key ViewContent}
     <div
       class="body"
-      in:fade={{ duration: 500, delay: 1000 }}
+      in:fade={{ duration: 2000, delay: 1500 }}
       out:fade={{ duration: 500 }}
     >
       <ViewContent />

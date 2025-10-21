@@ -46,9 +46,10 @@
 <style lang="scss">
   .main {
     width: 500px;
+    text-align: center;
 
     h1 {
-      font-size: var(--xxl-font-size);
+      font-size: var(--l-font-size);
       margin-bottom: var(--s32);
     }
 
@@ -56,7 +57,7 @@
       padding-bottom: var(--s48);
 
       span {
-        font-size: var(--l-font-size);
+        font-size: var(--xl-font-size);
       }
     }
 
@@ -67,6 +68,7 @@
 
     .buttons {
       display: flex;
+      justify-content: center;
       gap: var(--s12);
     }
   }
