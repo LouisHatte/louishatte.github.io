@@ -205,6 +205,7 @@
           border-radius: var(--border-radius);
           color: var(--color4);
           word-wrap: break-word;
+          user-select: text;
         }
       }
     }
