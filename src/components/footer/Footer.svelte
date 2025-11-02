@@ -6,7 +6,7 @@
   <div class="copyright">
     © Copyright {new Date().getFullYear()}. {$_("footer-copyright")}
   </div>
-  <div class="version">Version - 1.0.17</div>
+  <div class="version">Version - 1.0.18</div>
 </div>
 
 <style lang="scss">

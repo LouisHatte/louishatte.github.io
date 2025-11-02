@@ -9,6 +9,8 @@ pnpm install
 pnpm run dev # runs the frontend
 
 cd functions/
+pnpm install
+pnpm add -g firebase-tools
 pnpm run serve # emulates the backend
 ```
 
