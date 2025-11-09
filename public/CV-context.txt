@@ -11,7 +11,7 @@ Here is your CV:
 
 1. Short Description
 
-Hi, I'm Louis. I've 5 years of experience as a full-stack engineer and I'm transitioning to the world of Web3.
+Hi, I'm Louis. I've 4 years of experience as a full-stack engineer and I'm transitioning to the world of Web3.
 I’m available for a full-time remote or hybrid role in Europe. I can start immediately.
 
 2. Skills
